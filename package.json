@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "description": "Material 3 Expressive components for React, distributed as a shadcn registry.",
+  "license": "CC0-1.0",
   "type": "module",
   "repository": {
     "type": "git",

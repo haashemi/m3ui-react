@@ -9,6 +9,23 @@ behaviors of [UI SDK](https://ui-sdk.dev/) (`@ui-sdk/react` + `@ui-sdk/core`).
 Goal: pixel-perfect M3 Expressive components with the motion the guidelines call for
 (spring physics, shape morphing, state layers, ripples), installable via `npx shadcn add`.
 
+## Decisions
+
+- **Layout:** pnpm monorepo — `apps/www` (Vite+ React docs, previews, and the static
+  `/r/*.json` registry output) plus the registry source.
+- **Hosting:** GitHub Pages, deployed from GitHub Actions.
+- **Motion:** no runtime animation dependency by default — CSS `linear()` easings generated from
+  the M3 spring tokens, UI SDK's `solveSpring` for gestures/interruptible motion, custom path
+  interpolation for shape morphing. Add `motion` only where an animation can't be reproduced
+  faithfully without it.
+- **Tokens:** full M3 token set (`--md-sys-*`: color roles, shape, typography, motion, elevation,
+  state layers) exposed through Tailwind v4 `@theme`, with shadcn's variables (`--primary`,
+  `--background`, `--radius`, …) aliased to the nearest M3 roles.
+- **Typeface:** Google Sans Flex.
+- **License:** CC0-1.0 (public domain).
+- **Milestone 1:** tooling, docs app, registry pipeline, tokens, ripple/state layers, then
+  Button, Icon Button, Button Group, Split Button, FAB / Extended FAB.
+
 ## Documentation: always use context7
 
 Always look up library docs through the **context7** MCP (`resolve-library-id` → `query-docs`)
