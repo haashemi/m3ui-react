@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "apps/www/src/styles.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@/registry/m3ui",
+    "ui": "@/registry/m3ui/ui",
+    "lib": "@/registry/m3ui/lib",
+    "hooks": "@/registry/m3ui/hooks",
+    "utils": "@/lib/utils"
+  },
+  "registries": {}
+}

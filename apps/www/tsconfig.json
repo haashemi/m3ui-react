@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["vite-plus/client", "vite-plugin-svgr/client", "node"],
+    "paths": {
+      "~/*": ["./src/*"],
+      "@/registry/*": ["../../registry/*"],
+      "@/lib/utils": ["../../registry/lib/utils.ts"]
+    }
+  },
+  "include": ["src", "vite.config.ts"]
+}

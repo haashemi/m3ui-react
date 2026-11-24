@@ -1,0 +1,108 @@
+{
+  "items": [
+    {
+      "name": "ripple",
+      "type": "registry:ui",
+      "title": "Ripple",
+      "description": "Material 3 ripple and state layer for any interactive element. Ported from @material/web.",
+      "dependencies": [],
+      "registryDependencies": ["utils", "@m3ui/theme"],
+      "files": [
+        {
+          "path": "ui/ripple.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Buttons and toggle buttons in five sizes, five color styles and two shapes that morph on press and selection.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "icon-button",
+      "type": "registry:ui",
+      "title": "Icon Button",
+      "description": "Icon buttons and toggle icon buttons in five sizes, three widths and four color styles.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/icon-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button Group",
+      "description": "Standard button groups whose pressed item grows, and connected button groups for selection.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple", "@m3ui/button"],
+      "files": [
+        {
+          "path": "ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "split-button",
+      "type": "registry:ui",
+      "title": "Split Button",
+      "description": "A primary action paired with a menu trigger whose inner corners morph and icon rotates when opened.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple", "@m3ui/button"],
+      "files": [
+        {
+          "path": "ui/split-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "fab",
+      "type": "registry:ui",
+      "title": "FAB",
+      "description": "Floating action buttons and extended FABs in three sizes and six color styles.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/fab.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/google-sans-flex';
+@import './styles/m3ui.css';
+
+@source '../../../registry';
+
+@custom-variant dark (&:is(.dark *));
+
+@layer base {
+  html {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-surface text-on-surface type-body-large antialiased;
+  }
+}

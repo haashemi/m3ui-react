@@ -1,0 +1,6 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "m3ui",
+  "homepage": "https://haashemi.github.io/m3ui-react",
+  "include": ["registry/theme/registry.json", "registry/m3ui/registry.json"]
+}

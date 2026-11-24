@@ -1,0 +1,21 @@
+{
+  "name": "@m3ui/tokens",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Material 3 Expressive design tokens, spring easings and theme generation for M3UI.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "extract": "node scripts/extract.ts && vp fmt src/generated --write",
+    "test": "vp test"
+  },
+  "dependencies": {
+    "@material/material-color-utilities": "0.4.0"
+  },
+  "devDependencies": {
+    "@material/web": "2.5.0",
+    "@types/node": "26.6.6"
+  }
+}
