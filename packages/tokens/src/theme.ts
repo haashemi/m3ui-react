@@ -180,6 +180,7 @@ const focusRing: CssTree = {
       'outline-width': 'var(--md-sys-state-focus-indicator-thickness)',
       'outline-offset': 'var(--md-sys-state-focus-indicator-outer-offset)',
       animation: 'var(--animate-focus-ring)',
+      'z-index': '1',
     },
   },
   '@media (prefers-reduced-motion: reduce)': {

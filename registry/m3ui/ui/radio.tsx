@@ -1,10 +1,6 @@
 'use client';
 
-import {
-  Radio as RadioPrimitive,
-  RadioGroup as RadioGroupPrimitive,
-  RadioIndicator,
-} from '@ui-sdk/react/radio';
+import { Radio as RadioPrimitive, RadioGroup as RadioGroupPrimitive } from '@ui-sdk/react/radio';
 import type * as React from 'react';
 
 import { cn } from '@/lib/utils';
@@ -37,23 +33,31 @@ function Radio({
       {...props}
     >
       <Ripple />
-      <span
+      <svg
+        viewBox="0 0 20 20"
+        aria-hidden="true"
         data-slot="radio-icon"
         className={cn(
-          'pointer-events-none relative flex items-center justify-center rounded-full border-2 border-(--radio-color) transition-colors duration-50 ease-linear block-5 inline-5',
-          'group-data-disabled/radio:opacity-38 group-data-disabled/radio:transition-none',
+          'pointer-events-none fill-(--radio-color) [transition:fill_50ms_linear] block-5 inline-5',
+          'group-data-disabled/radio:opacity-38 group-data-disabled/radio:transition-none motion-reduce:transition-none',
         )}
       >
-        <RadioIndicator
-          keepMounted
+        <path
+          fillRule="evenodd"
+          d="M10 0a10 10 0 1 1 0 20a10 10 0 1 1 0-20Zm0 2a8 8 0 1 0 0 16a8 8 0 1 0 0-16Z"
+        />
+        <circle
+          cx="10"
+          cy="10"
+          r="5"
           className={cn(
-            'scale-0 rounded-full bg-(--radio-color) opacity-0 block-2.5 inline-2.5',
-            '[transition:opacity_50ms_linear,scale_0s_linear_50ms,background-color_50ms_linear]',
-            'data-checked:scale-100 data-checked:opacity-100 data-checked:[transition:opacity_50ms_linear,scale_300ms_var(--md-sys-motion-easing-emphasized-decelerate),background-color_50ms_linear]',
-            'data-disabled:transition-none motion-reduce:transition-none',
+            'origin-center scale-0 opacity-0 transform-fill',
+            '[transition:scale_150ms_var(--md-sys-motion-easing-emphasized-accelerate),opacity_50ms_linear_100ms]',
+            'group-data-checked/radio:scale-100 group-data-checked/radio:opacity-100 group-data-checked/radio:[transition:scale_300ms_var(--md-sys-motion-easing-emphasized-decelerate),opacity_50ms_linear]',
+            'group-data-disabled/radio:transition-none motion-reduce:transition-none',
           )}
         />
-      </span>
+      </svg>
     </RadioPrimitive>
   );
 }

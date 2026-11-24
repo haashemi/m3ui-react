@@ -2,13 +2,13 @@ import * as React from 'react';
 
 import { PageHeader, Preview, Section } from '~/components/docs';
 import {
-  ArrowDropDownIcon,
   DirectionsCarIcon,
   EventIcon,
   FlightIcon,
   LightbulbIcon,
   LocalCafeIcon,
   RestaurantIcon,
+  UndoIcon,
 } from '~/icons';
 import {
   AssistChip,
@@ -23,6 +23,7 @@ const initialPeople = ['Ada Lovelace', 'Alan Turing', 'Grace Hopper'];
 
 function InputChips(): React.JSX.Element {
   const [people, setPeople] = React.useState(initialPeople);
+  const [showMeeting, setShowMeeting] = React.useState(true);
   return (
     <ChipSet>
       {people.map((person) => (
@@ -38,9 +39,22 @@ function InputChips(): React.JSX.Element {
           {person}
         </InputChip>
       ))}
-      <InputChip icon={<EventIcon />} onRemove={() => setPeople(initialPeople)}>
-        Reset
-      </InputChip>
+      {showMeeting ? (
+        <InputChip icon={<EventIcon />} onRemove={() => setShowMeeting(false)}>
+          Team sync
+        </InputChip>
+      ) : null}
+      {people.length < initialPeople.length || !showMeeting ? (
+        <AssistChip
+          icon={<UndoIcon />}
+          onClick={() => {
+            setPeople(initialPeople);
+            setShowMeeting(true);
+          }}
+        >
+          Reset
+        </AssistChip>
+      ) : null}
     </ChipSet>
   );
 }
@@ -90,7 +104,6 @@ export function ChipsPage(): React.JSX.Element {
           </FilterChipGroup>
           <ChipSet>
             <FilterChip variant="elevated">Elevated</FilterChip>
-            <FilterChip trailingIcon={<ArrowDropDownIcon />}>Price</FilterChip>
             <FilterChip disabled>Disabled</FilterChip>
             <FilterChip disabled defaultPressed>
               Disabled

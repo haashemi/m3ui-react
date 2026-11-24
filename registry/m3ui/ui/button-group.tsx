@@ -25,6 +25,7 @@ function settleDuration(element: Element) {
 }
 
 function attachPressGrow(group: HTMLElement) {
+  let restingWidths: Map<HTMLElement, number> | undefined = undefined;
   let lockedWidths: Map<HTMLElement, number> | undefined = undefined;
   let releaseTimer: ReturnType<typeof setTimeout> | undefined = undefined;
 
@@ -34,13 +35,21 @@ function attachPressGrow(group: HTMLElement) {
     return item instanceof HTMLElement && !isDisabled(item) ? item : undefined;
   };
 
+  const measure = (items: HTMLElement[]) => {
+    const known = restingWidths;
+    if (known && items.every((child) => known.has(child))) return known;
+    return new Map(items.map((child) => [child, child.getBoundingClientRect().width]));
+  };
+
   const press = (item: HTMLElement) => {
     clearTimeout(releaseTimer);
     const items = [...group.children].filter((child) => child instanceof HTMLElement);
     const index = items.indexOf(item);
-    const widths = new Map(items.map((child) => [child, child.getBoundingClientRect().width]));
+    const widths = measure(items);
+    const fresh = widths !== restingWidths;
+    restingWidths = widths;
     for (const [child, width] of widths) child.style.width = `${width}px`;
-    void group.offsetWidth;
+    if (fresh) void group.offsetWidth;
 
     const neighbors = [items[index - 1], items[index + 1]].filter((child) => child !== undefined);
     const growth = (widths.get(item) ?? 0) * PRESSED_ITEM_WIDTH_MULTIPLIER;
@@ -57,6 +66,7 @@ function attachPressGrow(group: HTMLElement) {
     lockedWidths = undefined;
     for (const [child, width] of widths) child.style.width = `${width}px`;
     releaseTimer = setTimeout(() => {
+      restingWidths = undefined;
       for (const child of widths.keys()) child.style.removeProperty('width');
     }, settleDuration(group));
   };

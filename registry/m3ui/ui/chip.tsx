@@ -133,7 +133,7 @@ function FilterChip({
           iconSlot,
           'relative overflow-hidden',
           '[transition:width_var(--md-sys-motion-spring-fast-spatial-duration)_var(--md-sys-motion-spring-fast-spatial),margin_var(--md-sys-motion-spring-fast-spatial-duration)_var(--md-sys-motion-spring-fast-spatial)] motion-reduce:transition-none',
-          'inline-4.5 not-group-data-icon/chip:not-group-data-pressed/chip:me-0 not-group-data-icon/chip:not-group-data-pressed/chip:inline-0',
+          'block-4.5 inline-4.5 not-group-data-icon/chip:not-group-data-pressed/chip:me-0 not-group-data-icon/chip:not-group-data-pressed/chip:inline-0',
         )}
       >
         {icon ? <span className="flex group-data-pressed/chip:invisible">{icon}</span> : null}

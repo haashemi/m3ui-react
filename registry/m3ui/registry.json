@@ -163,6 +163,31 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "toolbar",
+      "type": "registry:ui",
+      "title": "Toolbar",
+      "description": "Docked and floating toolbars, standard or vibrant, with icon buttons, toggles and a FAB the floating toolbar collapses into.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@m3ui/theme",
+        "@m3ui/ripple",
+        "@m3ui/button",
+        "@m3ui/icon-button",
+        "@m3ui/fab"
+      ],
+      "files": [
+        {
+          "path": "ui/toolbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

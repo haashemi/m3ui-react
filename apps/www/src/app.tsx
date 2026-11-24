@@ -61,6 +61,11 @@ const pages = [
     title: 'Switch',
     Page: lazyPage(async () => (await import('~/pages/switch')).SwitchPage),
   },
+  {
+    path: 'toolbar',
+    title: 'Toolbar',
+    Page: lazyPage(async () => (await import('~/pages/toolbar')).ToolbarPage),
+  },
 ];
 
 function useDarkMode(): [boolean, (dark: boolean) => void] {
@@ -102,7 +107,7 @@ export function App(): React.JSX.Element {
                 to={page.path}
                 aria-current={page.path === current?.path ? 'page' : undefined}
                 className={cn(
-                  'flex focus-ring items-center rounded-full px-4 type-label-large text-on-surface-variant transition-colors block-14',
+                  'focus-ring flex items-center rounded-full px-4 type-label-large text-on-surface-variant transition-colors block-14',
                   'hover:bg-on-surface/8 aria-[current=page]:bg-secondary-container aria-[current=page]:text-on-secondary-container',
                 )}
               >

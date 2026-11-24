@@ -1,10 +1,96 @@
 'use client';
 
 import { Switch as SwitchPrimitive, SwitchThumb } from '@ui-sdk/react/switch';
-import type * as React from 'react';
+import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 import { Ripple } from '@/registry/m3ui/ui/ripple';
+
+const THUMB_TRAVEL = 20;
+const DRAG_THRESHOLD = 3;
+
+function attachDrag(root: HTMLElement) {
+  let drag:
+    | {
+        pointerId: number;
+        startX: number;
+        start: number;
+        dir: number;
+        offset: number;
+        moved: boolean;
+      }
+    | undefined = undefined;
+  let suppressClick = false;
+
+  const movers = () => [
+    ...root.querySelectorAll<HTMLElement>(
+      ':scope > [data-slot="ripple"], :scope > [data-slot="switch-thumb"]',
+    ),
+  ];
+
+  const onPointerDown = (event: PointerEvent) => {
+    if (event.button !== 0 || root.matches('[data-disabled], [data-readonly]')) return;
+    drag = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      start: root.hasAttribute('data-checked') ? THUMB_TRAVEL : 0,
+      dir: getComputedStyle(root).direction === 'rtl' ? -1 : 1,
+      offset: 0,
+      moved: false,
+    };
+    root.setPointerCapture(event.pointerId);
+  };
+
+  const onPointerMove = (event: PointerEvent) => {
+    if (drag?.pointerId !== event.pointerId) return;
+    const delta = (event.clientX - drag.startX) * drag.dir;
+    if (!drag.moved && Math.abs(delta) < DRAG_THRESHOLD) return;
+    drag.moved = true;
+    drag.offset = Math.min(THUMB_TRAVEL, Math.max(0, drag.start + delta));
+    for (const element of movers()) {
+      element.style.transition = 'none';
+      element.style.translate = `${drag.offset * drag.dir}px`;
+    }
+  };
+
+  const onPointerUp = (event: PointerEvent) => {
+    if (drag?.pointerId !== event.pointerId) return;
+    const { moved, offset, start } = drag;
+    drag = undefined;
+    if (!moved) return;
+    if (event.type === 'pointerup' && offset > THUMB_TRAVEL / 2 !== start > 0) root.click();
+    suppressClick = true;
+    setTimeout(() => {
+      suppressClick = false;
+    });
+    requestAnimationFrame(() => {
+      for (const element of movers()) {
+        element.style.removeProperty('transition');
+        element.style.removeProperty('translate');
+      }
+    });
+  };
+
+  const onClick = (event: MouseEvent) => {
+    if (!suppressClick) return;
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
+  root.addEventListener('pointerdown', onPointerDown);
+  root.addEventListener('pointermove', onPointerMove);
+  root.addEventListener('pointerup', onPointerUp);
+  root.addEventListener('pointercancel', onPointerUp);
+  root.addEventListener('click', onClick, true);
+
+  return () => {
+    root.removeEventListener('pointerdown', onPointerDown);
+    root.removeEventListener('pointermove', onPointerMove);
+    root.removeEventListener('pointerup', onPointerUp);
+    root.removeEventListener('pointercancel', onPointerUp);
+    root.removeEventListener('click', onClick, true);
+  };
+}
 
 function Switch({
   className,
@@ -14,11 +100,19 @@ function Switch({
   className?: string;
   icons?: 'both' | 'checked' | 'none';
 }) {
+  const rootRef = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    const root = rootRef.current;
+    return root ? attachDrag(root) : undefined;
+  }, []);
+
   return (
     <SwitchPrimitive
+      ref={rootRef}
       data-icons={icons}
       className={cn(
-        'group/switch relative isolate inline-flex shrink-0 cursor-pointer items-center rounded-full select-none block-8 inline-13',
+        'group/switch relative isolate inline-flex shrink-0 cursor-pointer touch-pan-y items-center rounded-full select-none block-8 inline-13',
         'focus-ring after:absolute after:inset-x-0 after:-inset-y-2',
         'before:absolute before:inset-0 before:-z-2 before:rounded-[inherit] before:border-2 before:border-(--switch-track-outline) before:bg-(--switch-track)',
         'before:[transition:background-color_var(--md-sys-motion-spring-fast-effects-duration)_var(--md-sys-motion-spring-fast-effects),border-color_var(--md-sys-motion-spring-fast-effects-duration)_var(--md-sys-motion-spring-fast-effects)]',

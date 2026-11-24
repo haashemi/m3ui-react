@@ -14,7 +14,9 @@ type Mark = 'checked' | 'indeterminate' | 'unchecked';
 
 const CHECKMARK_LONG_WIDTH = `${Math.sqrt(128)}px`;
 const SELECT_DURATION_MS = 350;
+const DESELECT_DURATION_MS = 150;
 const EASING_EMPHASIZED_DECELERATE = 'cubic-bezier(0.05, 0.7, 0.1, 1)';
+const EASING_EMPHASIZED_ACCELERATE = 'cubic-bezier(0.3, 0, 0.8, 0.15)';
 
 function toMark({ checked, indeterminate }: CheckboxState): Mark {
   if (indeterminate) return 'indeterminate';
@@ -30,18 +32,39 @@ function usePreviousMark(mark: Mark): Mark {
 function CheckboxMark({ state }: { state: CheckboxState }) {
   const mark = toMark(state);
   const previous = usePreviousMark(mark);
+  const shortRef = React.useRef<SVGRectElement>(null);
   const longRef = React.useRef<SVGRectElement>(null);
   const shape = mark === 'unchecked' ? previous : mark;
   const animated = !state.disabled;
 
   React.useEffect(() => {
-    if (!animated || previous !== 'unchecked' || mark !== 'checked') return undefined;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
-    const animation = longRef.current?.animate(
-      { inlineSize: ['0px', CHECKMARK_LONG_WIDTH] },
-      { duration: SELECT_DURATION_MS, easing: EASING_EMPHASIZED_DECELERATE },
-    );
-    return () => animation?.cancel();
+    if (!animated || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return undefined;
+    }
+    if (previous === 'unchecked' && mark === 'checked') {
+      const animation = longRef.current?.animate(
+        { inlineSize: ['0px', CHECKMARK_LONG_WIDTH] },
+        { duration: SELECT_DURATION_MS, easing: EASING_EMPHASIZED_DECELERATE },
+      );
+      return () => animation?.cancel();
+    }
+    if (previous !== 'unchecked' && mark === 'unchecked') {
+      const timing = {
+        duration: DESELECT_DURATION_MS,
+        easing: EASING_EMPHASIZED_ACCELERATE,
+        fill: 'forwards',
+      } as const;
+      const animations = [
+        longRef.current?.animate({ inlineSize: '0px' }, timing),
+        previous === 'checked'
+          ? shortRef.current?.animate({ blockSize: '0px' }, timing)
+          : undefined,
+      ];
+      return () => {
+        for (const animation of animations) animation?.cancel();
+      };
+    }
+    return undefined;
   }, [animated, mark, previous]);
 
   return (
@@ -58,7 +81,8 @@ function CheckboxMark({ state }: { state: CheckboxState }) {
         data-slot="checkbox-container"
         className={cn(
           'absolute inset-0 scale-60 rounded-[inherit] bg-(--checkbox-container) opacity-0',
-          '[transition-property:scale,opacity] duration-[150ms,50ms] ease-[var(--md-sys-motion-easing-emphasized-accelerate),linear]',
+          '[transition-property:scale,opacity] delay-[0ms,100ms] duration-[150ms,50ms] ease-[var(--md-sys-motion-easing-emphasized-accelerate),linear]',
+          'group-data-checked/checkbox:delay-0 group-data-indeterminate/checkbox:delay-0',
           'group-data-checked/checkbox:scale-100 group-data-checked/checkbox:opacity-100 group-data-checked/checkbox:duration-[350ms,50ms] group-data-checked/checkbox:ease-[var(--md-sys-motion-easing-emphasized-decelerate),linear]',
           'group-data-indeterminate/checkbox:scale-100 group-data-indeterminate/checkbox:opacity-100 group-data-indeterminate/checkbox:duration-[350ms,50ms] group-data-indeterminate/checkbox:ease-[var(--md-sys-motion-easing-emphasized-decelerate),linear]',
           'group-data-disabled/checkbox:transition-none group-data-disabled/checkbox:group-data-checked/checkbox:opacity-38 group-data-disabled/checkbox:group-data-indeterminate/checkbox:opacity-38',
@@ -74,12 +98,13 @@ function CheckboxMark({ state }: { state: CheckboxState }) {
         data-from-unchecked={previous === 'unchecked' ? '' : undefined}
         className={cn(
           'group/mark absolute inset-0 scale-60 fill-(--checkbox-icon) opacity-0 block-full inline-full',
-          '[transition-property:scale,opacity] duration-[150ms,50ms] ease-[var(--md-sys-motion-easing-emphasized-accelerate),linear]',
-          'data-selected:scale-100 data-selected:opacity-100 data-selected:duration-[350ms,50ms] data-selected:ease-[var(--md-sys-motion-easing-emphasized-decelerate),linear]',
+          '[transition-property:scale,opacity] delay-[0ms,100ms] duration-[150ms,50ms] ease-[var(--md-sys-motion-easing-emphasized-accelerate),linear]',
+          'data-selected:scale-100 data-selected:opacity-100 data-selected:delay-0 data-selected:duration-[350ms,50ms] data-selected:ease-[var(--md-sys-motion-easing-emphasized-decelerate),linear]',
           'group-data-disabled/checkbox:transition-none motion-reduce:transition-none',
         )}
       >
         <rect
+          ref={shortRef}
           className={cn(
             '[transition-property:transform,block-size] block-[2px] inline-[2px]',
             'duration-150 ease-emphasized-accelerate group-data-selected/mark:duration-350 group-data-selected/mark:ease-emphasized-decelerate',

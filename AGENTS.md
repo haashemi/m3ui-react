@@ -35,6 +35,7 @@ Goal: pixel-perfect M3 Expressive components with the motion the guidelines call
   Button, Icon Button, Button Group, Split Button, FAB / Extended FAB.
 - **Milestone 2:** selection controls — Checkbox, Radio, Switch, Chips (assist, filter, input,
   suggestion).
+- **Milestone 3:** Toolbars (docked, floating, with FAB), Tabs (primary, secondary).
 
 ## Layout
 
