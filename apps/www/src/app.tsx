@@ -62,6 +62,11 @@ const pages = [
     Page: lazyPage(async () => (await import('~/pages/switch')).SwitchPage),
   },
   {
+    path: 'tabs',
+    title: 'Tabs',
+    Page: lazyPage(async () => (await import('~/pages/tabs')).TabsPage),
+  },
+  {
     path: 'toolbar',
     title: 'Toolbar',
     Page: lazyPage(async () => (await import('~/pages/toolbar')).ToolbarPage),

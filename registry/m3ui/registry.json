@@ -188,6 +188,24 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Primary and secondary tabs, fixed or scrollable, whose indicator slides to the selected tab on the default spatial spring.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
