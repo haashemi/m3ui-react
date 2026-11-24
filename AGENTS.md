@@ -21,6 +21,14 @@ Goal: pixel-perfect M3 Expressive components with the motion the guidelines call
 - **Tokens:** full M3 token set (`--md-sys-*`: color roles, shape, typography, motion, elevation,
   state layers) exposed through Tailwind v4 `@theme`, with shadcn's variables (`--primary`,
   `--background`, `--radius`, …) aliased to the nearest M3 roles.
+- **Color:** default scheme ships as static CSS (light + dark). The docs site has a theme builder
+  (seed, variant, contrast, via `@material/material-color-utilities` with the 2025 spec) that
+  outputs an installable `registry:theme`. No runtime color dependency for consumers.
+- **Dark mode:** `.dark` class (shadcn convention); tokens defined under `:root` and `.dark`.
+- **Motion scheme:** expressive by default, standard available.
+- **Icons:** components are icon-agnostic (icons as children, sized by tokens); docs and examples
+  use Material Symbols Rounded as React SVG components.
+- **Registry namespace:** `@m3ui` (`npx shadcn add @m3ui/button`).
 - **Typeface:** Google Sans Flex.
 - **License:** CC0-1.0 (public domain).
 - **Milestone 1:** tooling, docs app, registry pipeline, tokens, ripple/state layers, then
@@ -41,6 +49,20 @@ Fallbacks when context7 lacks something:
 - Vite+: https://viteplus.dev/llms-full.txt
 - shadcn registry: https://ui.shadcn.com/docs/registry.md
 - M3: https://m3.material.io
+
+## Spec sources (for pixel-perfect values)
+
+m3.material.io lists web as "unavailable" for Expressive, so values are ported from:
+
+- **Tokens:** `@material/web` generated Sass tokens, `tokens/versions/latest/sass/`
+  (`_md-sys-*.scss`, `_md-comp-*.scss`). Pin an exact `@material/web` version; these files can
+  change in patch releases.
+- **Motion springs & behavior:** Compose Material 3 source,
+  `androidx/compose/material3/.../tokens/{Standard,Expressive}MotionTokens.kt`.
+- **Shapes / morph:** Compose `MaterialShapes.kt` + `androidx.graphics.shapes`.
+- **Ripple:** `@material/web` `ripple/internal/ripple.ts`.
+- **Visual reference:** `@material/web` `labs/gb/components/`, the M3 Figma design kit.
+- Do not use `material-foundation/material-tokens` (archived).
 
 ## Skills
 
