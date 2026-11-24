@@ -33,6 +33,8 @@ Goal: pixel-perfect M3 Expressive components with the motion the guidelines call
 - **License:** CC0-1.0 (public domain).
 - **Milestone 1:** tooling, docs app, registry pipeline, tokens, ripple/state layers, then
   Button, Icon Button, Button Group, Split Button, FAB / Extended FAB.
+- **Milestone 2:** selection controls — Checkbox, Radio, Switch, Chips (assist, filter, input,
+  suggestion).
 
 ## Layout
 
@@ -65,8 +67,10 @@ Goal: pixel-perfect M3 Expressive components with the motion the guidelines call
   transitions animate. Spatial properties use `--md-sys-motion-spring-*-spatial`, colors and
   shadows the `*-effects` springs.
 - Typography uses `type-<role>` utilities, not `text-*`, so `tailwind-merge` never drops them.
-- UI SDK owns `data-slot` on its parts; style states with `data-pressed`, `data-disabled`,
-  `aria-expanded`, `data-open`.
+- UI SDK owns `data-slot` on its parts (a `data-slot` prop on a primitive is overwritten); style
+  states with `data-pressed`, `data-checked`, `data-disabled`, `aria-expanded`, `data-open`.
+- State layers whose hover and pressed colors differ set `--ripple-hover-color` and
+  `--ripple-pressed-color` on the control.
 - Write comments only when they are really necessary.
 
 ## Documentation: always use context7

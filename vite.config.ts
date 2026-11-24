@@ -31,6 +31,10 @@ export default defineConfig({
           'shadcn/no-inline-styles': 'error',
           'shadcn/no-unknown-classes': 'error',
           'shadcn/require-static-classes': 'error',
+          'jsx-a11y/label-has-associated-control': [
+            'error',
+            { controlComponents: ['Checkbox', 'Radio', 'Switch'], depth: 3 },
+          ],
         },
       },
     ],

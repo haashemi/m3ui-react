@@ -103,6 +103,66 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Checkboxes with the M3 checkmark and indeterminate morph, error and disabled states.",
+      "dependencies": ["@ui-sdk/react@0.1.0-beta.17", "@ui-sdk/core@0.1.0-beta.17"],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "radio",
+      "type": "registry:ui",
+      "title": "Radio",
+      "description": "Radio groups whose dot grows in with the emphasized easing.",
+      "dependencies": ["@ui-sdk/react@0.1.0-beta.17", "@ui-sdk/core@0.1.0-beta.17"],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/radio.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Switches whose handle grows, slides on the fast spatial spring and can show icons.",
+      "dependencies": ["@ui-sdk/react@0.1.0-beta.17", "@ui-sdk/core@0.1.0-beta.17"],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/switch.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "chip",
+      "type": "registry:ui",
+      "title": "Chips",
+      "description": "Assist, filter, input and suggestion chips, outlined or elevated.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/chip.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

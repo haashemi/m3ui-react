@@ -13,7 +13,7 @@ npx shadcn@latest registry add @m3ui=https://haashemi.github.io/m3ui-react/r/{na
 npx shadcn@latest add @m3ui/theme @m3ui/button
 ```
 
-Available items: `theme`, `ripple`, `button`, `icon-button`, `button-group`, `split-button`, `fab`.
+Available items: `theme`, `ripple`, `button`, `icon-button`, `button-group`, `split-button`, `fab`, `checkbox`, `radio`, `switch`, `chip`.
 
 ## Development
 

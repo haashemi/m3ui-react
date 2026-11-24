@@ -41,6 +41,26 @@ const pages = [
     Page: lazyPage(async () => (await import('~/pages/split-button')).SplitButtonPage),
   },
   { path: 'fab', title: 'FAB', Page: lazyPage(async () => (await import('~/pages/fab')).FabPage) },
+  {
+    path: 'checkbox',
+    title: 'Checkbox',
+    Page: lazyPage(async () => (await import('~/pages/checkbox')).CheckboxPage),
+  },
+  {
+    path: 'chips',
+    title: 'Chips',
+    Page: lazyPage(async () => (await import('~/pages/chips')).ChipsPage),
+  },
+  {
+    path: 'radio',
+    title: 'Radio button',
+    Page: lazyPage(async () => (await import('~/pages/radio')).RadioPage),
+  },
+  {
+    path: 'switch',
+    title: 'Switch',
+    Page: lazyPage(async () => (await import('~/pages/switch')).SwitchPage),
+  },
 ];
 
 function useDarkMode(): [boolean, (dark: boolean) => void] {

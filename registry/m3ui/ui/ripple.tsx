@@ -148,7 +148,7 @@ function Ripple({ className, ...props }: Omit<React.ComponentProps<'span'>, 'chi
       data-slot="ripple"
       className={cn(
         'group/ripple pointer-events-none absolute inset-0 -z-1 overflow-hidden rounded-[inherit]',
-        'before:absolute before:inset-0 before:bg-current before:opacity-0 before:transition-opacity before:duration-15 before:ease-linear',
+        'before:absolute before:inset-0 before:bg-(--ripple-hover-color,currentColor) before:opacity-0 before:transition-opacity before:duration-15 before:ease-linear',
         'data-ripple-hovered:before:opacity-(--md-sys-state-hover-state-layer-opacity)',
         '[:focus-visible>&]:before:opacity-(--md-sys-state-focus-state-layer-opacity)',
         '[:disabled>&]:hidden [[aria-disabled=true]>&]:hidden [[data-disabled]>&]:hidden',
@@ -160,7 +160,7 @@ function Ripple({ className, ...props }: Omit<React.ComponentProps<'span'>, 'chi
         data-slot="ripple-wave"
         className={cn(
           'absolute inset-s-0 inset-bs-0 rounded-full opacity-0 transition-opacity duration-375 ease-linear',
-          '[background:radial-gradient(closest-side,currentColor_max(calc(100%-70px),65%),transparent_100%)]',
+          '[background:radial-gradient(closest-side,var(--ripple-pressed-color,currentColor)_max(calc(100%-70px),65%),transparent_100%)]',
           'group-data-ripple-pressed/ripple:opacity-(--md-sys-state-pressed-state-layer-opacity) group-data-ripple-pressed/ripple:duration-105',
         )}
       />
