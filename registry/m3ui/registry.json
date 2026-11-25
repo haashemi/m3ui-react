@@ -274,6 +274,38 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "side-sheet",
+      "type": "registry:ui",
+      "title": "Side Sheet",
+      "description": "Standard side sheets that dock beside content and modal side sheets that slide in over a scrim, with header, body and action areas.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple", "@m3ui/icon-button"],
+      "files": [
+        {
+          "path": "ui/side-sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "bottom-sheet",
+      "type": "registry:ui",
+      "title": "Bottom Sheet",
+      "description": "Modal and standard bottom sheets with a drag handle, snap points and swipe to dismiss.",
+      "dependencies": ["@ui-sdk/react@0.1.0-beta.17", "@ui-sdk/core@0.1.0-beta.17"],
+      "registryDependencies": ["utils", "@m3ui/theme"],
+      "files": [
+        {
+          "path": "ui/bottom-sheet.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
