@@ -9,6 +9,7 @@ import { ToggleIconButton } from '@/registry/m3ui/ui/icon-button';
 const pages = [
   { to: '/', title: 'Overview' },
   { to: '/theme', title: 'Theme' },
+  { to: '/app-bar', title: 'App bars' },
   { to: '/buttons', title: 'Buttons' },
   { to: '/icon-buttons', title: 'Icon buttons' },
   { to: '/button-groups', title: 'Button groups' },

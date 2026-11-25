@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppBarRouteImport } from './routes/app-bar'
 import { Route as ButtonGroupsRouteImport } from './routes/button-groups'
 import { Route as ButtonsRouteImport } from './routes/buttons'
 import { Route as CheckboxRouteImport } from './routes/checkbox'
@@ -26,6 +27,11 @@ import { Route as ToolbarRouteImport } from './routes/toolbar'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppBarRoute = AppBarRouteImport.update({
+  id: '/app-bar',
+  path: '/app-bar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ButtonGroupsRoute = ButtonGroupsRouteImport.update({
@@ -91,6 +97,7 @@ const ToolbarRoute = ToolbarRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app-bar': typeof AppBarRoute
   '/button-groups': typeof ButtonGroupsRoute
   '/buttons': typeof ButtonsRoute
   '/checkbox': typeof CheckboxRoute
@@ -106,6 +113,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/app-bar': typeof AppBarRoute
   '/button-groups': typeof ButtonGroupsRoute
   '/buttons': typeof ButtonsRoute
   '/checkbox': typeof CheckboxRoute
@@ -122,6 +130,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app-bar': typeof AppBarRoute
   '/button-groups': typeof ButtonGroupsRoute
   '/buttons': typeof ButtonsRoute
   '/checkbox': typeof CheckboxRoute
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/app-bar'
     | '/button-groups'
     | '/buttons'
     | '/checkbox'
@@ -154,6 +164,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/app-bar'
     | '/button-groups'
     | '/buttons'
     | '/checkbox'
@@ -169,6 +180,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/app-bar'
     | '/button-groups'
     | '/buttons'
     | '/checkbox'
@@ -185,6 +197,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppBarRoute: typeof AppBarRoute
   ButtonGroupsRoute: typeof ButtonGroupsRoute
   ButtonsRoute: typeof ButtonsRoute
   CheckboxRoute: typeof CheckboxRoute
@@ -206,6 +219,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app-bar': {
+      id: '/app-bar'
+      path: '/app-bar'
+      fullPath: '/app-bar'
+      preLoaderRoute: typeof AppBarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/button-groups': {
@@ -297,6 +317,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppBarRoute: AppBarRoute,
   ButtonGroupsRoute: ButtonGroupsRoute,
   ButtonsRoute: ButtonsRoute,
   CheckboxRoute: CheckboxRoute,

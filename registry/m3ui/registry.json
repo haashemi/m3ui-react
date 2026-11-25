@@ -206,6 +206,24 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "app-bar",
+      "type": "registry:ui",
+      "title": "App Bar",
+      "description": "Small, medium flexible and large flexible top app bars plus a search app bar, with lift-on-scroll, collapse-on-scroll and hide-on-scroll behaviors.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/app-bar.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

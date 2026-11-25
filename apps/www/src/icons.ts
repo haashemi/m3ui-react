@@ -1,3 +1,4 @@
+export { default as AccountCircleIcon } from '@material-symbols/svg-400/rounded/account_circle.svg?react';
 export { default as AddIcon } from '@material-symbols/svg-400/rounded/add.svg?react';
 export { default as ArchiveIcon } from '@material-symbols/svg-400/rounded/archive.svg?react';
 export { default as ArrowBackIcon } from '@material-symbols/svg-400/rounded/arrow_back.svg?react';
@@ -36,6 +37,7 @@ export { default as MoreVertIcon } from '@material-symbols/svg-400/rounded/more_
 export { default as MovieIcon } from '@material-symbols/svg-400/rounded/movie.svg?react';
 export { default as MusicNoteIcon } from '@material-symbols/svg-400/rounded/music_note.svg?react';
 export { default as NewspaperIcon } from '@material-symbols/svg-400/rounded/newspaper.svg?react';
+export { default as NotificationsIcon } from '@material-symbols/svg-400/rounded/notifications.svg?react';
 export { default as PaletteIcon } from '@material-symbols/svg-400/rounded/palette.svg?react';
 export { default as PhotoCameraIcon } from '@material-symbols/svg-400/rounded/photo_camera.svg?react';
 export { default as PhotoLibraryIcon } from '@material-symbols/svg-400/rounded/photo_library.svg?react';
