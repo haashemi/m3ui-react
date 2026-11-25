@@ -9,6 +9,7 @@ export { default as BookmarkFillIcon } from '@material-symbols/svg-400/rounded/b
 export { default as BookmarkIcon } from '@material-symbols/svg-400/rounded/bookmark.svg?react';
 export { default as ChatIcon } from '@material-symbols/svg-400/rounded/chat.svg?react';
 export { default as CheckIcon } from '@material-symbols/svg-400/rounded/check.svg?react';
+export { default as CloseIcon } from '@material-symbols/svg-400/rounded/close.svg?react';
 export { default as CodeIcon } from '@material-symbols/svg-400/rounded/code.svg?react';
 export { default as ContentCopyIcon } from '@material-symbols/svg-400/rounded/content_copy.svg?react';
 export { default as ContentCutIcon } from '@material-symbols/svg-400/rounded/content_cut.svg?react';
@@ -18,11 +19,13 @@ export { default as DeleteIcon } from '@material-symbols/svg-400/rounded/delete.
 export { default as DirectionsCarIcon } from '@material-symbols/svg-400/rounded/directions_car.svg?react';
 export { default as DownloadIcon } from '@material-symbols/svg-400/rounded/download.svg?react';
 export { default as DrawIcon } from '@material-symbols/svg-400/rounded/draw.svg?react';
+export { default as DriveFileMoveIcon } from '@material-symbols/svg-400/rounded/drive_file_move.svg?react';
 export { default as EditIcon } from '@material-symbols/svg-400/rounded/edit.svg?react';
 export { default as EventIcon } from '@material-symbols/svg-400/rounded/event.svg?react';
 export { default as ExploreIcon } from '@material-symbols/svg-400/rounded/explore.svg?react';
 export { default as FavoriteFillIcon } from '@material-symbols/svg-400/rounded/favorite-fill.svg?react';
 export { default as FavoriteIcon } from '@material-symbols/svg-400/rounded/favorite.svg?react';
+export { default as FilterListIcon } from '@material-symbols/svg-400/rounded/filter_list.svg?react';
 export { default as FlightIcon } from '@material-symbols/svg-400/rounded/flight.svg?react';
 export { default as FormatAlignCenterIcon } from '@material-symbols/svg-400/rounded/format_align_center.svg?react';
 export { default as FormatAlignLeftIcon } from '@material-symbols/svg-400/rounded/format_align_left.svg?react';

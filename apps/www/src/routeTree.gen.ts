@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppBarRouteImport } from './routes/app-bar'
 import { Route as BadgesRouteImport } from './routes/badges'
+import { Route as BottomSheetsRouteImport } from './routes/bottom-sheets'
 import { Route as ButtonGroupsRouteImport } from './routes/button-groups'
 import { Route as ButtonsRouteImport } from './routes/buttons'
 import { Route as CardsRouteImport } from './routes/cards'
@@ -21,6 +22,7 @@ import { Route as FabRouteImport } from './routes/fab'
 import { Route as IconButtonsRouteImport } from './routes/icon-buttons'
 import { Route as MenusRouteImport } from './routes/menus'
 import { Route as RadioRouteImport } from './routes/radio'
+import { Route as SideSheetsRouteImport } from './routes/side-sheets'
 import { Route as SplitButtonRouteImport } from './routes/split-button'
 import { Route as SwitchRouteImport } from './routes/switch'
 import { Route as TabsRouteImport } from './routes/tabs'
@@ -40,6 +42,11 @@ const AppBarRoute = AppBarRouteImport.update({
 const BadgesRoute = BadgesRouteImport.update({
   id: '/badges',
   path: '/badges',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BottomSheetsRoute = BottomSheetsRouteImport.update({
+  id: '/bottom-sheets',
+  path: '/bottom-sheets',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ButtonGroupsRoute = ButtonGroupsRouteImport.update({
@@ -87,6 +94,11 @@ const RadioRoute = RadioRouteImport.update({
   path: '/radio',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SideSheetsRoute = SideSheetsRouteImport.update({
+  id: '/side-sheets',
+  path: '/side-sheets',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SplitButtonRoute = SplitButtonRouteImport.update({
   id: '/split-button',
   path: '/split-button',
@@ -117,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app-bar': typeof AppBarRoute
   '/badges': typeof BadgesRoute
+  '/bottom-sheets': typeof BottomSheetsRoute
   '/button-groups': typeof ButtonGroupsRoute
   '/buttons': typeof ButtonsRoute
   '/cards': typeof CardsRoute
@@ -126,6 +139,7 @@ export interface FileRoutesByFullPath {
   '/icon-buttons': typeof IconButtonsRoute
   '/menus': typeof MenusRoute
   '/radio': typeof RadioRoute
+  '/side-sheets': typeof SideSheetsRoute
   '/split-button': typeof SplitButtonRoute
   '/switch': typeof SwitchRoute
   '/tabs': typeof TabsRoute
@@ -136,6 +150,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app-bar': typeof AppBarRoute
   '/badges': typeof BadgesRoute
+  '/bottom-sheets': typeof BottomSheetsRoute
   '/button-groups': typeof ButtonGroupsRoute
   '/buttons': typeof ButtonsRoute
   '/cards': typeof CardsRoute
@@ -145,6 +160,7 @@ export interface FileRoutesByTo {
   '/icon-buttons': typeof IconButtonsRoute
   '/menus': typeof MenusRoute
   '/radio': typeof RadioRoute
+  '/side-sheets': typeof SideSheetsRoute
   '/split-button': typeof SplitButtonRoute
   '/switch': typeof SwitchRoute
   '/tabs': typeof TabsRoute
@@ -156,6 +172,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/app-bar': typeof AppBarRoute
   '/badges': typeof BadgesRoute
+  '/bottom-sheets': typeof BottomSheetsRoute
   '/button-groups': typeof ButtonGroupsRoute
   '/buttons': typeof ButtonsRoute
   '/cards': typeof CardsRoute
@@ -165,6 +182,7 @@ export interface FileRoutesById {
   '/icon-buttons': typeof IconButtonsRoute
   '/menus': typeof MenusRoute
   '/radio': typeof RadioRoute
+  '/side-sheets': typeof SideSheetsRoute
   '/split-button': typeof SplitButtonRoute
   '/switch': typeof SwitchRoute
   '/tabs': typeof TabsRoute
@@ -177,6 +195,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app-bar'
     | '/badges'
+    | '/bottom-sheets'
     | '/button-groups'
     | '/buttons'
     | '/cards'
@@ -186,6 +205,7 @@ export interface FileRouteTypes {
     | '/icon-buttons'
     | '/menus'
     | '/radio'
+    | '/side-sheets'
     | '/split-button'
     | '/switch'
     | '/tabs'
@@ -196,6 +216,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app-bar'
     | '/badges'
+    | '/bottom-sheets'
     | '/button-groups'
     | '/buttons'
     | '/cards'
@@ -205,6 +226,7 @@ export interface FileRouteTypes {
     | '/icon-buttons'
     | '/menus'
     | '/radio'
+    | '/side-sheets'
     | '/split-button'
     | '/switch'
     | '/tabs'
@@ -215,6 +237,7 @@ export interface FileRouteTypes {
     | '/'
     | '/app-bar'
     | '/badges'
+    | '/bottom-sheets'
     | '/button-groups'
     | '/buttons'
     | '/cards'
@@ -224,6 +247,7 @@ export interface FileRouteTypes {
     | '/icon-buttons'
     | '/menus'
     | '/radio'
+    | '/side-sheets'
     | '/split-button'
     | '/switch'
     | '/tabs'
@@ -235,6 +259,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppBarRoute: typeof AppBarRoute
   BadgesRoute: typeof BadgesRoute
+  BottomSheetsRoute: typeof BottomSheetsRoute
   ButtonGroupsRoute: typeof ButtonGroupsRoute
   ButtonsRoute: typeof ButtonsRoute
   CardsRoute: typeof CardsRoute
@@ -244,6 +269,7 @@ export interface RootRouteChildren {
   IconButtonsRoute: typeof IconButtonsRoute
   MenusRoute: typeof MenusRoute
   RadioRoute: typeof RadioRoute
+  SideSheetsRoute: typeof SideSheetsRoute
   SplitButtonRoute: typeof SplitButtonRoute
   SwitchRoute: typeof SwitchRoute
   TabsRoute: typeof TabsRoute
@@ -272,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/badges'
       fullPath: '/badges'
       preLoaderRoute: typeof BadgesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bottom-sheets': {
+      id: '/bottom-sheets'
+      path: '/bottom-sheets'
+      fullPath: '/bottom-sheets'
+      preLoaderRoute: typeof BottomSheetsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/button-groups': {
@@ -337,6 +370,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RadioRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/side-sheets': {
+      id: '/side-sheets'
+      path: '/side-sheets'
+      fullPath: '/side-sheets'
+      preLoaderRoute: typeof SideSheetsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/split-button': {
       id: '/split-button'
       path: '/split-button'
@@ -379,6 +419,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppBarRoute: AppBarRoute,
   BadgesRoute: BadgesRoute,
+  BottomSheetsRoute: BottomSheetsRoute,
   ButtonGroupsRoute: ButtonGroupsRoute,
   ButtonsRoute: ButtonsRoute,
   CardsRoute: CardsRoute,
@@ -388,6 +429,7 @@ const rootRouteChildren: RootRouteChildren = {
   IconButtonsRoute: IconButtonsRoute,
   MenusRoute: MenusRoute,
   RadioRoute: RadioRoute,
+  SideSheetsRoute: SideSheetsRoute,
   SplitButtonRoute: SplitButtonRoute,
   SwitchRoute: SwitchRoute,
   TabsRoute: TabsRoute,
