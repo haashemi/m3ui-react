@@ -43,6 +43,7 @@ export default defineConfig({
       '**/dist/**',
       '**/public/r/**',
       'packages/tokens/src/generated/**',
+      '**/routeTree.gen.ts',
       '.claude/skills/**',
     ],
     overrides: [
@@ -80,6 +81,7 @@ export default defineConfig({
       'skills-lock.json',
       'apps/www/src/styles/m3ui.css',
       'registry/theme/registry.json',
+      '**/routeTree.gen.ts',
     ],
   },
   test: {

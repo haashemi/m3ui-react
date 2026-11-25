@@ -46,7 +46,9 @@ Goal: pixel-perfect M3 Expressive components with the motion the guidelines call
 - `registry.json` — root registry (also makes the repo installable as `haashemi/m3ui-react/<item>`).
 - `packages/tokens` — M3 token data, spring → CSS `linear()` easing, color schemes and theme
   generation. `src/generated/sys.ts` is extracted from `@material/web` (`vp run @m3ui/tokens#extract`).
-- `apps/www` — Vite+ React docs site; `src/styles/m3ui.css` is generated.
+- `apps/www` — Vite+ React docs site; `src/styles/m3ui.css` is generated. Routing is TanStack
+  Router file-based: thin route files in `src/routes` (generated `src/routeTree.gen.ts`) render
+  page components from `src/pages`.
 - `scripts/build-theme.ts` — writes the generated theme files (`vp run theme`). A test fails when
   they are out of date.
 

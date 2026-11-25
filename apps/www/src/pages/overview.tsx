@@ -2,7 +2,7 @@ import type * as React from 'react';
 
 import { CodeBlock, PageHeader, registryUrl, Section } from '~/components/docs';
 import { EditIcon, FavoriteFillIcon, FavoriteIcon, SendIcon } from '~/icons';
-import { Link } from '~/components/link';
+import { Link } from '@tanstack/react-router';
 import { Button, ToggleButton } from '@/registry/m3ui/ui/button';
 import { ExtendedFab } from '@/registry/m3ui/ui/fab';
 import { ToggleIconButton } from '@/registry/m3ui/ui/icon-button';
@@ -16,7 +16,7 @@ export function OverviewPage(): React.JSX.Element {
       />
 
       <div className="flex flex-wrap items-center gap-4">
-        <Button size="md" render={<Link to="buttons" />}>
+        <Button size="md" render={<Link to="/buttons" />}>
           <SendIcon />
           Browse components
         </Button>
@@ -63,7 +63,7 @@ export function OverviewPage(): React.JSX.Element {
           utilities like <code>bg-primary-container</code>, <code>rounded-corner-large</code>,{' '}
           <code>type-title-medium</code> and <code>shadow-elevation-3</code>. Dark mode follows the{' '}
           <code>.dark</code> class. Build your own scheme on the{' '}
-          <Link to="theme" className="text-primary underline">
+          <Link to="/theme" className="text-primary underline">
             theme page
           </Link>
           .
