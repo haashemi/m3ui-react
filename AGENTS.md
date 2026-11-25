@@ -54,7 +54,8 @@ Goal: pixel-perfect M3 Expressive components with the motion the guidelines call
 
 ## Commands
 
-- `vp run dev` — docs site at http://localhost:5173/m3ui-react/
+- `vp run dev` — docs site at http://localhost:5173/m3ui-react/ (the script passes `--host`; always
+  use `--host` when running any dev server)
 - `vp run theme` — regenerate theme CSS and the theme registry item
 - `vp run build` — theme, registry (`apps/www/public/r`) and docs site
 - `vp check` / `vp test` — format, lint, type-check / unit tests
@@ -108,8 +109,11 @@ m3.material.io lists web as "unavailable" for Expressive, so values are ported f
 
 ## Skills
 
-Use these project skills (`.claude/skills`, pinned in `skills-lock.json`):
+Use these project skills (`.agents/skills`, symlinked from `.claude/skills`, pinned in
+`skills-lock.json`):
 
+- `ui-sdk` — whenever building a new component (choosing/composing UI SDK primitives, building
+  missing behaviors from `@ui-sdk/core`, testing keyboard, focus and ARIA).
 - `vercel-react-best-practices` — when writing or reviewing React code.
 - `vercel-composition-patterns` — when designing component APIs (compound components, slots).
 - `shadcn` — for registry items, `components.json`, `shadcn build`.

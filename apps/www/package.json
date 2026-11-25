@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vp dev",
+    "dev": "vp dev --host",
     "build": "vp build && cp dist/index.html dist/404.html",
     "preview": "vp preview"
   },

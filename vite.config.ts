@@ -45,6 +45,7 @@ export default defineConfig({
       'packages/tokens/src/generated/**',
       '**/routeTree.gen.ts',
       '.claude/skills/**',
+      '.agents/skills/**',
     ],
     overrides: [
       ...(lint.overrides ?? []),
@@ -78,6 +79,7 @@ export default defineConfig({
       '**/public/r/**',
       'pnpm-lock.yaml',
       '.claude/skills/**',
+      '.agents/skills/**',
       'skills-lock.json',
       'apps/www/src/styles/m3ui.css',
       'registry/theme/registry.json',
