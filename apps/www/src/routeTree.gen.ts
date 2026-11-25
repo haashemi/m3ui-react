@@ -11,12 +11,15 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppBarRouteImport } from './routes/app-bar'
+import { Route as BadgesRouteImport } from './routes/badges'
 import { Route as ButtonGroupsRouteImport } from './routes/button-groups'
 import { Route as ButtonsRouteImport } from './routes/buttons'
+import { Route as CardsRouteImport } from './routes/cards'
 import { Route as CheckboxRouteImport } from './routes/checkbox'
 import { Route as ChipsRouteImport } from './routes/chips'
 import { Route as FabRouteImport } from './routes/fab'
 import { Route as IconButtonsRouteImport } from './routes/icon-buttons'
+import { Route as MenusRouteImport } from './routes/menus'
 import { Route as RadioRouteImport } from './routes/radio'
 import { Route as SplitButtonRouteImport } from './routes/split-button'
 import { Route as SwitchRouteImport } from './routes/switch'
@@ -34,6 +37,11 @@ const AppBarRoute = AppBarRouteImport.update({
   path: '/app-bar',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BadgesRoute = BadgesRouteImport.update({
+  id: '/badges',
+  path: '/badges',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ButtonGroupsRoute = ButtonGroupsRouteImport.update({
   id: '/button-groups',
   path: '/button-groups',
@@ -42,6 +50,11 @@ const ButtonGroupsRoute = ButtonGroupsRouteImport.update({
 const ButtonsRoute = ButtonsRouteImport.update({
   id: '/buttons',
   path: '/buttons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CardsRoute = CardsRouteImport.update({
+  id: '/cards',
+  path: '/cards',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CheckboxRoute = CheckboxRouteImport.update({
@@ -62,6 +75,11 @@ const FabRoute = FabRouteImport.update({
 const IconButtonsRoute = IconButtonsRouteImport.update({
   id: '/icon-buttons',
   path: '/icon-buttons',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MenusRoute = MenusRouteImport.update({
+  id: '/menus',
+  path: '/menus',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RadioRoute = RadioRouteImport.update({
@@ -98,12 +116,15 @@ const ToolbarRoute = ToolbarRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/app-bar': typeof AppBarRoute
+  '/badges': typeof BadgesRoute
   '/button-groups': typeof ButtonGroupsRoute
   '/buttons': typeof ButtonsRoute
+  '/cards': typeof CardsRoute
   '/checkbox': typeof CheckboxRoute
   '/chips': typeof ChipsRoute
   '/fab': typeof FabRoute
   '/icon-buttons': typeof IconButtonsRoute
+  '/menus': typeof MenusRoute
   '/radio': typeof RadioRoute
   '/split-button': typeof SplitButtonRoute
   '/switch': typeof SwitchRoute
@@ -114,12 +135,15 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/app-bar': typeof AppBarRoute
+  '/badges': typeof BadgesRoute
   '/button-groups': typeof ButtonGroupsRoute
   '/buttons': typeof ButtonsRoute
+  '/cards': typeof CardsRoute
   '/checkbox': typeof CheckboxRoute
   '/chips': typeof ChipsRoute
   '/fab': typeof FabRoute
   '/icon-buttons': typeof IconButtonsRoute
+  '/menus': typeof MenusRoute
   '/radio': typeof RadioRoute
   '/split-button': typeof SplitButtonRoute
   '/switch': typeof SwitchRoute
@@ -131,12 +155,15 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/app-bar': typeof AppBarRoute
+  '/badges': typeof BadgesRoute
   '/button-groups': typeof ButtonGroupsRoute
   '/buttons': typeof ButtonsRoute
+  '/cards': typeof CardsRoute
   '/checkbox': typeof CheckboxRoute
   '/chips': typeof ChipsRoute
   '/fab': typeof FabRoute
   '/icon-buttons': typeof IconButtonsRoute
+  '/menus': typeof MenusRoute
   '/radio': typeof RadioRoute
   '/split-button': typeof SplitButtonRoute
   '/switch': typeof SwitchRoute
@@ -149,12 +176,15 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/app-bar'
+    | '/badges'
     | '/button-groups'
     | '/buttons'
+    | '/cards'
     | '/checkbox'
     | '/chips'
     | '/fab'
     | '/icon-buttons'
+    | '/menus'
     | '/radio'
     | '/split-button'
     | '/switch'
@@ -165,12 +195,15 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/app-bar'
+    | '/badges'
     | '/button-groups'
     | '/buttons'
+    | '/cards'
     | '/checkbox'
     | '/chips'
     | '/fab'
     | '/icon-buttons'
+    | '/menus'
     | '/radio'
     | '/split-button'
     | '/switch'
@@ -181,12 +214,15 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/app-bar'
+    | '/badges'
     | '/button-groups'
     | '/buttons'
+    | '/cards'
     | '/checkbox'
     | '/chips'
     | '/fab'
     | '/icon-buttons'
+    | '/menus'
     | '/radio'
     | '/split-button'
     | '/switch'
@@ -198,12 +234,15 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AppBarRoute: typeof AppBarRoute
+  BadgesRoute: typeof BadgesRoute
   ButtonGroupsRoute: typeof ButtonGroupsRoute
   ButtonsRoute: typeof ButtonsRoute
+  CardsRoute: typeof CardsRoute
   CheckboxRoute: typeof CheckboxRoute
   ChipsRoute: typeof ChipsRoute
   FabRoute: typeof FabRoute
   IconButtonsRoute: typeof IconButtonsRoute
+  MenusRoute: typeof MenusRoute
   RadioRoute: typeof RadioRoute
   SplitButtonRoute: typeof SplitButtonRoute
   SwitchRoute: typeof SwitchRoute
@@ -228,6 +267,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppBarRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/badges': {
+      id: '/badges'
+      path: '/badges'
+      fullPath: '/badges'
+      preLoaderRoute: typeof BadgesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/button-groups': {
       id: '/button-groups'
       path: '/button-groups'
@@ -240,6 +286,13 @@ declare module '@tanstack/react-router' {
       path: '/buttons'
       fullPath: '/buttons'
       preLoaderRoute: typeof ButtonsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cards': {
+      id: '/cards'
+      path: '/cards'
+      fullPath: '/cards'
+      preLoaderRoute: typeof CardsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/checkbox': {
@@ -268,6 +321,13 @@ declare module '@tanstack/react-router' {
       path: '/icon-buttons'
       fullPath: '/icon-buttons'
       preLoaderRoute: typeof IconButtonsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/menus': {
+      id: '/menus'
+      path: '/menus'
+      fullPath: '/menus'
+      preLoaderRoute: typeof MenusRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/radio': {
@@ -318,12 +378,15 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AppBarRoute: AppBarRoute,
+  BadgesRoute: BadgesRoute,
   ButtonGroupsRoute: ButtonGroupsRoute,
   ButtonsRoute: ButtonsRoute,
+  CardsRoute: CardsRoute,
   CheckboxRoute: CheckboxRoute,
   ChipsRoute: ChipsRoute,
   FabRoute: FabRoute,
   IconButtonsRoute: IconButtonsRoute,
+  MenusRoute: MenusRoute,
   RadioRoute: RadioRoute,
   SplitButtonRoute: SplitButtonRoute,
   SwitchRoute: SwitchRoute,

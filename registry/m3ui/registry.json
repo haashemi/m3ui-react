@@ -224,6 +224,56 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Small dot and large numbered badges that anchor to the top end of an icon.",
+      "dependencies": [],
+      "registryDependencies": ["utils", "@m3ui/theme"],
+      "files": [
+        {
+          "path": "ui/badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Elevated, filled and outlined cards with header, media, content and actions, and an optional primary action whose state layer covers the card.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menu",
+      "type": "registry:ui",
+      "title": "Menu",
+      "description": "Standard and vibrant expressive menus with grouped sections, checkbox and radio items, submenus and shape-morphing groups.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple"],
+      "files": [
+        {
+          "path": "ui/menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
