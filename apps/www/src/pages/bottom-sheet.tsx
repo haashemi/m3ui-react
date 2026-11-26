@@ -1,166 +1,126 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { PageHeader, Preview, Section } from '~/components/docs';
-import { DeleteIcon, DriveFileMoveIcon, LinkIcon, ShareIcon } from '~/icons';
+import { ApiComponent } from '~/components/api-reference';
 import {
+  ComponentPreview,
+  ExamplesSection,
+  RtlSection,
+  UsageSection,
+} from '~/components/component-preview';
+import { Code, CompositionSection, PageHeader, Prose, Section } from '~/components/docs';
+import { Installation } from '~/components/installation';
+
+export function BottomSheetPage(): React.JSX.Element {
+  return (
+    <>
+      <PageHeader
+        title="Bottom Sheet"
+        description="Bottom sheets show secondary content anchored to the bottom of the screen. Drag them by the handle or the surface, fling them closed, or rest them on snap points."
+      />
+      <ComponentPreview name="bottom-sheet/demo" />
+
+      <Section title="Installation">
+        <Installation item="bottom-sheet" />
+      </Section>
+
+      <UsageSection
+        imports={`import {
   BottomSheet,
   BottomSheetContent,
   BottomSheetDescription,
   BottomSheetTitle,
   BottomSheetTrigger,
-} from '@/registry/m3ui/ui/bottom-sheet';
-import { Button } from '@/registry/m3ui/ui/button';
-import { Ripple } from '@/registry/m3ui/ui/ripple';
-
-const actions = [
-  { label: 'Share', icon: ShareIcon },
-  { label: 'Get link', icon: LinkIcon },
-  { label: 'Move', icon: DriveFileMoveIcon },
-  { label: 'Delete', icon: DeleteIcon },
-];
-
-const places = Array.from({ length: 16 }, (_, index) => `Place ${index + 1}`);
-
-function ActionList({ onAction }: { onAction: () => void }): React.JSX.Element {
-  return (
-    <ul className="flex flex-col pbe-4">
-      {actions.map(({ label, icon: Icon }) => (
-        <li key={label}>
-          <button
-            type="button"
-            onClick={onAction}
-            className="relative focus-ring flex cursor-pointer items-center gap-4 px-6 text-start type-body-large text-on-surface block-14 inline-full"
-          >
-            <Ripple />
-            <Icon className="fill-on-surface-variant block-6 inline-6" />
-            {label}
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function ActionSheet({
-  label,
-  variant,
-  dragHandle = true,
-}: {
-  label: string;
-  variant: 'tonal' | 'outlined';
-  dragHandle?: boolean;
-}): React.JSX.Element {
-  const [open, setOpen] = React.useState(false);
-  return (
-    <BottomSheet open={open} onOpenChange={setOpen}>
-      <BottomSheetTrigger render={<Button variant={variant} />}>{label}</BottomSheetTrigger>
-      <BottomSheetContent dragHandle={dragHandle}>
-        <BottomSheetTitle>Report.pdf</BottomSheetTitle>
-        <BottomSheetDescription className="mbe-2">Shared with 3 people</BottomSheetDescription>
-        <ActionList onAction={() => setOpen(false)} />
-      </BottomSheetContent>
-    </BottomSheet>
-  );
-}
-
-function ModalSection(): React.JSX.Element {
-  return (
-    <Section
-      title="Modal"
-      description="Modal bottom sheets dim the page with a scrim and trap focus. They rise to fit their content, up to 640dp wide."
-    >
-      <Preview
+} from '@/components/ui/bottom-sheet';`}
         code={`<BottomSheet>
-  <BottomSheetTrigger render={<Button variant="tonal" />}>Open</BottomSheetTrigger>
+  <BottomSheetTrigger render={<Button />}>Open</BottomSheetTrigger>
   <BottomSheetContent>
     <BottomSheetTitle>Report.pdf</BottomSheetTitle>
     <BottomSheetDescription>Shared with 3 people</BottomSheetDescription>
-    <ul>…</ul>
   </BottomSheetContent>
-</BottomSheet>
+</BottomSheet>`}
+      />
 
-<BottomSheetContent dragHandle={false}>…</BottomSheetContent>`}
-      >
-        <ActionSheet label="Modal" variant="tonal" />
-        <ActionSheet label="Without drag handle" variant="outlined" dragHandle={false} />
-      </Preview>
-    </Section>
+      <CompositionSection
+        tree={`BottomSheet
+├── BottomSheetTrigger
+└── BottomSheetContent
+    ├── BottomSheetTitle
+    └── BottomSheetDescription`}
+      />
+
+      <Section title="Notes">
+        <Prose>
+          <p>
+            Bottom sheets are UI SDK Drawers on the bottom edge. They follow the expressive spatial
+            spring and fade instead of sliding when people prefer reduced motion.
+          </p>
+          <p>
+            Modal sheets dim the page and trap focus. They rise to fit their content, up to 640dp
+            wide. Set <Code>modal={'{false}'}</Code> to leave the page usable.
+          </p>
+          <p>
+            With more than one snap point, the drag handle becomes a button: press it to cycle
+            sizes, or use the arrow keys, Home and End. Translate its name with{' '}
+            <Code>dragHandleLabel</Code>.
+          </p>
+        </Prose>
+      </Section>
+
+      <ExamplesSection
+        examples={[
+          { title: 'Without a drag handle', name: 'bottom-sheet/no-handle' },
+          {
+            title: 'Snap points',
+            name: 'bottom-sheet/snap-points',
+            description: 'Scrolling the list expands the sheet before the list scrolls.',
+          },
+          { title: 'Standard', name: 'bottom-sheet/standard' },
+          {
+            title: 'Modal when expanded',
+            name: 'bottom-sheet/modal-above',
+            description:
+              'With modalAbove, the sheet stays standard at its small snap point and turns modal once expanded.',
+          },
+        ]}
+      />
+      <RtlSection name="bottom-sheet/rtl" />
+      <BottomSheetApi />
+    </>
   );
 }
 
-export function BottomSheetsPage(): React.JSX.Element {
+function BottomSheetApi(): React.JSX.Element {
   return (
-    <>
-      <PageHeader
-        title="Bottom sheets"
-        description="Bottom sheets show secondary content anchored to the bottom of the screen. Drag them by the handle or the surface, fling them closed, or rest them on snap points. They follow the expressive spatial spring and fade instead of sliding with reduced motion."
-        item="bottom-sheet"
+    <Section title="API Reference">
+      <ApiComponent
+        name="BottomSheet"
+        description="A UI SDK Drawer on the bottom edge with M3 physics."
+        inherits={{ label: 'Drawer', doc: 'drawer' }}
+        props={[
+          { name: 'open', type: 'boolean' },
+          { name: 'onOpenChange', type: '(open: boolean, details) => void' },
+          { name: 'modal', type: "boolean | 'trap-focus'", default: 'true' },
+          {
+            name: 'snapPoints',
+            type: 'SnapPoint[]',
+            description: "Where it rests: screen fractions, pixels, '…rem', '…%' or 'content'.",
+          },
+          { name: 'modalAbove', type: 'SnapPoint', description: 'Turns modal above this point.' },
+          { name: 'expandOnScroll', type: 'boolean', default: 'false' },
+        ]}
       />
-
-      <ModalSection />
-
-      <Section
-        title="Snap points"
-        description="With more than one snap point the drag handle becomes a button: press it to cycle sizes, or use the arrow keys, Home and End. Scrolling content expands the sheet before it scrolls."
-      >
-        <Preview
-          code={`<BottomSheet snapPoints={[0.5, 1]} expandOnScroll>
-  <BottomSheetTrigger render={<Button variant="tonal" />}>Places</BottomSheetTrigger>
-  <BottomSheetContent className="block-dvh">
-    <BottomSheetTitle>Places nearby</BottomSheetTitle>
-    <ul className="min-block-0 flex-1 overflow-y-auto">…</ul>
-  </BottomSheetContent>
-</BottomSheet>`}
-        >
-          <BottomSheet snapPoints={[0.5, 1]} expandOnScroll>
-            <BottomSheetTrigger render={<Button variant="tonal" />}>
-              Places nearby
-            </BottomSheetTrigger>
-            <BottomSheetContent className="block-dvh">
-              <BottomSheetTitle className="mbe-4">Places nearby</BottomSheetTitle>
-              <ul className="flex flex-1 flex-col overflow-y-auto px-6 pbe-6 min-block-0">
-                {places.map((place) => (
-                  <li key={place} className="border-be border-outline-variant py-4 type-body-large">
-                    {place}
-                  </li>
-                ))}
-              </ul>
-            </BottomSheetContent>
-          </BottomSheet>
-        </Preview>
-      </Section>
-
-      <Section
-        title="Standard"
-        description="A standard bottom sheet leaves the page usable: no scrim, no focus trap. With modalAbove, a sheet stays standard at its small snap point and turns modal once expanded."
-      >
-        <Preview
-          code={`<BottomSheet modal={false}>…</BottomSheet>
-
-<BottomSheet snapPoints={[0.25, 0.9]} modalAbove={0.25}>…</BottomSheet>`}
-        >
-          <BottomSheet modal={false}>
-            <BottomSheetTrigger render={<Button variant="tonal" />}>Standard</BottomSheetTrigger>
-            <BottomSheetContent>
-              <BottomSheetTitle>Now playing</BottomSheetTitle>
-              <BottomSheetDescription className="mbe-6">
-                The page behind stays usable while this sheet is open.
-              </BottomSheetDescription>
-            </BottomSheetContent>
-          </BottomSheet>
-          <BottomSheet snapPoints={[0.25, 0.9]} modalAbove={0.25}>
-            <BottomSheetTrigger render={<Button variant="outlined" />}>
-              Modal when expanded
-            </BottomSheetTrigger>
-            <BottomSheetContent className="block-dvh">
-              <BottomSheetTitle>Directions</BottomSheetTitle>
-              <BottomSheetDescription>
-                Drag up to expand. Expanded, the sheet becomes modal.
-              </BottomSheetDescription>
-            </BottomSheetContent>
-          </BottomSheet>
-        </Preview>
-      </Section>
-    </>
+      <ApiComponent
+        name="BottomSheetContent"
+        description="The sheet surface, its scrim and its drag handle."
+        inherits={{ label: 'DrawerContent', doc: 'drawer' }}
+        props={[
+          { name: 'dragHandle', type: 'boolean', default: 'true' },
+          { name: 'dragHandleLabel', type: 'string', default: "'Resize'" },
+        ]}
+      />
+      <ApiComponent name="BottomSheetTrigger" description="Opens the sheet." />
+      <ApiComponent name="BottomSheetTitle" description="Names the sheet." />
+      <ApiComponent name="BottomSheetDescription" description="Supporting text under the title." />
+    </Section>
   );
 }
