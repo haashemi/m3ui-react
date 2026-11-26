@@ -1,193 +1,132 @@
 import type * as React from 'react';
 
-import { PageHeader, Preview, Section } from '~/components/docs';
+import { ApiComponent } from '~/components/api-reference';
 import {
-  BookIcon,
-  ExploreIcon,
-  FlightIcon,
-  MovieIcon,
-  MusicNoteIcon,
-  NewspaperIcon,
-  PhotoLibraryIcon,
-  PodcastsIcon,
-  SportsEsportsIcon,
-  TrendingUpIcon,
-} from '~/icons';
-import { Tabs, TabsList, TabsPanel, TabsTab } from '@/registry/m3ui/ui/tabs';
+  ComponentPreview,
+  ExamplesSection,
+  RtlSection,
+  UsageSection,
+} from '~/components/component-preview';
+import { Code, CompositionSection, PageHeader, Prose, Section } from '~/components/docs';
+import { Installation } from '~/components/installation';
 
-const media = [
-  { value: 'video', label: 'Video', icon: <MovieIcon />, text: '24 videos, 3 added this week.' },
-  {
-    value: 'photos',
-    label: 'Photos',
-    icon: <PhotoLibraryIcon />,
-    text: '1,204 photos in 18 albums.',
-  },
-  { value: 'audio', label: 'Audio', icon: <MusicNoteIcon />, text: '312 songs and 8 podcasts.' },
-];
-
-const topics = [
-  { value: 'explore', label: 'Explore', icon: <ExploreIcon /> },
-  { value: 'trending', label: 'Trending', icon: <TrendingUpIcon /> },
-  { value: 'news', label: 'News', icon: <NewspaperIcon /> },
-  { value: 'travel', label: 'Travel', icon: <FlightIcon /> },
-  { value: 'games', label: 'Games', icon: <SportsEsportsIcon /> },
-  { value: 'books', label: 'Books', icon: <BookIcon /> },
-  { value: 'podcasts', label: 'Podcasts', icon: <PodcastsIcon /> },
-];
-
-function PrimarySection(): React.JSX.Element {
-  return (
-    <Section
-      title="Primary"
-      description="Primary tabs sit at the top of the content pane, under an app bar. The indicator matches the width of the tab's content and slides between tabs on the default spatial spring."
-    >
-      <Preview
-        className="flex-col flex-nowrap items-stretch"
-        code={`<Tabs defaultValue="video">
-  <TabsList aria-label="Media">
-    <TabsTab value="video" icon={<MovieIcon />}>Video</TabsTab>
-    <TabsTab value="photos" icon={<PhotoLibraryIcon />}>Photos</TabsTab>
-    <TabsTab value="audio" icon={<MusicNoteIcon />}>Audio</TabsTab>
-  </TabsList>
-  <TabsPanel value="video">…</TabsPanel>
-</Tabs>`}
-      >
-        <Tabs defaultValue="video">
-          <TabsList aria-label="Media">
-            {media.map((item) => (
-              <TabsTab key={item.value} value={item.value} icon={item.icon}>
-                {item.label}
-              </TabsTab>
-            ))}
-          </TabsList>
-          {media.map((item) => (
-            <TabsPanel key={item.value} value={item.value}>
-              <p className="p-6 type-body-large text-on-surface-variant">{item.text}</p>
-            </TabsPanel>
-          ))}
-        </Tabs>
-        <Tabs defaultValue="photos">
-          <TabsList aria-label="Media (inline icons)" iconLayout="inline">
-            {media.map((item) => (
-              <TabsTab key={item.value} value={item.value} icon={item.icon}>
-                {item.label}
-              </TabsTab>
-            ))}
-          </TabsList>
-        </Tabs>
-        <Tabs defaultValue="flights">
-          <TabsList aria-label="Bookings">
-            <TabsTab value="flights">Flights</TabsTab>
-            <TabsTab value="hotels">Hotels</TabsTab>
-            <TabsTab value="cars" disabled>
-              Cars
-            </TabsTab>
-          </TabsList>
-        </Tabs>
-      </Preview>
-    </Section>
-  );
-}
-
-function SecondarySection(): React.JSX.Element {
-  return (
-    <Section
-      title="Secondary"
-      description="Secondary tabs separate related content within a pane. Their indicator spans the whole tab."
-    >
-      <Preview
-        className="flex-col flex-nowrap items-stretch"
-        code={`<Tabs defaultValue="overview">
-  <TabsList variant="secondary" aria-label="Flight">
-    <TabsTab value="overview">Overview</TabsTab>
-    <TabsTab value="specs">Specifications</TabsTab>
-  </TabsList>
-</Tabs>`}
-      >
-        <Tabs defaultValue="overview">
-          <TabsList variant="secondary" aria-label="Flight">
-            <TabsTab value="overview">Overview</TabsTab>
-            <TabsTab value="specs">Specifications</TabsTab>
-            <TabsTab value="reviews">Reviews</TabsTab>
-          </TabsList>
-          <TabsPanel value="overview">
-            <p className="p-6 type-body-large text-on-surface-variant">
-              Nonstop, 7h 25m, departs 9:40.
-            </p>
-          </TabsPanel>
-          <TabsPanel value="specs">
-            <p className="p-6 type-body-large text-on-surface-variant">
-              Airbus A350-900, 3-3-3 economy seating.
-            </p>
-          </TabsPanel>
-          <TabsPanel value="reviews">
-            <p className="p-6 type-body-large text-on-surface-variant">
-              4.6 out of 5 from 1,820 travelers.
-            </p>
-          </TabsPanel>
-        </Tabs>
-        <Tabs defaultValue="trending">
-          <TabsList variant="secondary" aria-label="Topics (icons)">
-            {topics.slice(0, 3).map((topic) => (
-              <TabsTab key={topic.value} value={topic.value} icon={topic.icon}>
-                {topic.label}
-              </TabsTab>
-            ))}
-          </TabsList>
-        </Tabs>
-      </Preview>
-    </Section>
-  );
-}
-
-function ScrollableSection(): React.JSX.Element {
-  return (
-    <Section
-      title="Scrollable"
-      description="Scrollable tabs keep their natural width, at least 90px, with a 52px leading inset. The selected tab scrolls into view."
-    >
-      <Preview
-        className="flex-col flex-nowrap items-stretch"
-        code={`<TabsList scrollable aria-label="Topics">
-  <TabsTab value="explore" icon={<ExploreIcon />}>Explore</TabsTab>
-  …
-</TabsList>`}
-      >
-        <Tabs defaultValue="explore" className="min-inline-0">
-          <TabsList scrollable aria-label="Topics">
-            {topics.map((topic) => (
-              <TabsTab key={topic.value} value={topic.value} icon={topic.icon}>
-                {topic.label}
-              </TabsTab>
-            ))}
-          </TabsList>
-        </Tabs>
-        <Tabs defaultValue="news" className="min-inline-0">
-          <TabsList variant="secondary" scrollable aria-label="Topics (secondary)">
-            {topics.map((topic) => (
-              <TabsTab key={topic.value} value={topic.value}>
-                {topic.label}
-              </TabsTab>
-            ))}
-          </TabsList>
-        </Tabs>
-      </Preview>
-    </Section>
-  );
-}
+const stretch = 'flex-col flex-nowrap items-stretch';
 
 export function TabsPage(): React.JSX.Element {
   return (
     <>
       <PageHeader
         title="Tabs"
-        description="Tabs organize content across different screens and views. Tab enters the selected tab; the arrow keys move between tabs and select them."
-        item="tabs"
+        description="Tabs organize content across different screens and views. Primary and secondary tabs, fixed or scrollable, with an indicator that slides to the selected tab on the default spatial spring."
       />
-      <PrimarySection />
-      <SecondarySection />
-      <ScrollableSection />
+      <ComponentPreview name="tabs/demo" className={stretch} />
+
+      <Section title="Installation">
+        <Installation item="tabs" />
+      </Section>
+
+      <UsageSection
+        imports="import { Tabs, TabsList, TabsPanel, TabsTab } from '@/components/ui/tabs';"
+        code={`<Tabs defaultValue="video">
+  <TabsList aria-label="Media">
+    <TabsTab value="video">Video</TabsTab>
+    <TabsTab value="photos">Photos</TabsTab>
+  </TabsList>
+  <TabsPanel value="video">…</TabsPanel>
+  <TabsPanel value="photos">…</TabsPanel>
+</Tabs>`}
+      />
+
+      <CompositionSection
+        tree={`Tabs
+├── TabsList
+│   └── TabsTab
+└── TabsPanel`}
+      />
+
+      <Section title="Notes">
+        <Prose>
+          <p>
+            <strong>Primary</strong> tabs sit at the top of the content pane, under an app bar.
+            Their indicator matches the tab&apos;s content. <strong>Secondary</strong> tabs separate
+            related content within a pane; their indicator spans the whole tab.
+          </p>
+          <p>
+            The list is one Tab stop and arrow keys move between tabs, swapped in right-to-left
+            text. Name it with <Code>aria-label</Code>.
+          </p>
+          <p>
+            <Code>variant</Code>, <Code>iconLayout</Code> and <Code>scrollable</Code> are set on{' '}
+            <Code>TabsList</Code> and apply to every tab in it.
+          </p>
+        </Prose>
+      </Section>
+
+      <ExamplesSection
+        examples={[
+          { title: 'Inline icons', name: 'tabs/inline-icons', className: stretch },
+          { title: 'Text only', name: 'tabs/text-only', className: stretch },
+          { title: 'Secondary', name: 'tabs/secondary', className: stretch },
+          {
+            title: 'Scrollable',
+            name: 'tabs/scrollable',
+            description:
+              'Scrollable tabs keep their natural width, at least 90dp, with a 52dp leading inset.',
+            className: stretch,
+          },
+        ]}
+      />
+      <RtlSection name="tabs/rtl" className={stretch} />
+      <TabsApi />
     </>
+  );
+}
+
+function TabsApi(): React.JSX.Element {
+  return (
+    <Section title="API Reference">
+      <ApiComponent
+        name="Tabs"
+        description="A UI SDK Tabs root that stacks its list and panels."
+        inherits={{ label: 'Tabs', doc: 'tabs' }}
+        props={[
+          { name: 'value', type: 'string' },
+          { name: 'defaultValue', type: 'string' },
+          { name: 'onValueChange', type: '(value: string, details) => void' },
+        ]}
+      />
+      <ApiComponent
+        name="TabsList"
+        description="The row of tabs and their indicator."
+        inherits={{ label: 'TabsList', doc: 'tabs' }}
+        props={[
+          { name: 'variant', type: "'primary' | 'secondary'", default: "'primary'" },
+          {
+            name: 'iconLayout',
+            type: "'stacked' | 'inline'",
+            default: "'stacked'",
+            description: 'Where primary tabs put the icon. Secondary tabs are always inline.',
+          },
+          { name: 'scrollable', type: 'boolean', default: 'false' },
+          { name: 'aria-label', type: 'string', description: 'Names the tab list.' },
+        ]}
+      />
+      <ApiComponent
+        name="TabsTab"
+        description="A tab with a ripple and an optional icon."
+        inherits={{ label: 'TabsTab', doc: 'tabs' }}
+        props={[
+          { name: 'value', type: 'string', description: 'Matches a TabsPanel.' },
+          { name: 'icon', type: 'React.ReactNode' },
+          { name: 'disabled', type: 'boolean', default: 'false' },
+        ]}
+      />
+      <ApiComponent
+        name="TabsPanel"
+        description="The content for one tab. It fades and slides in from the side of the newly selected tab."
+        inherits={{ label: 'TabsPanel', doc: 'tabs' }}
+        props={[{ name: 'value', type: 'string' }]}
+      />
+    </Section>
   );
 }

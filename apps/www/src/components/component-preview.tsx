@@ -89,7 +89,13 @@ export function ComponentPreview({
   );
 }
 
-export function RtlSection({ name }: { name: string }): React.JSX.Element {
+export function RtlSection({
+  name,
+  className,
+}: {
+  name: string;
+  className?: string;
+}): React.JSX.Element {
   return (
     <Section
       title="RTL"
@@ -100,7 +106,7 @@ export function RtlSection({ name }: { name: string }): React.JSX.Element {
         </>
       }
     >
-      <ComponentPreview name={name} rtl />
+      <ComponentPreview name={name} rtl {...(className ? { className } : {})} />
     </Section>
   );
 }
