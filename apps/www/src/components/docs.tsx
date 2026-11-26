@@ -1,7 +1,10 @@
+import { Link, type LinkProps } from '@tanstack/react-router';
 import * as React from 'react';
 
 import { CheckIcon, CodeIcon } from '~/icons';
+import { slugify } from '~/lib/slug';
 import { cn } from '@/lib/utils';
+import { Button } from '@/registry/m3ui/ui/button';
 import { IconButton } from '@/registry/m3ui/ui/icon-button';
 
 export const registryUrl = 'https://haashemi.github.io/m3ui-react/r/{name}.json';
@@ -32,11 +35,11 @@ export function Section({
 }: {
   id?: string;
   title: string;
-  description?: string;
-  children: React.ReactNode;
+  description?: React.ReactNode;
+  children?: React.ReactNode;
 }): React.JSX.Element {
   return (
-    <section id={id} className="flex scroll-mbs-6 flex-col gap-4">
+    <section id={id ?? slugify(title)} className="flex scroll-mbs-6 flex-col gap-4">
       <div className="flex flex-col gap-1">
         <h2 className="type-headline-small">{title}</h2>
         {description ? (
@@ -45,6 +48,60 @@ export function Section({
       </div>
       {children}
     </section>
+  );
+}
+
+export function SubSection({
+  id,
+  title,
+  description,
+  children,
+}: {
+  id?: string;
+  title: string;
+  description?: React.ReactNode;
+  children?: React.ReactNode;
+}): React.JSX.Element {
+  return (
+    <section id={id ?? slugify(title)} className="flex scroll-mbs-6 flex-col gap-3">
+      <div className="flex flex-col gap-1">
+        <h3 className="type-title-large">{title}</h3>
+        {description ? (
+          <p className="type-body-medium text-on-surface-variant max-inline-2xl">{description}</p>
+        ) : null}
+      </div>
+      {children}
+    </section>
+  );
+}
+
+export function Prose({ children }: { children: React.ReactNode }): React.JSX.Element {
+  return (
+    <div className="flex flex-col gap-3 type-body-large text-on-surface max-inline-2xl">
+      {children}
+    </div>
+  );
+}
+
+export function Code({ children }: { children: React.ReactNode }): React.JSX.Element {
+  return (
+    <code className="rounded-corner-extra-small bg-surface-container-highest px-1 font-mono text-on-surface">
+      {children}
+    </code>
+  );
+}
+
+export function DocLink({
+  to,
+  children,
+}: {
+  to: NonNullable<LinkProps['to']>;
+  children: React.ReactNode;
+}): React.JSX.Element {
+  return (
+    <Link to={to} className="text-primary underline">
+      {children}
+    </Link>
   );
 }
 
@@ -84,31 +141,80 @@ export function Preview({
   );
 }
 
-export function CodeBlock({
-  code,
-  language = 'tsx',
-}: {
-  code: string;
-  language?: string;
-}): React.JSX.Element {
+export function CopyButton({ text }: { text: string }): React.JSX.Element {
   const [copied, setCopied] = React.useState(false);
 
   const copy = async () => {
-    await navigator.clipboard.writeText(code);
+    await navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   };
 
   return (
-    <div className="relative rounded-corner-large bg-surface-container-highest">
-      <pre className="overflow-x-auto p-4 pe-14 type-body-medium font-mono text-on-surface">
-        <code data-language={language}>{code.trim()}</code>
+    <IconButton size="sm" aria-label="Copy code" onClick={copy}>
+      {copied ? <CheckIcon /> : <CopyGlyph />}
+    </IconButton>
+  );
+}
+
+export function CodeBlock({
+  code,
+  language = 'tsx',
+  title,
+  collapsible = false,
+  className,
+}: {
+  code: string;
+  language?: string;
+  title?: string;
+  collapsible?: boolean;
+  className?: string;
+}): React.JSX.Element {
+  const [expanded, setExpanded] = React.useState(false);
+  const collapsed = collapsible && !expanded;
+  const text = code.trim();
+
+  return (
+    <div
+      className={cn(
+        'relative overflow-hidden rounded-corner-large bg-surface-container-highest',
+        className,
+      )}
+    >
+      {title ? (
+        <div className="flex items-center border-be border-outline-variant px-4 type-label-large text-on-surface-variant block-10">
+          {title}
+        </div>
+      ) : null}
+      <pre
+        className={cn(
+          'overflow-x-auto p-4 pe-14 type-body-medium font-mono text-on-surface',
+          collapsed && 'overflow-hidden max-block-40',
+        )}
+      >
+        <code data-language={language}>{text}</code>
       </pre>
-      <div className="absolute inset-e-2 inset-bs-2">
-        <IconButton size="sm" aria-label="Copy code" onClick={copy}>
-          {copied ? <CheckIcon /> : <CopyGlyph />}
-        </IconButton>
+      <div className={cn('absolute inset-e-2', title ? 'inset-bs-12' : 'inset-bs-2')}>
+        <CopyButton text={text} />
       </div>
+      {collapsible ? (
+        <div
+          className={cn(
+            'flex justify-center p-2',
+            collapsed &&
+              'absolute inset-x-0 inset-be-0 bg-linear-to-t from-surface-container-highest pbs-12',
+          )}
+        >
+          <Button
+            size="xs"
+            variant="tonal"
+            aria-expanded={expanded}
+            onClick={() => setExpanded((value) => !value)}
+          >
+            {expanded ? 'Collapse code' : 'View code'}
+          </Button>
+        </div>
+      ) : null}
     </div>
   );
 }
