@@ -1,101 +1,86 @@
 import type * as React from 'react';
 
-import { PageHeader, Preview, Section } from '~/components/docs';
-import { BookmarkIcon, EditIcon, ShareIcon, StarIcon } from '~/icons';
-import { Button } from '@/registry/m3ui/ui/button';
-import { ButtonGroup } from '@/registry/m3ui/ui/button-group';
+import { ApiComponent } from '~/components/api-reference';
 import {
-  ConnectedButtonGroup,
-  ConnectedButtonGroupItem,
-} from '@/registry/m3ui/ui/connected-button-group';
-import { IconButton } from '@/registry/m3ui/ui/icon-button';
+  ComponentPreview,
+  ExamplesSection,
+  RtlSection,
+  UsageSection,
+} from '~/components/component-preview';
+import { Code, DocLink, PageHeader, Prose, Section } from '~/components/docs';
+import { Installation } from '~/components/installation';
 
-const sizes = ['xs', 'sm', 'md'] as const;
-
-export function ButtonGroupsPage(): React.JSX.Element {
+export function ButtonGroupPage(): React.JSX.Element {
   return (
     <>
       <PageHeader
-        title="Button groups"
-        description="Button groups organize buttons and add interactions between them. In a standard group, the pressed button grows and its neighbors make room. Connected groups replace segmented buttons."
-        item="button-group"
+        title="Button Group"
+        description="Button groups organize buttons and add interactions between them. When a button is pressed, it grows and its neighbors make room."
+      />
+      <ComponentPreview name="button-group/demo" />
+
+      <Section title="Installation">
+        <Installation item="button-group" />
+      </Section>
+
+      <UsageSection
+        imports="import { ButtonGroup } from '@/components/ui/button-group';"
+        code={`<ButtonGroup>
+  <Button>Edit</Button>
+  <Button>Share</Button>
+</ButtonGroup>`}
       />
 
-      <Section
-        title="Standard"
-        description="Press and hold a button: it widens by 15% with the fast spatial spring while its neighbors shrink."
-      >
-        <Preview
-          className="flex-col"
-          code={`<ButtonGroup size="sm">
-  <IconButton variant="tonal" aria-label="Edit"><EditIcon /></IconButton>
-  <Button>Share</Button>
-  <IconButton variant="tonal" aria-label="Bookmark"><BookmarkIcon /></IconButton>
-</ButtonGroup>`}
-        >
-          {sizes.map((size) => (
-            <ButtonGroup key={size} size={size}>
-              <IconButton size={size} variant="tonal" aria-label="Edit">
-                <EditIcon />
-              </IconButton>
-              <Button size={size}>
-                <ShareIcon />
-                Share
-              </Button>
-              <IconButton size={size} variant="tonal" aria-label="Bookmark">
-                <BookmarkIcon />
-              </IconButton>
-              <IconButton size={size} variant="tonal" aria-label="Star">
-                <StarIcon />
-              </IconButton>
-            </ButtonGroup>
-          ))}
-        </Preview>
+      <Section title="Notes">
+        <Prose>
+          <p>
+            Any button works inside: <DocLink to="/components/button">Button</DocLink>,{' '}
+            <DocLink to="/components/icon-button">Icon Button</DocLink> and their toggle versions.
+            Give the group and its buttons the same <Code>size</Code>; the group sets the gap
+            between them.
+          </p>
+          <p>
+            Pressing a button widens it by 15% on the fast spatial spring while its neighbors
+            shrink, by pointer or by Enter and Space.
+          </p>
+          <p>
+            For a set of options where one or several stay selected, use a{' '}
+            <DocLink to="/components/connected-button-group">Connected Button Group</DocLink>.
+          </p>
+        </Prose>
       </Section>
 
-      <Section
-        title="Connected, single selection"
-        description="Inner corners tighten when pressed and round fully when selected."
-      >
-        <Preview
-          className="flex-col"
-          code={`<ConnectedButtonGroup aria-label="View" defaultValue={['day']} deselectable={false}>
-  <ConnectedButtonGroupItem value="day">Day</ConnectedButtonGroupItem>
-  <ConnectedButtonGroupItem value="week">Week</ConnectedButtonGroupItem>
-  <ConnectedButtonGroupItem value="month">Month</ConnectedButtonGroupItem>
-</ConnectedButtonGroup>`}
-        >
-          {sizes.map((size) => (
-            <ConnectedButtonGroup
-              key={size}
-              size={size}
-              aria-label="View"
-              defaultValue={['week']}
-              deselectable={false}
-            >
-              <ConnectedButtonGroupItem value="day">Day</ConnectedButtonGroupItem>
-              <ConnectedButtonGroupItem value="week">Week</ConnectedButtonGroupItem>
-              <ConnectedButtonGroupItem value="month">Month</ConnectedButtonGroupItem>
-              <ConnectedButtonGroupItem value="year">Year</ConnectedButtonGroupItem>
-            </ConnectedButtonGroup>
-          ))}
-        </Preview>
-      </Section>
+      <ExamplesSection
+        examples={[
+          {
+            title: 'Sizes',
+            name: 'button-group/sizes',
+            description: 'Press and hold a button to see it grow.',
+          },
+          { title: 'Buttons', name: 'button-group/buttons' },
+          { title: 'Toggle icon buttons', name: 'button-group/toggles' },
+        ]}
+      />
+      <RtlSection name="button-group/rtl" />
 
-      <Section title="Connected, multiple selection">
-        <Preview code='<ConnectedButtonGroup multiple variant="tonal" aria-label="Filters">…</ConnectedButtonGroup>'>
-          <ConnectedButtonGroup
-            multiple
-            variant="tonal"
-            size="md"
-            aria-label="Filters"
-            defaultValue={['unread']}
-          >
-            <ConnectedButtonGroupItem value="unread">Unread</ConnectedButtonGroupItem>
-            <ConnectedButtonGroupItem value="starred">Starred</ConnectedButtonGroupItem>
-            <ConnectedButtonGroupItem value="attachments">Files</ConnectedButtonGroupItem>
-          </ConnectedButtonGroup>
-        </Preview>
+      <Section title="API Reference">
+        <ApiComponent
+          name="ButtonGroup"
+          description={
+            <>
+              A <Code>div</Code> with <Code>role=&quot;group&quot;</Code> that spaces its buttons
+              and grows the pressed one. Takes every <Code>div</Code> prop.
+            </>
+          }
+          props={[
+            {
+              name: 'size',
+              type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+              default: "'sm'",
+              description: 'Match the size of the buttons inside.',
+            },
+          ]}
+        />
       </Section>
     </>
   );
