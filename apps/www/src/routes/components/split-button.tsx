@@ -4,6 +4,6 @@ import { pageTitle } from '~/head';
 import { SplitButtonPage } from '~/pages/split-button';
 
 export const Route = createFileRoute('/components/split-button')({
-  head: () => pageTitle('Split button'),
+  head: () => pageTitle('Split Button'),
   component: SplitButtonPage,
 });
