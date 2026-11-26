@@ -71,6 +71,11 @@ export const componentNav: NavEntry[] = [
         to: '/components/split-button',
         description: 'Split buttons open a menu to give people more options related to an action',
       },
+      {
+        title: 'Toggle buttons',
+        to: '/components/toggle-button',
+        description: 'Toggle buttons stay selected after a press and morph their shape',
+      },
     ],
   },
   {

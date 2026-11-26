@@ -2,7 +2,8 @@ import type * as React from 'react';
 
 import { PageHeader, Preview, Section } from '~/components/docs';
 import { AddIcon, BookmarkIcon, EditIcon, SendIcon } from '~/icons';
-import { Button, ToggleButton } from '@/registry/m3ui/ui/button';
+import { Button } from '@/registry/m3ui/ui/button';
+import { ToggleButton } from '@/registry/m3ui/ui/toggle-button';
 
 const variants = ['elevated', 'filled', 'tonal', 'outlined', 'text'] as const;
 const toggleVariants = ['elevated', 'filled', 'tonal', 'outlined'] as const;

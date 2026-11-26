@@ -1,9 +1,10 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vite-plus/test';
 
-import { Button, ToggleButton } from '@/registry/m3ui/ui/button';
+import { Button } from '@/registry/m3ui/ui/button';
 import { ConnectedButtonGroup, ConnectedButtonGroupItem } from '@/registry/m3ui/ui/button-group';
 import { IconButton } from '@/registry/m3ui/ui/icon-button';
+import { ToggleButton } from '@/registry/m3ui/ui/toggle-button';
 
 describe(Button, () => {
   it('renders a native button with its variant, size and a ripple', () => {

@@ -28,6 +28,7 @@ import { Route as ComponentsSideSheetRouteImport } from './routes/components/sid
 import { Route as ComponentsSplitButtonRouteImport } from './routes/components/split-button'
 import { Route as ComponentsSwitchRouteImport } from './routes/components/switch'
 import { Route as ComponentsTabsRouteImport } from './routes/components/tabs'
+import { Route as ComponentsToggleButtonRouteImport } from './routes/components/toggle-button'
 import { Route as ComponentsToolbarRouteImport } from './routes/components/toolbar'
 
 const IndexRoute = IndexRouteImport.update({
@@ -125,6 +126,11 @@ const ComponentsTabsRoute = ComponentsTabsRouteImport.update({
   path: '/components/tabs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComponentsToggleButtonRoute = ComponentsToggleButtonRouteImport.update({
+  id: '/components/toggle-button',
+  path: '/components/toggle-button',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComponentsToolbarRoute = ComponentsToolbarRouteImport.update({
   id: '/components/toolbar',
   path: '/components/toolbar',
@@ -150,6 +156,7 @@ export interface FileRoutesByFullPath {
   '/components/split-button': typeof ComponentsSplitButtonRoute
   '/components/switch': typeof ComponentsSwitchRoute
   '/components/tabs': typeof ComponentsTabsRoute
+  '/components/toggle-button': typeof ComponentsToggleButtonRoute
   '/components/toolbar': typeof ComponentsToolbarRoute
   '/components/': typeof ComponentsIndexRoute
 }
@@ -172,6 +179,7 @@ export interface FileRoutesByTo {
   '/components/split-button': typeof ComponentsSplitButtonRoute
   '/components/switch': typeof ComponentsSwitchRoute
   '/components/tabs': typeof ComponentsTabsRoute
+  '/components/toggle-button': typeof ComponentsToggleButtonRoute
   '/components/toolbar': typeof ComponentsToolbarRoute
   '/components': typeof ComponentsIndexRoute
 }
@@ -195,6 +203,7 @@ export interface FileRoutesById {
   '/components/split-button': typeof ComponentsSplitButtonRoute
   '/components/switch': typeof ComponentsSwitchRoute
   '/components/tabs': typeof ComponentsTabsRoute
+  '/components/toggle-button': typeof ComponentsToggleButtonRoute
   '/components/toolbar': typeof ComponentsToolbarRoute
   '/components/': typeof ComponentsIndexRoute
 }
@@ -219,6 +228,7 @@ export interface FileRouteTypes {
     | '/components/split-button'
     | '/components/switch'
     | '/components/tabs'
+    | '/components/toggle-button'
     | '/components/toolbar'
     | '/components/'
   fileRoutesByTo: FileRoutesByTo
@@ -241,6 +251,7 @@ export interface FileRouteTypes {
     | '/components/split-button'
     | '/components/switch'
     | '/components/tabs'
+    | '/components/toggle-button'
     | '/components/toolbar'
     | '/components'
   id:
@@ -263,6 +274,7 @@ export interface FileRouteTypes {
     | '/components/split-button'
     | '/components/switch'
     | '/components/tabs'
+    | '/components/toggle-button'
     | '/components/toolbar'
     | '/components/'
   fileRoutesById: FileRoutesById
@@ -286,6 +298,7 @@ export interface RootRouteChildren {
   ComponentsSplitButtonRoute: typeof ComponentsSplitButtonRoute
   ComponentsSwitchRoute: typeof ComponentsSwitchRoute
   ComponentsTabsRoute: typeof ComponentsTabsRoute
+  ComponentsToggleButtonRoute: typeof ComponentsToggleButtonRoute
   ComponentsToolbarRoute: typeof ComponentsToolbarRoute
   ComponentsIndexRoute: typeof ComponentsIndexRoute
 }
@@ -425,6 +438,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComponentsTabsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/components/toggle-button': {
+      id: '/components/toggle-button'
+      path: '/components/toggle-button'
+      fullPath: '/components/toggle-button'
+      preLoaderRoute: typeof ComponentsToggleButtonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/components/toolbar': {
       id: '/components/toolbar'
       path: '/components/toolbar'
@@ -454,6 +474,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComponentsSplitButtonRoute: ComponentsSplitButtonRoute,
   ComponentsSwitchRoute: ComponentsSwitchRoute,
   ComponentsTabsRoute: ComponentsTabsRoute,
+  ComponentsToggleButtonRoute: ComponentsToggleButtonRoute,
   ComponentsToolbarRoute: ComponentsToolbarRoute,
   ComponentsIndexRoute: ComponentsIndexRoute,
 }

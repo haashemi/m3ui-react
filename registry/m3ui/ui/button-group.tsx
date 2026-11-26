@@ -8,7 +8,8 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
-import { buttonVariants, toggleButtonVariants } from '@/registry/m3ui/ui/button';
+import { buttonVariants } from '@/registry/m3ui/ui/button';
+import { toggleButtonVariants } from '@/registry/m3ui/ui/toggle-button';
 import { Ripple } from '@/registry/m3ui/ui/ripple';
 
 const PRESSED_ITEM_WIDTH_MULTIPLIER = 0.15;

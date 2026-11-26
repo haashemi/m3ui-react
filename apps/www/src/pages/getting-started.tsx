@@ -3,9 +3,10 @@ import type * as React from 'react';
 import { CodeBlock, PageHeader, registryUrl, Section } from '~/components/docs';
 import { EditIcon, FavoriteFillIcon, FavoriteIcon, SendIcon } from '~/icons';
 import { Link } from '@tanstack/react-router';
-import { Button, ToggleButton } from '@/registry/m3ui/ui/button';
+import { Button } from '@/registry/m3ui/ui/button';
 import { ExtendedFab } from '@/registry/m3ui/ui/fab';
 import { ToggleIconButton } from '@/registry/m3ui/ui/icon-button';
+import { ToggleButton } from '@/registry/m3ui/ui/toggle-button';
 
 export function GettingStartedPage(): React.JSX.Element {
   return (

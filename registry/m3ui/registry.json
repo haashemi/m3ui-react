@@ -18,7 +18,7 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Buttons and toggle buttons in five sizes, five color styles and two shapes that morph on press and selection.",
+      "description": "Buttons in five sizes, five color styles and two shapes whose corners morph when pressed.",
       "dependencies": [
         "@ui-sdk/react@0.1.0-beta.17",
         "@ui-sdk/core@0.1.0-beta.17",
@@ -28,6 +28,24 @@
       "files": [
         {
           "path": "ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle-button",
+      "type": "registry:ui",
+      "title": "Toggle Button",
+      "description": "Buttons that stay selected, swapping colors and morphing round to square (or square to round) on selection.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple", "@m3ui/button"],
+      "files": [
+        {
+          "path": "ui/toggle-button.tsx",
           "type": "registry:ui"
         }
       ]
@@ -60,7 +78,13 @@
         "@ui-sdk/core@0.1.0-beta.17",
         "class-variance-authority"
       ],
-      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple", "@m3ui/button"],
+      "registryDependencies": [
+        "utils",
+        "@m3ui/theme",
+        "@m3ui/ripple",
+        "@m3ui/button",
+        "@m3ui/toggle-button"
+      ],
       "files": [
         {
           "path": "ui/button-group.tsx",
