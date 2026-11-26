@@ -133,7 +133,7 @@ function NavGroupItem({
 }
 
 function NavHeading({ children }: { children: React.ReactNode }): React.JSX.Element {
-  return <h2 className="px-4 pbs-4 pbe-2 type-title-small text-on-surface-variant">{children}</h2>;
+  return <h2 className="px-4 pbs-3 pbe-2 type-title-small text-primary">{children}</h2>;
 }
 
 function NavList({ onNavigate }: { onNavigate?: () => void }): React.JSX.Element {
@@ -148,6 +148,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }): React.JSX.Element
           </li>
         ))}
       </ul>
+      <hr className="mx-4 mbs-3 border-outline-variant" />
       <NavHeading>Components</NavHeading>
       <ul className="flex flex-col gap-1">
         {componentNav.map((entry) => (
