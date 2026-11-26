@@ -7,7 +7,7 @@ import { Button, ToggleButton } from '@/registry/m3ui/ui/button';
 import { ExtendedFab } from '@/registry/m3ui/ui/fab';
 import { ToggleIconButton } from '@/registry/m3ui/ui/icon-button';
 
-export function OverviewPage(): React.JSX.Element {
+export function GettingStartedPage(): React.JSX.Element {
   return (
     <>
       <PageHeader
@@ -16,7 +16,7 @@ export function OverviewPage(): React.JSX.Element {
       />
 
       <div className="flex flex-wrap items-center gap-4">
-        <Button size="md" render={<Link to="/buttons" />}>
+        <Button size="md" render={<Link to="/components" />}>
           <SendIcon />
           Browse components
         </Button>

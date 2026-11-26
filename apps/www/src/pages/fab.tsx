@@ -48,7 +48,7 @@ export function FabPage(): React.JSX.Element {
         </Preview>
       </Section>
 
-      <Section title="Extended FAB">
+      <Section id="extended-fab" title="Extended FAB">
         <Preview
           className="flex-col"
           code={`<ExtendedFab size="medium" icon={<EditIcon />} extended={extended}>

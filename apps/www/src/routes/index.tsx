@@ -1,9 +1,9 @@
 import { createFileRoute } from '@tanstack/react-router';
 
 import { pageTitle } from '~/head';
-import { OverviewPage } from '~/pages/overview';
+import { GettingStartedPage } from '~/pages/getting-started';
 
 export const Route = createFileRoute('/')({
   head: () => pageTitle(),
-  component: OverviewPage,
+  component: GettingStartedPage,
 });

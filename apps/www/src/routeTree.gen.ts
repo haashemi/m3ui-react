@@ -18,6 +18,7 @@ import { Route as ButtonsRouteImport } from './routes/buttons'
 import { Route as CardsRouteImport } from './routes/cards'
 import { Route as CheckboxRouteImport } from './routes/checkbox'
 import { Route as ChipsRouteImport } from './routes/chips'
+import { Route as ComponentsRouteImport } from './routes/components'
 import { Route as FabRouteImport } from './routes/fab'
 import { Route as IconButtonsRouteImport } from './routes/icon-buttons'
 import { Route as MenusRouteImport } from './routes/menus'
@@ -72,6 +73,11 @@ const CheckboxRoute = CheckboxRouteImport.update({
 const ChipsRoute = ChipsRouteImport.update({
   id: '/chips',
   path: '/chips',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsRoute = ComponentsRouteImport.update({
+  id: '/components',
+  path: '/components',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FabRoute = FabRouteImport.update({
@@ -135,6 +141,7 @@ export interface FileRoutesByFullPath {
   '/cards': typeof CardsRoute
   '/checkbox': typeof CheckboxRoute
   '/chips': typeof ChipsRoute
+  '/components': typeof ComponentsRoute
   '/fab': typeof FabRoute
   '/icon-buttons': typeof IconButtonsRoute
   '/menus': typeof MenusRoute
@@ -156,6 +163,7 @@ export interface FileRoutesByTo {
   '/cards': typeof CardsRoute
   '/checkbox': typeof CheckboxRoute
   '/chips': typeof ChipsRoute
+  '/components': typeof ComponentsRoute
   '/fab': typeof FabRoute
   '/icon-buttons': typeof IconButtonsRoute
   '/menus': typeof MenusRoute
@@ -178,6 +186,7 @@ export interface FileRoutesById {
   '/cards': typeof CardsRoute
   '/checkbox': typeof CheckboxRoute
   '/chips': typeof ChipsRoute
+  '/components': typeof ComponentsRoute
   '/fab': typeof FabRoute
   '/icon-buttons': typeof IconButtonsRoute
   '/menus': typeof MenusRoute
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/cards'
     | '/checkbox'
     | '/chips'
+    | '/components'
     | '/fab'
     | '/icon-buttons'
     | '/menus'
@@ -222,6 +232,7 @@ export interface FileRouteTypes {
     | '/cards'
     | '/checkbox'
     | '/chips'
+    | '/components'
     | '/fab'
     | '/icon-buttons'
     | '/menus'
@@ -243,6 +254,7 @@ export interface FileRouteTypes {
     | '/cards'
     | '/checkbox'
     | '/chips'
+    | '/components'
     | '/fab'
     | '/icon-buttons'
     | '/menus'
@@ -265,6 +277,7 @@ export interface RootRouteChildren {
   CardsRoute: typeof CardsRoute
   CheckboxRoute: typeof CheckboxRoute
   ChipsRoute: typeof ChipsRoute
+  ComponentsRoute: typeof ComponentsRoute
   FabRoute: typeof FabRoute
   IconButtonsRoute: typeof IconButtonsRoute
   MenusRoute: typeof MenusRoute
@@ -340,6 +353,13 @@ declare module '@tanstack/react-router' {
       path: '/chips'
       fullPath: '/chips'
       preLoaderRoute: typeof ChipsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components': {
+      id: '/components'
+      path: '/components'
+      fullPath: '/components'
+      preLoaderRoute: typeof ComponentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/fab': {
@@ -425,6 +445,7 @@ const rootRouteChildren: RootRouteChildren = {
   CardsRoute: CardsRoute,
   CheckboxRoute: CheckboxRoute,
   ChipsRoute: ChipsRoute,
+  ComponentsRoute: ComponentsRoute,
   FabRoute: FabRoute,
   IconButtonsRoute: IconButtonsRoute,
   MenusRoute: MenusRoute,

@@ -1,11 +1,15 @@
-import { HeadContent, Link, Outlet } from '@tanstack/react-router';
+import { HeadContent, Link, Outlet, useLocation } from '@tanstack/react-router';
+import { Collapsible, CollapsiblePanel, CollapsibleTrigger } from '@ui-sdk/react/collapsible';
 import * as React from 'react';
 
 import { PageHeader } from '~/components/docs';
-import { CloseIcon, DarkModeIcon, LightModeIcon, MenuIcon } from '~/icons';
+import { ArrowDropDownIcon, CloseIcon, DarkModeIcon, LightModeIcon, MenuIcon } from '~/icons';
 import { cn } from '@/lib/utils';
+import { componentNav, isGroup, type NavGroup, type NavLink, sectionLinks } from '~/nav';
 import { AppBar } from '@/registry/m3ui/ui/app-bar';
+import { Button, buttonVariants, toggleButtonVariants } from '@/registry/m3ui/ui/button';
 import { IconButton, ToggleIconButton } from '@/registry/m3ui/ui/icon-button';
+import { Ripple } from '@/registry/m3ui/ui/ripple';
 import {
   SideSheet,
   SideSheetBody,
@@ -15,28 +19,6 @@ import {
   SideSheetTitle,
   StandardSideSheet,
 } from '@/registry/m3ui/ui/side-sheet';
-
-const pages = [
-  { to: '/', title: 'Overview' },
-  { to: '/theme', title: 'Theme' },
-  { to: '/app-bar', title: 'App bars' },
-  { to: '/badges', title: 'Badges' },
-  { to: '/bottom-sheets', title: 'Bottom sheets' },
-  { to: '/buttons', title: 'Buttons' },
-  { to: '/icon-buttons', title: 'Icon buttons' },
-  { to: '/button-groups', title: 'Button groups' },
-  { to: '/split-button', title: 'Split button' },
-  { to: '/fab', title: 'FAB' },
-  { to: '/cards', title: 'Cards' },
-  { to: '/checkbox', title: 'Checkbox' },
-  { to: '/chips', title: 'Chips' },
-  { to: '/menus', title: 'Menus' },
-  { to: '/radio', title: 'Radio button' },
-  { to: '/side-sheets', title: 'Side sheets' },
-  { to: '/switch', title: 'Switch' },
-  { to: '/tabs', title: 'Tabs' },
-  { to: '/toolbar', title: 'Toolbar' },
-] as const;
 
 function useDarkMode(): [boolean, (dark: boolean) => void] {
   const [dark, setDark] = React.useState(() => document.documentElement.classList.contains('dark'));
@@ -59,25 +41,126 @@ function useWide(): boolean {
   return React.useSyncExternalStore(subscribeWide, () => window.matchMedia(wideQuery).matches);
 }
 
-function NavList({ onNavigate }: { onNavigate?: () => void }): React.JSX.Element {
+function useIsActive(): (item: NavLink) => boolean {
+  const { pathname, hash } = useLocation();
+  return React.useCallback(
+    (item: NavLink) => item.to === pathname && (item.hash ?? '') === hash,
+    [pathname, hash],
+  );
+}
+
+const navButtonClass = cn(
+  buttonVariants({ variant: 'text', size: 'sm' }),
+  'inline-full not-data-pressed:text-on-surface-variant',
+);
+
+const navLinkClass = cn(
+  navButtonClass,
+  toggleButtonVariants({ variant: 'tonal' }),
+  'justify-start',
+);
+
+const navGroupClass = cn(
+  navButtonClass,
+  'justify-between [&_svg]:transition-transform data-open:[&_svg]:rotate-180 motion-reduce:[&_svg]:transition-none',
+);
+
+function NavItem({
+  item,
+  active,
+  onNavigate,
+}: {
+  item: NavLink;
+  active: boolean;
+  onNavigate: (() => void) | undefined;
+}): React.JSX.Element {
+  if (!item.to) {
+    return (
+      <Button variant="text" disabled className="justify-start inline-full">
+        {item.title}
+      </Button>
+    );
+  }
   return (
-    <ul className="flex flex-col gap-1">
-      {pages.map((page) => (
-        <li key={page.to}>
-          <Link
-            to={page.to}
-            activeOptions={{ exact: true }}
-            onClick={onNavigate}
-            className={cn(
-              'focus-ring flex items-center rounded-full px-4 type-label-large text-on-surface-variant transition-colors block-14',
-              'hover:bg-on-surface/8 aria-[current=page]:bg-secondary-container aria-[current=page]:text-on-secondary-container',
+    <Link
+      to={item.to}
+      {...(item.hash ? { hash: item.hash } : {})}
+      data-pressed={active ? '' : undefined}
+      activeOptions={{ exact: true, includeHash: true }}
+      onClick={onNavigate}
+      className={navLinkClass}
+    >
+      <Ripple />
+      {item.title}
+    </Link>
+  );
+}
+
+function NavGroupItem({
+  group,
+  isActive,
+  onNavigate,
+}: {
+  group: NavGroup;
+  isActive: (item: NavLink) => boolean;
+  onNavigate: (() => void) | undefined;
+}): React.JSX.Element {
+  const containsActive = group.items.some(isActive);
+  const [open, setOpen] = React.useState(containsActive);
+  const [prevActive, setPrevActive] = React.useState(containsActive);
+  if (prevActive !== containsActive) {
+    setPrevActive(containsActive);
+    if (containsActive) setOpen(true);
+  }
+  return (
+    <Collapsible open={open} onOpenChange={setOpen}>
+      <CollapsibleTrigger className={navGroupClass}>
+        <Ripple />
+        {group.title}
+        <ArrowDropDownIcon />
+      </CollapsibleTrigger>
+      <CollapsiblePanel>
+        <ul className="flex flex-col gap-1 ps-4 pbs-1">
+          {group.items.map((item) => (
+            <li key={item.title}>
+              <NavItem item={item} active={isActive(item)} onNavigate={onNavigate} />
+            </li>
+          ))}
+        </ul>
+      </CollapsiblePanel>
+    </Collapsible>
+  );
+}
+
+function NavHeading({ children }: { children: React.ReactNode }): React.JSX.Element {
+  return <h2 className="px-4 pbs-4 pbe-2 type-title-small text-on-surface-variant">{children}</h2>;
+}
+
+function NavList({ onNavigate }: { onNavigate?: () => void }): React.JSX.Element {
+  const isActive = useIsActive();
+  return (
+    <div className="flex flex-col">
+      <NavHeading>Sections</NavHeading>
+      <ul className="flex flex-col gap-1">
+        {sectionLinks.map((item) => (
+          <li key={item.to}>
+            <NavItem item={item} active={isActive(item)} onNavigate={onNavigate} />
+          </li>
+        ))}
+      </ul>
+      <NavHeading>Components</NavHeading>
+      <ul className="flex flex-col gap-1">
+        {componentNav.map((entry) => (
+          <li key={entry.title}>
+            {isGroup(entry) ? (
+              <NavGroupItem group={entry} isActive={isActive} onNavigate={onNavigate} />
+            ) : (
+              <NavItem item={entry} active={isActive(entry)} onNavigate={onNavigate} />
             )}
-          >
-            {page.title}
-          </Link>
-        </li>
-      ))}
-    </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 

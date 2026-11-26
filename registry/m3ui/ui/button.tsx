@@ -48,22 +48,22 @@ const buttonVariants = cva(
   },
 );
 
-const toggleButtonShape =
-  'data-pressed:rounded-(--button-shape-selected) data-pressed:active:rounded-(--button-shape-pressed)';
-
-const toggleButtonVariants = cva('', {
-  variants: {
-    variant: {
-      elevated: 'data-pressed:bg-primary data-pressed:text-on-primary',
-      filled:
-        'not-data-pressed:bg-surface-container not-data-pressed:text-on-surface-variant data-pressed:bg-primary data-pressed:text-on-primary',
-      tonal: 'data-pressed:bg-secondary data-pressed:text-on-secondary',
-      outlined:
-        'data-pressed:border-transparent data-pressed:bg-inverse-surface data-pressed:text-inverse-on-surface data-disabled:data-pressed:bg-on-surface/10',
+const toggleButtonVariants = cva(
+  'data-pressed:rounded-(--button-shape-selected) data-pressed:active:rounded-(--button-shape-pressed)',
+  {
+    variants: {
+      variant: {
+        elevated: 'data-pressed:bg-primary data-pressed:text-on-primary',
+        filled:
+          'not-data-pressed:bg-surface-container not-data-pressed:text-on-surface-variant data-pressed:bg-primary data-pressed:text-on-primary',
+        tonal: 'data-pressed:bg-secondary data-pressed:text-on-secondary',
+        outlined:
+          'data-pressed:border-transparent data-pressed:bg-inverse-surface data-pressed:text-inverse-on-surface data-disabled:data-pressed:bg-on-surface/10',
+      },
     },
+    defaultVariants: { variant: 'filled' },
   },
-  defaultVariants: { variant: 'filled' },
-});
+);
 
 type ButtonVariantProps = VariantProps<typeof buttonVariants>;
 
@@ -113,7 +113,6 @@ function ToggleButton({
       className={cn(
         buttonVariants({ variant, size, shape }),
         toggleButtonVariants({ variant }),
-        toggleButtonShape,
         className,
       )}
       {...props}

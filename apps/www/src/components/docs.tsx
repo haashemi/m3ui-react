@@ -25,16 +25,18 @@ export function PageHeader({
 }
 
 export function Section({
+  id,
   title,
   description,
   children,
 }: {
+  id?: string;
   title: string;
   description?: string;
   children: React.ReactNode;
 }): React.JSX.Element {
   return (
-    <section className="flex flex-col gap-4">
+    <section id={id} className="flex scroll-mbs-6 flex-col gap-4">
       <div className="flex flex-col gap-1">
         <h2 className="type-headline-small">{title}</h2>
         {description ? (

@@ -4,6 +4,6 @@ import { pageTitle } from '~/head';
 import { ThemePage } from '~/pages/theme';
 
 export const Route = createFileRoute('/theme')({
-  head: () => pageTitle('Theme'),
+  head: () => pageTitle('Theming'),
   component: ThemePage,
 });
