@@ -1,134 +1,148 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { PageHeader, Preview, Section } from '~/components/docs';
+import { ApiComponent } from '~/components/api-reference';
 import {
-  DirectionsCarIcon,
-  EventIcon,
-  FlightIcon,
-  LightbulbIcon,
-  LocalCafeIcon,
-  RestaurantIcon,
-  UndoIcon,
-} from '~/icons';
-import {
+  ComponentPreview,
+  ExamplesSection,
+  RtlSection,
+  UsageSection,
+} from '~/components/component-preview';
+import { Code, PageHeader, Prose, Section } from '~/components/docs';
+import { Installation } from '~/components/installation';
+
+const variantProp = { name: 'variant', type: "'outlined' | 'elevated'", default: "'outlined'" };
+const iconProp = { name: 'icon', type: 'React.ReactNode', description: 'A leading icon.' };
+
+export function ChipPage(): React.JSX.Element {
+  return (
+    <>
+      <PageHeader
+        title="Chips"
+        description="Chips help people enter information, make selections, filter content or trigger actions. Assist, filter, input and suggestion chips, outlined or elevated."
+      />
+      <ComponentPreview name="chip/demo" />
+
+      <Section title="Installation">
+        <Installation item="chip" />
+      </Section>
+
+      <UsageSection
+        imports={`import {
   AssistChip,
   ChipSet,
   FilterChip,
   FilterChipGroup,
   InputChip,
   SuggestionChip,
-} from '@/registry/m3ui/ui/chip';
+} from '@/components/ui/chip';`}
+        code={`<ChipSet>
+  <AssistChip icon={<EventIcon />}>Add to calendar</AssistChip>
+  <SuggestionChip>Sounds good</SuggestionChip>
+</ChipSet>`}
+      />
 
-const initialPeople = ['Ada Lovelace', 'Alan Turing', 'Grace Hopper'];
+      <Section title="Notes">
+        <Prose>
+          <p>
+            <strong>Assist</strong> chips start smart or automated actions. <strong>Filter</strong>{' '}
+            chips are toggles that narrow content. <strong>Input</strong> chips hold information
+            people entered and can be removed. <strong>Suggestion</strong> chips offer generated
+            options, like replies.
+          </p>
+          <p>
+            Put loose chips in a <Code>ChipSet</Code> so they wrap with M3 spacing. Group filter
+            chips in a <Code>FilterChipGroup</Code>, a UI SDK ToggleGroup with one Tab stop and
+            arrow keys between chips.
+          </p>
+          <p>
+            An input chip with <Code>onRemove</Code> gets a remove button, and Backspace or Delete
+            removes it while focused. Translate the button&apos;s name with <Code>removeLabel</Code>
+            .
+          </p>
+        </Prose>
+      </Section>
 
-function InputChips(): React.JSX.Element {
-  const [people, setPeople] = React.useState(initialPeople);
-  const [showMeeting, setShowMeeting] = React.useState(true);
-  return (
-    <ChipSet>
-      {people.map((person) => (
-        <InputChip
-          key={person}
-          avatar={
-            <span className="flex items-center justify-center bg-primary type-label-medium text-on-primary block-full inline-full">
-              {person[0]}
-            </span>
-          }
-          onRemove={() => setPeople((current) => current.filter((value) => value !== person))}
-        >
-          {person}
-        </InputChip>
-      ))}
-      {showMeeting ? (
-        <InputChip icon={<EventIcon />} onRemove={() => setShowMeeting(false)}>
-          Team sync
-        </InputChip>
-      ) : null}
-      {people.length < initialPeople.length || !showMeeting ? (
-        <AssistChip
-          icon={<UndoIcon />}
-          onClick={() => {
-            setPeople(initialPeople);
-            setShowMeeting(true);
-          }}
-        >
-          Reset
-        </AssistChip>
-      ) : null}
-    </ChipSet>
+      <ExamplesSection
+        examples={[
+          { title: 'Assist', name: 'chip/assist' },
+          {
+            title: 'Filter',
+            name: 'chip/filter',
+            description: 'Selecting a filter chip adds a checkmark on the fast spatial spring.',
+          },
+          { title: 'Single-select filter', name: 'chip/filter-single' },
+          { title: 'Input', name: 'chip/input' },
+          { title: 'Suggestion', name: 'chip/suggestion' },
+          { title: 'Elevated', name: 'chip/elevated' },
+          { title: 'Disabled', name: 'chip/disabled' },
+        ]}
+      />
+      <RtlSection name="chip/rtl" />
+
+      <ChipApi />
+    </>
   );
 }
 
-export function ChipsPage(): React.JSX.Element {
+function ChipApi(): React.JSX.Element {
   return (
-    <>
-      <PageHeader
-        title="Chips"
-        description="Chips help people enter information, make selections, filter content or trigger actions. Assist, filter, input and suggestion chips, outlined or elevated."
-        item="chip"
+    <Section title="API Reference">
+      <ApiComponent
+        name="AssistChip"
+        description="A UI SDK Button styled as an assist chip."
+        inherits={{ label: 'Button', doc: 'button' }}
+        props={[variantProp, iconProp]}
       />
-
-      <Section title="Assist" description="Smart or automated actions that span multiple apps.">
-        <Preview code="<AssistChip icon={<EventIcon />}>Add to calendar</AssistChip>">
-          <AssistChip icon={<EventIcon />}>Add to calendar</AssistChip>
-          <AssistChip icon={<DirectionsCarIcon />}>Get directions</AssistChip>
-          <AssistChip variant="elevated" icon={<LightbulbIcon />}>
-            Elevated
-          </AssistChip>
-          <AssistChip disabled icon={<EventIcon />}>
-            Disabled
-          </AssistChip>
-        </Preview>
-      </Section>
-
-      <Section
-        title="Filter"
-        description="Selecting a filter chip adds a checkmark that grows in with the fast spatial spring."
-      >
-        <Preview
-          className="flex-col"
-          code={`<FilterChipGroup multiple aria-label="Amenities" defaultValue={['cafe']}>
-  <FilterChip value="cafe" icon={<LocalCafeIcon />}>Café</FilterChip>
-  <FilterChip value="dining">Dining</FilterChip>
-</FilterChipGroup>`}
-        >
-          <FilterChipGroup multiple aria-label="Amenities" defaultValue={['cafe', 'dining']}>
-            <FilterChip value="cafe" icon={<LocalCafeIcon />}>
-              Café
-            </FilterChip>
-            <FilterChip value="dining" icon={<RestaurantIcon />}>
-              Dining
-            </FilterChip>
-            <FilterChip value="flights">Flights</FilterChip>
-            <FilterChip value="parking">Parking</FilterChip>
-          </FilterChipGroup>
-          <ChipSet>
-            <FilterChip variant="elevated">Elevated</FilterChip>
-            <FilterChip disabled>Disabled</FilterChip>
-            <FilterChip disabled defaultPressed>
-              Disabled
-            </FilterChip>
-          </ChipSet>
-        </Preview>
-      </Section>
-
-      <Section
-        title="Input"
-        description="Discrete pieces of information entered by a user. Remove one with its close button, or with Backspace or Delete while it's focused."
-      >
-        <Preview code='<InputChip avatar={<img src="…" alt="" />} onRemove={remove}>Ada Lovelace</InputChip>'>
-          <InputChips />
-        </Preview>
-      </Section>
-
-      <Section title="Suggestion" description="Dynamically generated suggestions, like replies.">
-        <Preview code="<SuggestionChip>Sounds good</SuggestionChip>">
-          <SuggestionChip>Sounds good</SuggestionChip>
-          <SuggestionChip icon={<FlightIcon />}>Book a flight</SuggestionChip>
-          <SuggestionChip variant="elevated">Elevated</SuggestionChip>
-          <SuggestionChip disabled>Disabled</SuggestionChip>
-        </Preview>
-      </Section>
-    </>
+      <ApiComponent
+        name="FilterChip"
+        description="A UI SDK Toggle styled as a filter chip."
+        inherits={{ label: 'Toggle', doc: 'toggle' }}
+        props={[
+          variantProp,
+          iconProp,
+          { name: 'trailingIcon', type: 'React.ReactNode' },
+          { name: 'value', type: 'string', description: 'Identifies it in a group.' },
+          { name: 'defaultPressed', type: 'boolean', default: 'false' },
+        ]}
+      />
+      <ApiComponent
+        name="FilterChipGroup"
+        description="A UI SDK ToggleGroup that wraps its chips."
+        inherits={{ label: 'ToggleGroup', doc: 'toggle' }}
+        props={[
+          { name: 'multiple', type: 'boolean', default: 'false' },
+          { name: 'value', type: 'string[]' },
+          { name: 'defaultValue', type: 'string[]' },
+          { name: 'onValueChange', type: '(value: string[], details) => void' },
+        ]}
+      />
+      <ApiComponent
+        name="InputChip"
+        description="A UI SDK Button for the chip, plus a remove button when onRemove is set."
+        inherits={{ label: 'Button', doc: 'button' }}
+        props={[
+          iconProp,
+          { name: 'avatar', type: 'React.ReactNode', description: 'Replaces the icon.' },
+          { name: 'onRemove', type: '() => void' },
+          { name: 'removeLabel', type: 'string', default: "'Remove'" },
+          { name: 'selected', type: 'boolean', default: 'false' },
+          { name: 'disabled', type: 'boolean', default: 'false' },
+        ]}
+      />
+      <ApiComponent
+        name="SuggestionChip"
+        description="A UI SDK Button styled as a suggestion chip."
+        inherits={{ label: 'Button', doc: 'button' }}
+        props={[variantProp, iconProp]}
+      />
+      <ApiComponent
+        name="ChipSet"
+        description={
+          <>
+            A <Code>div</Code> that wraps chips with an 8dp gap.
+          </>
+        }
+      />
+    </Section>
   );
 }
