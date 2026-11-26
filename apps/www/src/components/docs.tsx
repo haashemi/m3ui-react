@@ -226,3 +226,17 @@ function CopyGlyph(): React.JSX.Element {
     </svg>
   );
 }
+
+export function CompositionSection({
+  tree,
+  description = 'Use the following composition to build it:',
+}: {
+  tree: string;
+  description?: string;
+}): React.JSX.Element {
+  return (
+    <Section title="Composition" description={description}>
+      <CodeBlock code={tree} language="text" />
+    </Section>
+  );
+}

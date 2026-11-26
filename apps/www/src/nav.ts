@@ -38,6 +38,12 @@ export const componentNav: NavEntry[] = [
         description: 'Button groups organize buttons and add interactions between them',
       },
       {
+        title: 'Connected button groups',
+        to: '/components/connected-button-group',
+        description:
+          'Connected button groups help people select options, switch views, or sort elements',
+      },
+      {
         title: 'Buttons',
         to: '/components/button',
         description: 'Buttons prompt most actions in a UI',

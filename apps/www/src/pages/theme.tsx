@@ -10,7 +10,10 @@ import * as React from 'react';
 
 import { CodeBlock, PageHeader, Preview, Section } from '~/components/docs';
 import { Button } from '@/registry/m3ui/ui/button';
-import { ConnectedButtonGroup, ConnectedButtonGroupItem } from '@/registry/m3ui/ui/button-group';
+import {
+  ConnectedButtonGroup,
+  ConnectedButtonGroupItem,
+} from '@/registry/m3ui/ui/connected-button-group';
 import { Fab } from '@/registry/m3ui/ui/fab';
 import { EditIcon } from '~/icons';
 

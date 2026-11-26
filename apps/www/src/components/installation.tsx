@@ -4,7 +4,10 @@ import * as React from 'react';
 import { CodeBlock, CopyButton } from '~/components/docs';
 import { toDisplaySource } from '~/lib/source';
 import registry from '@/registry/m3ui/registry.json';
-import { ConnectedButtonGroup, ConnectedButtonGroupItem } from '@/registry/m3ui/ui/button-group';
+import {
+  ConnectedButtonGroup,
+  ConnectedButtonGroupItem,
+} from '@/registry/m3ui/ui/connected-button-group';
 import { Tabs, TabsList, TabsPanel, TabsTab } from '@/registry/m3ui/ui/tabs';
 
 const packageManagers = ['pnpm', 'npm', 'yarn', 'bun'] as const;

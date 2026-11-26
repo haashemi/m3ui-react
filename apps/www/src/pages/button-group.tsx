@@ -3,11 +3,11 @@ import type * as React from 'react';
 import { PageHeader, Preview, Section } from '~/components/docs';
 import { BookmarkIcon, EditIcon, ShareIcon, StarIcon } from '~/icons';
 import { Button } from '@/registry/m3ui/ui/button';
+import { ButtonGroup } from '@/registry/m3ui/ui/button-group';
 import {
-  ButtonGroup,
   ConnectedButtonGroup,
   ConnectedButtonGroupItem,
-} from '@/registry/m3ui/ui/button-group';
+} from '@/registry/m3ui/ui/connected-button-group';
 import { IconButton } from '@/registry/m3ui/ui/icon-button';
 
 const sizes = ['xs', 'sm', 'md'] as const;

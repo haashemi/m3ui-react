@@ -90,7 +90,21 @@
       "name": "button-group",
       "type": "registry:ui",
       "title": "Button Group",
-      "description": "Standard button groups whose pressed item grows, and connected button groups for selection.",
+      "description": "Standard button groups whose pressed button grows while its neighbors make room.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": ["utils", "@m3ui/theme"],
+      "files": [
+        {
+          "path": "ui/button-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "connected-button-group",
+      "type": "registry:ui",
+      "title": "Connected Button Group",
+      "description": "Connected button groups for single or multiple selection, whose inner corners tighten when pressed and round fully when selected.",
       "dependencies": [
         "@ui-sdk/react@0.1.0-beta.17",
         "@ui-sdk/core@0.1.0-beta.17",
@@ -105,7 +119,7 @@
       ],
       "files": [
         {
-          "path": "ui/button-group.tsx",
+          "path": "ui/connected-button-group.tsx",
           "type": "registry:ui"
         }
       ]
