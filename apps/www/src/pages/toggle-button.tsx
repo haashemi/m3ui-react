@@ -1,16 +1,13 @@
 import type * as React from 'react';
 
 import { ApiComponent } from '~/components/api-reference';
-import { ComponentPreview, RtlSection } from '~/components/component-preview';
 import {
-  Code,
-  CodeBlock,
-  DocLink,
-  PageHeader,
-  Prose,
-  Section,
-  SubSection,
-} from '~/components/docs';
+  ComponentPreview,
+  ExamplesSection,
+  RtlSection,
+  UsageSection,
+} from '~/components/component-preview';
+import { Code, DocLink, PageHeader, Prose, Section } from '~/components/docs';
 import { Installation } from '~/components/installation';
 
 export function ToggleButtonPage(): React.JSX.Element {
@@ -26,10 +23,10 @@ export function ToggleButtonPage(): React.JSX.Element {
         <Installation item="toggle-button" />
       </Section>
 
-      <Section title="Usage">
-        <CodeBlock code="import { ToggleButton } from '@/components/ui/toggle-button';" />
-        <CodeBlock code="<ToggleButton defaultPressed>Save</ToggleButton>" />
-      </Section>
+      <UsageSection
+        imports="import { ToggleButton } from '@/components/ui/toggle-button';"
+        code="<ToggleButton defaultPressed>Save</ToggleButton>"
+      />
 
       <Section title="Notes">
         <Prose>
@@ -38,46 +35,34 @@ export function ToggleButtonPage(): React.JSX.Element {
             text color style has no selected state, so it isn&apos;t offered.
           </p>
           <p>
-            The selected state is exposed as <Code>aria-pressed</Code> and <Code>data-pressed</Code>
-            . Swap outlined and filled icons with <Code>in-data-pressed:hidden</Code> and{' '}
-            <Code>not-in-data-pressed:hidden</Code>.
+            Keep the label the same in both states: screen readers announce whether it&apos;s
+            pressed. The selected state is exposed as <Code>aria-pressed</Code> and{' '}
+            <Code>data-pressed</Code>. Swap outlined and filled icons with{' '}
+            <Code>in-data-pressed:hidden</Code> and <Code>not-in-data-pressed:hidden</Code>.
           </p>
           <p>
             To choose one or several options from a set, use a{' '}
-            <DocLink to="/components/button-group">Button Group</DocLink> with connected items.
+            <DocLink to="/components/connected-button-group">Connected Button Group</DocLink>.
           </p>
         </Prose>
       </Section>
 
-      <ToggleButtonExamples />
+      <ExamplesSection
+        examples={[
+          { title: 'Color styles', name: 'toggle-button/variants' },
+          { title: 'Sizes', name: 'toggle-button/sizes' },
+          {
+            title: 'Shapes',
+            name: 'toggle-button/shapes',
+            description: 'A round button turns square when selected; a square one turns round.',
+          },
+          { title: 'Controlled', name: 'toggle-button/controlled' },
+          { title: 'Disabled', name: 'toggle-button/disabled' },
+        ]}
+      />
       <RtlSection name="toggle-button/rtl" />
       <ToggleButtonApi />
     </>
-  );
-}
-
-function ToggleButtonExamples(): React.JSX.Element {
-  return (
-    <Section title="Examples">
-      <SubSection title="Color styles">
-        <ComponentPreview name="toggle-button/variants" />
-      </SubSection>
-      <SubSection title="Sizes">
-        <ComponentPreview name="toggle-button/sizes" />
-      </SubSection>
-      <SubSection
-        title="Shapes"
-        description="A round button turns square when selected; a square one turns round."
-      >
-        <ComponentPreview name="toggle-button/shapes" />
-      </SubSection>
-      <SubSection title="Controlled">
-        <ComponentPreview name="toggle-button/controlled" />
-      </SubSection>
-      <SubSection title="Disabled">
-        <ComponentPreview name="toggle-button/disabled" />
-      </SubSection>
-    </Section>
   );
 }
 

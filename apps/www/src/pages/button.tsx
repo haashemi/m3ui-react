@@ -1,16 +1,13 @@
 import type * as React from 'react';
 
 import { ApiComponent } from '~/components/api-reference';
-import { ComponentPreview, RtlSection } from '~/components/component-preview';
 import {
-  Code,
-  CodeBlock,
-  DocLink,
-  PageHeader,
-  Prose,
-  Section,
-  SubSection,
-} from '~/components/docs';
+  ComponentPreview,
+  ExamplesSection,
+  RtlSection,
+  UsageSection,
+} from '~/components/component-preview';
+import { Code, DocLink, PageHeader, Prose, Section } from '~/components/docs';
 import { Installation } from '~/components/installation';
 
 export function ButtonPage(): React.JSX.Element {
@@ -26,10 +23,10 @@ export function ButtonPage(): React.JSX.Element {
         <Installation item="button" />
       </Section>
 
-      <Section title="Usage">
-        <CodeBlock code="import { Button } from '@/components/ui/button';" />
-        <CodeBlock code='<Button variant="filled">Button</Button>' />
-      </Section>
+      <UsageSection
+        imports="import { Button } from '@/components/ui/button';"
+        code='<Button variant="filled">Button</Button>'
+      />
 
       <Section title="Notes">
         <Prose>
@@ -49,50 +46,39 @@ export function ButtonPage(): React.JSX.Element {
         </Prose>
       </Section>
 
-      <ButtonExamples />
+      <ExamplesSection
+        examples={[
+          { title: 'Color styles', name: 'button/variants' },
+          {
+            title: 'Sizes',
+            name: 'button/sizes',
+            description:
+              "Extra small (32dp) to extra large (136dp). Padding, icon size, label type and corner radius follow each size's tokens.",
+          },
+          {
+            title: 'Shapes',
+            name: 'button/shapes',
+            description: 'Press and hold to see the corners morph on the fast spatial spring.',
+          },
+          { title: 'With an icon', name: 'button/with-icon' },
+          {
+            title: 'Pending',
+            name: 'button/pending',
+            description:
+              'The label swaps while the Promise from onClick runs. Press it twice: the second press is ignored.',
+          },
+          { title: 'Disabled', name: 'button/disabled' },
+          {
+            title: 'As a link',
+            name: 'button/link',
+            description:
+              'Pass an <a> or a router link to render. It keeps its href and link semantics.',
+          },
+        ]}
+      />
       <RtlSection name="button/rtl" />
       <ButtonApi />
     </>
-  );
-}
-
-function ButtonExamples(): React.JSX.Element {
-  return (
-    <Section title="Examples">
-      <SubSection title="Color styles">
-        <ComponentPreview name="button/variants" />
-      </SubSection>
-      <SubSection
-        title="Sizes"
-        description="Extra small (32dp) to extra large (136dp). Padding, icon size, label type and corner radius follow each size's tokens."
-      >
-        <ComponentPreview name="button/sizes" />
-      </SubSection>
-      <SubSection
-        title="Shapes"
-        description="Press and hold to see the corners morph on the fast spatial spring."
-      >
-        <ComponentPreview name="button/shapes" />
-      </SubSection>
-      <SubSection title="With an icon">
-        <ComponentPreview name="button/with-icon" />
-      </SubSection>
-      <SubSection
-        title="Pending"
-        description="The label swaps while the Promise from onClick runs. Press it twice: the second press is ignored."
-      >
-        <ComponentPreview name="button/pending" />
-      </SubSection>
-      <SubSection title="Disabled">
-        <ComponentPreview name="button/disabled" />
-      </SubSection>
-      <SubSection
-        title="As a link"
-        description="Pass an <a> or a router link to render. It keeps its href and link semantics."
-      >
-        <ComponentPreview name="button/link" />
-      </SubSection>
-    </Section>
   );
 }
 

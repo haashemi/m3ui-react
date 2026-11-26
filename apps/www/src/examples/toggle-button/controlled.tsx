@@ -9,7 +9,7 @@ export default function ToggleButtonControlled(): React.JSX.Element {
     <div className="flex flex-col items-center gap-4">
       <ToggleButton variant="tonal" pressed={following} onPressedChange={setFollowing}>
         <NotificationsIcon />
-        {following ? 'Following' : 'Follow'}
+        Follow
       </ToggleButton>
       <p className="type-body-medium text-on-surface-variant">
         {following ? 'You get updates from this channel.' : 'You don’t get updates.'}
