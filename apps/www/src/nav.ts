@@ -44,8 +44,7 @@ export const componentNav: NavEntry[] = [
       },
       {
         title: 'Extended FABs',
-        to: '/components/fab',
-        hash: 'extended-fab',
+        to: '/components/extended-fab',
         description: 'Extended FABs help people take primary actions',
       },
       {

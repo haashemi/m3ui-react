@@ -20,6 +20,7 @@ import { Route as ComponentsButtonGroupRouteImport } from './routes/components/b
 import { Route as ComponentsCardRouteImport } from './routes/components/card'
 import { Route as ComponentsCheckboxRouteImport } from './routes/components/checkbox'
 import { Route as ComponentsChipRouteImport } from './routes/components/chip'
+import { Route as ComponentsExtendedFabRouteImport } from './routes/components/extended-fab'
 import { Route as ComponentsFabRouteImport } from './routes/components/fab'
 import { Route as ComponentsIconButtonRouteImport } from './routes/components/icon-button'
 import { Route as ComponentsMenuRouteImport } from './routes/components/menu'
@@ -85,6 +86,11 @@ const ComponentsCheckboxRoute = ComponentsCheckboxRouteImport.update({
 const ComponentsChipRoute = ComponentsChipRouteImport.update({
   id: '/components/chip',
   path: '/components/chip',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsExtendedFabRoute = ComponentsExtendedFabRouteImport.update({
+  id: '/components/extended-fab',
+  path: '/components/extended-fab',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComponentsFabRoute = ComponentsFabRouteImport.update({
@@ -155,6 +161,7 @@ export interface FileRoutesByFullPath {
   '/components/card': typeof ComponentsCardRoute
   '/components/checkbox': typeof ComponentsCheckboxRoute
   '/components/chip': typeof ComponentsChipRoute
+  '/components/extended-fab': typeof ComponentsExtendedFabRoute
   '/components/fab': typeof ComponentsFabRoute
   '/components/icon-button': typeof ComponentsIconButtonRoute
   '/components/menu': typeof ComponentsMenuRoute
@@ -179,6 +186,7 @@ export interface FileRoutesByTo {
   '/components/card': typeof ComponentsCardRoute
   '/components/checkbox': typeof ComponentsCheckboxRoute
   '/components/chip': typeof ComponentsChipRoute
+  '/components/extended-fab': typeof ComponentsExtendedFabRoute
   '/components/fab': typeof ComponentsFabRoute
   '/components/icon-button': typeof ComponentsIconButtonRoute
   '/components/menu': typeof ComponentsMenuRoute
@@ -204,6 +212,7 @@ export interface FileRoutesById {
   '/components/card': typeof ComponentsCardRoute
   '/components/checkbox': typeof ComponentsCheckboxRoute
   '/components/chip': typeof ComponentsChipRoute
+  '/components/extended-fab': typeof ComponentsExtendedFabRoute
   '/components/fab': typeof ComponentsFabRoute
   '/components/icon-button': typeof ComponentsIconButtonRoute
   '/components/menu': typeof ComponentsMenuRoute
@@ -230,6 +239,7 @@ export interface FileRouteTypes {
     | '/components/card'
     | '/components/checkbox'
     | '/components/chip'
+    | '/components/extended-fab'
     | '/components/fab'
     | '/components/icon-button'
     | '/components/menu'
@@ -254,6 +264,7 @@ export interface FileRouteTypes {
     | '/components/card'
     | '/components/checkbox'
     | '/components/chip'
+    | '/components/extended-fab'
     | '/components/fab'
     | '/components/icon-button'
     | '/components/menu'
@@ -278,6 +289,7 @@ export interface FileRouteTypes {
     | '/components/card'
     | '/components/checkbox'
     | '/components/chip'
+    | '/components/extended-fab'
     | '/components/fab'
     | '/components/icon-button'
     | '/components/menu'
@@ -303,6 +315,7 @@ export interface RootRouteChildren {
   ComponentsCardRoute: typeof ComponentsCardRoute
   ComponentsCheckboxRoute: typeof ComponentsCheckboxRoute
   ComponentsChipRoute: typeof ComponentsChipRoute
+  ComponentsExtendedFabRoute: typeof ComponentsExtendedFabRoute
   ComponentsFabRoute: typeof ComponentsFabRoute
   ComponentsIconButtonRoute: typeof ComponentsIconButtonRoute
   ComponentsMenuRoute: typeof ComponentsMenuRoute
@@ -396,6 +409,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComponentsChipRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/components/extended-fab': {
+      id: '/components/extended-fab'
+      path: '/components/extended-fab'
+      fullPath: '/components/extended-fab'
+      preLoaderRoute: typeof ComponentsExtendedFabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/components/fab': {
       id: '/components/fab'
       path: '/components/fab'
@@ -487,6 +507,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComponentsCardRoute: ComponentsCardRoute,
   ComponentsCheckboxRoute: ComponentsCheckboxRoute,
   ComponentsChipRoute: ComponentsChipRoute,
+  ComponentsExtendedFabRoute: ComponentsExtendedFabRoute,
   ComponentsFabRoute: ComponentsFabRoute,
   ComponentsIconButtonRoute: ComponentsIconButtonRoute,
   ComponentsMenuRoute: ComponentsMenuRoute,

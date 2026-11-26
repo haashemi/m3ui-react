@@ -132,7 +132,7 @@
       "name": "fab",
       "type": "registry:ui",
       "title": "FAB",
-      "description": "Floating action buttons and extended FABs in three sizes and six color styles.",
+      "description": "Floating action buttons in three sizes and six color styles.",
       "dependencies": [
         "@ui-sdk/react@0.1.0-beta.17",
         "@ui-sdk/core@0.1.0-beta.17",
@@ -142,6 +142,24 @@
       "files": [
         {
           "path": "ui/fab.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "extended-fab",
+      "type": "registry:ui",
+      "title": "Extended FAB",
+      "description": "Floating action buttons with a label that collapses into a regular FAB, in three sizes and six color styles.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple", "@m3ui/fab"],
+      "files": [
+        {
+          "path": "ui/extended-fab.tsx",
           "type": "registry:ui"
         }
       ]

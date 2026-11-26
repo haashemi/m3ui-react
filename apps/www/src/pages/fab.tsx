@@ -3,7 +3,8 @@ import * as React from 'react';
 import { PageHeader, Preview, Section } from '~/components/docs';
 import { AddIcon, EditIcon } from '~/icons';
 import { Button } from '@/registry/m3ui/ui/button';
-import { ExtendedFab, Fab } from '@/registry/m3ui/ui/fab';
+import { ExtendedFab } from '@/registry/m3ui/ui/extended-fab';
+import { Fab } from '@/registry/m3ui/ui/fab';
 
 const variants = [
   'primary-container',

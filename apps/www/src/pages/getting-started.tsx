@@ -4,7 +4,7 @@ import { CodeBlock, PageHeader, registryUrl, Section } from '~/components/docs';
 import { EditIcon, FavoriteFillIcon, FavoriteIcon, SendIcon } from '~/icons';
 import { Link } from '@tanstack/react-router';
 import { Button } from '@/registry/m3ui/ui/button';
-import { ExtendedFab } from '@/registry/m3ui/ui/fab';
+import { ExtendedFab } from '@/registry/m3ui/ui/extended-fab';
 import { ToggleButton } from '@/registry/m3ui/ui/toggle-button';
 import { ToggleIconButton } from '@/registry/m3ui/ui/toggle-icon-button';
 
