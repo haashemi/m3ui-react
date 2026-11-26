@@ -3,6 +3,7 @@ import * as React from 'react';
 
 import { CodeBlock, CopyButton } from '~/components/docs';
 import { toDisplaySource } from '~/lib/source';
+import { componentNav, isGroup } from '~/nav';
 import registry from '@/registry/m3ui/registry.json';
 import {
   ConnectedButtonGroup,
@@ -153,13 +154,17 @@ function Step({
   );
 }
 
+const documented = new Set(
+  componentNav.flatMap((entry) => (isGroup(entry) ? entry.items : [entry])).map((item) => item.to),
+);
+
 function componentPath(name: string): string {
   return `/components/${name}`;
 }
 
 function ItemLink({ name }: { name: string }): React.JSX.Element {
   const { title } = registryItem(name);
-  if (name === 'ripple') return <span className="font-medium">{title}</span>;
+  if (!documented.has(componentPath(name))) return <span className="font-medium">{title}</span>;
   return (
     <Link to={componentPath(name)} className="font-medium text-primary underline">
       {title}

@@ -208,8 +208,18 @@ export const componentNav: NavEntry[] = [
   { title: 'Text fields', description: 'Text fields let users enter text into a UI' },
   {
     title: 'Toolbars',
-    to: '/components/toolbar',
-    description: 'Toolbars display frequently used actions relevant to the current page',
+    items: [
+      {
+        title: 'Docked toolbar',
+        to: '/components/docked-toolbar',
+        description: 'Docked toolbars span the window and display frequently used actions',
+      },
+      {
+        title: 'Floating toolbar',
+        to: '/components/floating-toolbar',
+        description: 'Floating toolbars display frequently used actions above content',
+      },
+    ],
   },
   { title: 'Tooltips', description: 'Tooltips display brief labels or messages' },
 ];

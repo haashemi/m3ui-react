@@ -1,11 +1,13 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vite-plus/test';
 
+import { DockedToolbar } from '@/registry/m3ui/ui/docked-toolbar';
 import {
-  DockedToolbar,
   FloatingToolbar,
   FloatingToolbarLayout,
   ToolbarFab,
+} from '@/registry/m3ui/ui/floating-toolbar';
+import {
   ToolbarIconButton,
   ToolbarToggleGroup,
   ToolbarToggleIconButton,

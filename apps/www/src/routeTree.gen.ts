@@ -21,8 +21,10 @@ import { Route as ComponentsCardRouteImport } from './routes/components/card'
 import { Route as ComponentsCheckboxRouteImport } from './routes/components/checkbox'
 import { Route as ComponentsChipRouteImport } from './routes/components/chip'
 import { Route as ComponentsConnectedButtonGroupRouteImport } from './routes/components/connected-button-group'
+import { Route as ComponentsDockedToolbarRouteImport } from './routes/components/docked-toolbar'
 import { Route as ComponentsExtendedFabRouteImport } from './routes/components/extended-fab'
 import { Route as ComponentsFabRouteImport } from './routes/components/fab'
+import { Route as ComponentsFloatingToolbarRouteImport } from './routes/components/floating-toolbar'
 import { Route as ComponentsIconButtonRouteImport } from './routes/components/icon-button'
 import { Route as ComponentsMenuRouteImport } from './routes/components/menu'
 import { Route as ComponentsRadioRouteImport } from './routes/components/radio'
@@ -32,7 +34,6 @@ import { Route as ComponentsSwitchRouteImport } from './routes/components/switch
 import { Route as ComponentsTabsRouteImport } from './routes/components/tabs'
 import { Route as ComponentsToggleButtonRouteImport } from './routes/components/toggle-button'
 import { Route as ComponentsToggleIconButtonRouteImport } from './routes/components/toggle-icon-button'
-import { Route as ComponentsToolbarRouteImport } from './routes/components/toolbar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -95,6 +96,11 @@ const ComponentsConnectedButtonGroupRoute =
     path: '/components/connected-button-group',
     getParentRoute: () => rootRouteImport,
   } as any)
+const ComponentsDockedToolbarRoute = ComponentsDockedToolbarRouteImport.update({
+  id: '/components/docked-toolbar',
+  path: '/components/docked-toolbar',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComponentsExtendedFabRoute = ComponentsExtendedFabRouteImport.update({
   id: '/components/extended-fab',
   path: '/components/extended-fab',
@@ -105,6 +111,12 @@ const ComponentsFabRoute = ComponentsFabRouteImport.update({
   path: '/components/fab',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComponentsFloatingToolbarRoute =
+  ComponentsFloatingToolbarRouteImport.update({
+    id: '/components/floating-toolbar',
+    path: '/components/floating-toolbar',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ComponentsIconButtonRoute = ComponentsIconButtonRouteImport.update({
   id: '/components/icon-button',
   path: '/components/icon-button',
@@ -151,11 +163,6 @@ const ComponentsToggleIconButtonRoute =
     path: '/components/toggle-icon-button',
     getParentRoute: () => rootRouteImport,
   } as any)
-const ComponentsToolbarRoute = ComponentsToolbarRouteImport.update({
-  id: '/components/toolbar',
-  path: '/components/toolbar',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -169,8 +176,10 @@ export interface FileRoutesByFullPath {
   '/components/checkbox': typeof ComponentsCheckboxRoute
   '/components/chip': typeof ComponentsChipRoute
   '/components/connected-button-group': typeof ComponentsConnectedButtonGroupRoute
+  '/components/docked-toolbar': typeof ComponentsDockedToolbarRoute
   '/components/extended-fab': typeof ComponentsExtendedFabRoute
   '/components/fab': typeof ComponentsFabRoute
+  '/components/floating-toolbar': typeof ComponentsFloatingToolbarRoute
   '/components/icon-button': typeof ComponentsIconButtonRoute
   '/components/menu': typeof ComponentsMenuRoute
   '/components/radio': typeof ComponentsRadioRoute
@@ -180,7 +189,6 @@ export interface FileRoutesByFullPath {
   '/components/tabs': typeof ComponentsTabsRoute
   '/components/toggle-button': typeof ComponentsToggleButtonRoute
   '/components/toggle-icon-button': typeof ComponentsToggleIconButtonRoute
-  '/components/toolbar': typeof ComponentsToolbarRoute
   '/components/': typeof ComponentsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -195,8 +203,10 @@ export interface FileRoutesByTo {
   '/components/checkbox': typeof ComponentsCheckboxRoute
   '/components/chip': typeof ComponentsChipRoute
   '/components/connected-button-group': typeof ComponentsConnectedButtonGroupRoute
+  '/components/docked-toolbar': typeof ComponentsDockedToolbarRoute
   '/components/extended-fab': typeof ComponentsExtendedFabRoute
   '/components/fab': typeof ComponentsFabRoute
+  '/components/floating-toolbar': typeof ComponentsFloatingToolbarRoute
   '/components/icon-button': typeof ComponentsIconButtonRoute
   '/components/menu': typeof ComponentsMenuRoute
   '/components/radio': typeof ComponentsRadioRoute
@@ -206,7 +216,6 @@ export interface FileRoutesByTo {
   '/components/tabs': typeof ComponentsTabsRoute
   '/components/toggle-button': typeof ComponentsToggleButtonRoute
   '/components/toggle-icon-button': typeof ComponentsToggleIconButtonRoute
-  '/components/toolbar': typeof ComponentsToolbarRoute
   '/components': typeof ComponentsIndexRoute
 }
 export interface FileRoutesById {
@@ -222,8 +231,10 @@ export interface FileRoutesById {
   '/components/checkbox': typeof ComponentsCheckboxRoute
   '/components/chip': typeof ComponentsChipRoute
   '/components/connected-button-group': typeof ComponentsConnectedButtonGroupRoute
+  '/components/docked-toolbar': typeof ComponentsDockedToolbarRoute
   '/components/extended-fab': typeof ComponentsExtendedFabRoute
   '/components/fab': typeof ComponentsFabRoute
+  '/components/floating-toolbar': typeof ComponentsFloatingToolbarRoute
   '/components/icon-button': typeof ComponentsIconButtonRoute
   '/components/menu': typeof ComponentsMenuRoute
   '/components/radio': typeof ComponentsRadioRoute
@@ -233,7 +244,6 @@ export interface FileRoutesById {
   '/components/tabs': typeof ComponentsTabsRoute
   '/components/toggle-button': typeof ComponentsToggleButtonRoute
   '/components/toggle-icon-button': typeof ComponentsToggleIconButtonRoute
-  '/components/toolbar': typeof ComponentsToolbarRoute
   '/components/': typeof ComponentsIndexRoute
 }
 export interface FileRouteTypes {
@@ -250,8 +260,10 @@ export interface FileRouteTypes {
     | '/components/checkbox'
     | '/components/chip'
     | '/components/connected-button-group'
+    | '/components/docked-toolbar'
     | '/components/extended-fab'
     | '/components/fab'
+    | '/components/floating-toolbar'
     | '/components/icon-button'
     | '/components/menu'
     | '/components/radio'
@@ -261,7 +273,6 @@ export interface FileRouteTypes {
     | '/components/tabs'
     | '/components/toggle-button'
     | '/components/toggle-icon-button'
-    | '/components/toolbar'
     | '/components/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -276,8 +287,10 @@ export interface FileRouteTypes {
     | '/components/checkbox'
     | '/components/chip'
     | '/components/connected-button-group'
+    | '/components/docked-toolbar'
     | '/components/extended-fab'
     | '/components/fab'
+    | '/components/floating-toolbar'
     | '/components/icon-button'
     | '/components/menu'
     | '/components/radio'
@@ -287,7 +300,6 @@ export interface FileRouteTypes {
     | '/components/tabs'
     | '/components/toggle-button'
     | '/components/toggle-icon-button'
-    | '/components/toolbar'
     | '/components'
   id:
     | '__root__'
@@ -302,8 +314,10 @@ export interface FileRouteTypes {
     | '/components/checkbox'
     | '/components/chip'
     | '/components/connected-button-group'
+    | '/components/docked-toolbar'
     | '/components/extended-fab'
     | '/components/fab'
+    | '/components/floating-toolbar'
     | '/components/icon-button'
     | '/components/menu'
     | '/components/radio'
@@ -313,7 +327,6 @@ export interface FileRouteTypes {
     | '/components/tabs'
     | '/components/toggle-button'
     | '/components/toggle-icon-button'
-    | '/components/toolbar'
     | '/components/'
   fileRoutesById: FileRoutesById
 }
@@ -329,8 +342,10 @@ export interface RootRouteChildren {
   ComponentsCheckboxRoute: typeof ComponentsCheckboxRoute
   ComponentsChipRoute: typeof ComponentsChipRoute
   ComponentsConnectedButtonGroupRoute: typeof ComponentsConnectedButtonGroupRoute
+  ComponentsDockedToolbarRoute: typeof ComponentsDockedToolbarRoute
   ComponentsExtendedFabRoute: typeof ComponentsExtendedFabRoute
   ComponentsFabRoute: typeof ComponentsFabRoute
+  ComponentsFloatingToolbarRoute: typeof ComponentsFloatingToolbarRoute
   ComponentsIconButtonRoute: typeof ComponentsIconButtonRoute
   ComponentsMenuRoute: typeof ComponentsMenuRoute
   ComponentsRadioRoute: typeof ComponentsRadioRoute
@@ -340,7 +355,6 @@ export interface RootRouteChildren {
   ComponentsTabsRoute: typeof ComponentsTabsRoute
   ComponentsToggleButtonRoute: typeof ComponentsToggleButtonRoute
   ComponentsToggleIconButtonRoute: typeof ComponentsToggleIconButtonRoute
-  ComponentsToolbarRoute: typeof ComponentsToolbarRoute
   ComponentsIndexRoute: typeof ComponentsIndexRoute
 }
 
@@ -430,6 +444,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComponentsConnectedButtonGroupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/components/docked-toolbar': {
+      id: '/components/docked-toolbar'
+      path: '/components/docked-toolbar'
+      fullPath: '/components/docked-toolbar'
+      preLoaderRoute: typeof ComponentsDockedToolbarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/components/extended-fab': {
       id: '/components/extended-fab'
       path: '/components/extended-fab'
@@ -442,6 +463,13 @@ declare module '@tanstack/react-router' {
       path: '/components/fab'
       fullPath: '/components/fab'
       preLoaderRoute: typeof ComponentsFabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/floating-toolbar': {
+      id: '/components/floating-toolbar'
+      path: '/components/floating-toolbar'
+      fullPath: '/components/floating-toolbar'
+      preLoaderRoute: typeof ComponentsFloatingToolbarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/components/icon-button': {
@@ -507,13 +535,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComponentsToggleIconButtonRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/components/toolbar': {
-      id: '/components/toolbar'
-      path: '/components/toolbar'
-      fullPath: '/components/toolbar'
-      preLoaderRoute: typeof ComponentsToolbarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
@@ -529,8 +550,10 @@ const rootRouteChildren: RootRouteChildren = {
   ComponentsCheckboxRoute: ComponentsCheckboxRoute,
   ComponentsChipRoute: ComponentsChipRoute,
   ComponentsConnectedButtonGroupRoute: ComponentsConnectedButtonGroupRoute,
+  ComponentsDockedToolbarRoute: ComponentsDockedToolbarRoute,
   ComponentsExtendedFabRoute: ComponentsExtendedFabRoute,
   ComponentsFabRoute: ComponentsFabRoute,
+  ComponentsFloatingToolbarRoute: ComponentsFloatingToolbarRoute,
   ComponentsIconButtonRoute: ComponentsIconButtonRoute,
   ComponentsMenuRoute: ComponentsMenuRoute,
   ComponentsRadioRoute: ComponentsRadioRoute,
@@ -540,7 +563,6 @@ const rootRouteChildren: RootRouteChildren = {
   ComponentsTabsRoute: ComponentsTabsRoute,
   ComponentsToggleButtonRoute: ComponentsToggleButtonRoute,
   ComponentsToggleIconButtonRoute: ComponentsToggleIconButtonRoute,
-  ComponentsToolbarRoute: ComponentsToolbarRoute,
   ComponentsIndexRoute: ComponentsIndexRoute,
 }
 export const routeTree = rootRouteImport

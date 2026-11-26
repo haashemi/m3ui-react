@@ -242,7 +242,7 @@
       "name": "toolbar",
       "type": "registry:ui",
       "title": "Toolbar",
-      "description": "Docked and floating toolbars, standard or vibrant, with icon buttons, toggles and a FAB the floating toolbar collapses into.",
+      "description": "Shared toolbar items: icon buttons, toggle icon buttons, buttons and toggle groups that follow the toolbar’s colors and arrow-key navigation.",
       "dependencies": [
         "@ui-sdk/react@0.1.0-beta.17",
         "@ui-sdk/core@0.1.0-beta.17",
@@ -254,12 +254,53 @@
         "@m3ui/ripple",
         "@m3ui/button",
         "@m3ui/icon-button",
-        "@m3ui/toggle-icon-button",
-        "@m3ui/fab"
+        "@m3ui/toggle-icon-button"
       ],
       "files": [
         {
           "path": "ui/toolbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "docked-toolbar",
+      "type": "registry:ui",
+      "title": "Docked Toolbar",
+      "description": "Full-width toolbars, standard or vibrant, whose items spread out or gather in the center.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/toolbar"],
+      "files": [
+        {
+          "path": "ui/docked-toolbar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "floating-toolbar",
+      "type": "registry:ui",
+      "title": "Floating Toolbar",
+      "description": "Horizontal or vertical toolbars that float above content, standard or vibrant, with a FAB they collapse into.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "utils",
+        "@m3ui/theme",
+        "@m3ui/ripple",
+        "@m3ui/fab",
+        "@m3ui/toolbar"
+      ],
+      "files": [
+        {
+          "path": "ui/floating-toolbar.tsx",
           "type": "registry:ui"
         }
       ]
