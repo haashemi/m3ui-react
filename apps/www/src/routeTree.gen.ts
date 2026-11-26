@@ -10,114 +10,29 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AppBarRouteImport } from './routes/app-bar'
-import { Route as BadgesRouteImport } from './routes/badges'
-import { Route as BottomSheetsRouteImport } from './routes/bottom-sheets'
-import { Route as ButtonGroupsRouteImport } from './routes/button-groups'
-import { Route as ButtonsRouteImport } from './routes/buttons'
-import { Route as CardsRouteImport } from './routes/cards'
-import { Route as CheckboxRouteImport } from './routes/checkbox'
-import { Route as ChipsRouteImport } from './routes/chips'
-import { Route as ComponentsRouteImport } from './routes/components'
-import { Route as FabRouteImport } from './routes/fab'
-import { Route as IconButtonsRouteImport } from './routes/icon-buttons'
-import { Route as MenusRouteImport } from './routes/menus'
-import { Route as RadioRouteImport } from './routes/radio'
-import { Route as SideSheetsRouteImport } from './routes/side-sheets'
-import { Route as SplitButtonRouteImport } from './routes/split-button'
-import { Route as SwitchRouteImport } from './routes/switch'
-import { Route as TabsRouteImport } from './routes/tabs'
 import { Route as ThemeRouteImport } from './routes/theme'
-import { Route as ToolbarRouteImport } from './routes/toolbar'
+import { Route as ComponentsIndexRouteImport } from './routes/components/index'
+import { Route as ComponentsAppBarRouteImport } from './routes/components/app-bar'
+import { Route as ComponentsBadgeRouteImport } from './routes/components/badge'
+import { Route as ComponentsBottomSheetRouteImport } from './routes/components/bottom-sheet'
+import { Route as ComponentsButtonRouteImport } from './routes/components/button'
+import { Route as ComponentsButtonGroupRouteImport } from './routes/components/button-group'
+import { Route as ComponentsCardRouteImport } from './routes/components/card'
+import { Route as ComponentsCheckboxRouteImport } from './routes/components/checkbox'
+import { Route as ComponentsChipRouteImport } from './routes/components/chip'
+import { Route as ComponentsFabRouteImport } from './routes/components/fab'
+import { Route as ComponentsIconButtonRouteImport } from './routes/components/icon-button'
+import { Route as ComponentsMenuRouteImport } from './routes/components/menu'
+import { Route as ComponentsRadioRouteImport } from './routes/components/radio'
+import { Route as ComponentsSideSheetRouteImport } from './routes/components/side-sheet'
+import { Route as ComponentsSplitButtonRouteImport } from './routes/components/split-button'
+import { Route as ComponentsSwitchRouteImport } from './routes/components/switch'
+import { Route as ComponentsTabsRouteImport } from './routes/components/tabs'
+import { Route as ComponentsToolbarRouteImport } from './routes/components/toolbar'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppBarRoute = AppBarRouteImport.update({
-  id: '/app-bar',
-  path: '/app-bar',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BadgesRoute = BadgesRouteImport.update({
-  id: '/badges',
-  path: '/badges',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BottomSheetsRoute = BottomSheetsRouteImport.update({
-  id: '/bottom-sheets',
-  path: '/bottom-sheets',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ButtonGroupsRoute = ButtonGroupsRouteImport.update({
-  id: '/button-groups',
-  path: '/button-groups',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ButtonsRoute = ButtonsRouteImport.update({
-  id: '/buttons',
-  path: '/buttons',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CardsRoute = CardsRouteImport.update({
-  id: '/cards',
-  path: '/cards',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const CheckboxRoute = CheckboxRouteImport.update({
-  id: '/checkbox',
-  path: '/checkbox',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ChipsRoute = ChipsRouteImport.update({
-  id: '/chips',
-  path: '/chips',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ComponentsRoute = ComponentsRouteImport.update({
-  id: '/components',
-  path: '/components',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const FabRoute = FabRouteImport.update({
-  id: '/fab',
-  path: '/fab',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const IconButtonsRoute = IconButtonsRouteImport.update({
-  id: '/icon-buttons',
-  path: '/icon-buttons',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const MenusRoute = MenusRouteImport.update({
-  id: '/menus',
-  path: '/menus',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const RadioRoute = RadioRouteImport.update({
-  id: '/radio',
-  path: '/radio',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SideSheetsRoute = SideSheetsRouteImport.update({
-  id: '/side-sheets',
-  path: '/side-sheets',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SplitButtonRoute = SplitButtonRouteImport.update({
-  id: '/split-button',
-  path: '/split-button',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SwitchRoute = SwitchRouteImport.update({
-  id: '/switch',
-  path: '/switch',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TabsRoute = TabsRouteImport.update({
-  id: '/tabs',
-  path: '/tabs',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ThemeRoute = ThemeRouteImport.update({
@@ -125,169 +40,254 @@ const ThemeRoute = ThemeRouteImport.update({
   path: '/theme',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ToolbarRoute = ToolbarRouteImport.update({
-  id: '/toolbar',
-  path: '/toolbar',
+const ComponentsIndexRoute = ComponentsIndexRouteImport.update({
+  id: '/components/',
+  path: '/components/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsAppBarRoute = ComponentsAppBarRouteImport.update({
+  id: '/components/app-bar',
+  path: '/components/app-bar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsBadgeRoute = ComponentsBadgeRouteImport.update({
+  id: '/components/badge',
+  path: '/components/badge',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsBottomSheetRoute = ComponentsBottomSheetRouteImport.update({
+  id: '/components/bottom-sheet',
+  path: '/components/bottom-sheet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsButtonRoute = ComponentsButtonRouteImport.update({
+  id: '/components/button',
+  path: '/components/button',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsButtonGroupRoute = ComponentsButtonGroupRouteImport.update({
+  id: '/components/button-group',
+  path: '/components/button-group',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsCardRoute = ComponentsCardRouteImport.update({
+  id: '/components/card',
+  path: '/components/card',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsCheckboxRoute = ComponentsCheckboxRouteImport.update({
+  id: '/components/checkbox',
+  path: '/components/checkbox',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsChipRoute = ComponentsChipRouteImport.update({
+  id: '/components/chip',
+  path: '/components/chip',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsFabRoute = ComponentsFabRouteImport.update({
+  id: '/components/fab',
+  path: '/components/fab',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsIconButtonRoute = ComponentsIconButtonRouteImport.update({
+  id: '/components/icon-button',
+  path: '/components/icon-button',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsMenuRoute = ComponentsMenuRouteImport.update({
+  id: '/components/menu',
+  path: '/components/menu',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsRadioRoute = ComponentsRadioRouteImport.update({
+  id: '/components/radio',
+  path: '/components/radio',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsSideSheetRoute = ComponentsSideSheetRouteImport.update({
+  id: '/components/side-sheet',
+  path: '/components/side-sheet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsSplitButtonRoute = ComponentsSplitButtonRouteImport.update({
+  id: '/components/split-button',
+  path: '/components/split-button',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsSwitchRoute = ComponentsSwitchRouteImport.update({
+  id: '/components/switch',
+  path: '/components/switch',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsTabsRoute = ComponentsTabsRouteImport.update({
+  id: '/components/tabs',
+  path: '/components/tabs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ComponentsToolbarRoute = ComponentsToolbarRouteImport.update({
+  id: '/components/toolbar',
+  path: '/components/toolbar',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/app-bar': typeof AppBarRoute
-  '/badges': typeof BadgesRoute
-  '/bottom-sheets': typeof BottomSheetsRoute
-  '/button-groups': typeof ButtonGroupsRoute
-  '/buttons': typeof ButtonsRoute
-  '/cards': typeof CardsRoute
-  '/checkbox': typeof CheckboxRoute
-  '/chips': typeof ChipsRoute
-  '/components': typeof ComponentsRoute
-  '/fab': typeof FabRoute
-  '/icon-buttons': typeof IconButtonsRoute
-  '/menus': typeof MenusRoute
-  '/radio': typeof RadioRoute
-  '/side-sheets': typeof SideSheetsRoute
-  '/split-button': typeof SplitButtonRoute
-  '/switch': typeof SwitchRoute
-  '/tabs': typeof TabsRoute
   '/theme': typeof ThemeRoute
-  '/toolbar': typeof ToolbarRoute
+  '/components/app-bar': typeof ComponentsAppBarRoute
+  '/components/badge': typeof ComponentsBadgeRoute
+  '/components/bottom-sheet': typeof ComponentsBottomSheetRoute
+  '/components/button': typeof ComponentsButtonRoute
+  '/components/button-group': typeof ComponentsButtonGroupRoute
+  '/components/card': typeof ComponentsCardRoute
+  '/components/checkbox': typeof ComponentsCheckboxRoute
+  '/components/chip': typeof ComponentsChipRoute
+  '/components/fab': typeof ComponentsFabRoute
+  '/components/icon-button': typeof ComponentsIconButtonRoute
+  '/components/menu': typeof ComponentsMenuRoute
+  '/components/radio': typeof ComponentsRadioRoute
+  '/components/side-sheet': typeof ComponentsSideSheetRoute
+  '/components/split-button': typeof ComponentsSplitButtonRoute
+  '/components/switch': typeof ComponentsSwitchRoute
+  '/components/tabs': typeof ComponentsTabsRoute
+  '/components/toolbar': typeof ComponentsToolbarRoute
+  '/components/': typeof ComponentsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/app-bar': typeof AppBarRoute
-  '/badges': typeof BadgesRoute
-  '/bottom-sheets': typeof BottomSheetsRoute
-  '/button-groups': typeof ButtonGroupsRoute
-  '/buttons': typeof ButtonsRoute
-  '/cards': typeof CardsRoute
-  '/checkbox': typeof CheckboxRoute
-  '/chips': typeof ChipsRoute
-  '/components': typeof ComponentsRoute
-  '/fab': typeof FabRoute
-  '/icon-buttons': typeof IconButtonsRoute
-  '/menus': typeof MenusRoute
-  '/radio': typeof RadioRoute
-  '/side-sheets': typeof SideSheetsRoute
-  '/split-button': typeof SplitButtonRoute
-  '/switch': typeof SwitchRoute
-  '/tabs': typeof TabsRoute
   '/theme': typeof ThemeRoute
-  '/toolbar': typeof ToolbarRoute
+  '/components/app-bar': typeof ComponentsAppBarRoute
+  '/components/badge': typeof ComponentsBadgeRoute
+  '/components/bottom-sheet': typeof ComponentsBottomSheetRoute
+  '/components/button': typeof ComponentsButtonRoute
+  '/components/button-group': typeof ComponentsButtonGroupRoute
+  '/components/card': typeof ComponentsCardRoute
+  '/components/checkbox': typeof ComponentsCheckboxRoute
+  '/components/chip': typeof ComponentsChipRoute
+  '/components/fab': typeof ComponentsFabRoute
+  '/components/icon-button': typeof ComponentsIconButtonRoute
+  '/components/menu': typeof ComponentsMenuRoute
+  '/components/radio': typeof ComponentsRadioRoute
+  '/components/side-sheet': typeof ComponentsSideSheetRoute
+  '/components/split-button': typeof ComponentsSplitButtonRoute
+  '/components/switch': typeof ComponentsSwitchRoute
+  '/components/tabs': typeof ComponentsTabsRoute
+  '/components/toolbar': typeof ComponentsToolbarRoute
+  '/components': typeof ComponentsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/app-bar': typeof AppBarRoute
-  '/badges': typeof BadgesRoute
-  '/bottom-sheets': typeof BottomSheetsRoute
-  '/button-groups': typeof ButtonGroupsRoute
-  '/buttons': typeof ButtonsRoute
-  '/cards': typeof CardsRoute
-  '/checkbox': typeof CheckboxRoute
-  '/chips': typeof ChipsRoute
-  '/components': typeof ComponentsRoute
-  '/fab': typeof FabRoute
-  '/icon-buttons': typeof IconButtonsRoute
-  '/menus': typeof MenusRoute
-  '/radio': typeof RadioRoute
-  '/side-sheets': typeof SideSheetsRoute
-  '/split-button': typeof SplitButtonRoute
-  '/switch': typeof SwitchRoute
-  '/tabs': typeof TabsRoute
   '/theme': typeof ThemeRoute
-  '/toolbar': typeof ToolbarRoute
+  '/components/app-bar': typeof ComponentsAppBarRoute
+  '/components/badge': typeof ComponentsBadgeRoute
+  '/components/bottom-sheet': typeof ComponentsBottomSheetRoute
+  '/components/button': typeof ComponentsButtonRoute
+  '/components/button-group': typeof ComponentsButtonGroupRoute
+  '/components/card': typeof ComponentsCardRoute
+  '/components/checkbox': typeof ComponentsCheckboxRoute
+  '/components/chip': typeof ComponentsChipRoute
+  '/components/fab': typeof ComponentsFabRoute
+  '/components/icon-button': typeof ComponentsIconButtonRoute
+  '/components/menu': typeof ComponentsMenuRoute
+  '/components/radio': typeof ComponentsRadioRoute
+  '/components/side-sheet': typeof ComponentsSideSheetRoute
+  '/components/split-button': typeof ComponentsSplitButtonRoute
+  '/components/switch': typeof ComponentsSwitchRoute
+  '/components/tabs': typeof ComponentsTabsRoute
+  '/components/toolbar': typeof ComponentsToolbarRoute
+  '/components/': typeof ComponentsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/app-bar'
-    | '/badges'
-    | '/bottom-sheets'
-    | '/button-groups'
-    | '/buttons'
-    | '/cards'
-    | '/checkbox'
-    | '/chips'
-    | '/components'
-    | '/fab'
-    | '/icon-buttons'
-    | '/menus'
-    | '/radio'
-    | '/side-sheets'
-    | '/split-button'
-    | '/switch'
-    | '/tabs'
     | '/theme'
-    | '/toolbar'
+    | '/components/app-bar'
+    | '/components/badge'
+    | '/components/bottom-sheet'
+    | '/components/button'
+    | '/components/button-group'
+    | '/components/card'
+    | '/components/checkbox'
+    | '/components/chip'
+    | '/components/fab'
+    | '/components/icon-button'
+    | '/components/menu'
+    | '/components/radio'
+    | '/components/side-sheet'
+    | '/components/split-button'
+    | '/components/switch'
+    | '/components/tabs'
+    | '/components/toolbar'
+    | '/components/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/app-bar'
-    | '/badges'
-    | '/bottom-sheets'
-    | '/button-groups'
-    | '/buttons'
-    | '/cards'
-    | '/checkbox'
-    | '/chips'
-    | '/components'
-    | '/fab'
-    | '/icon-buttons'
-    | '/menus'
-    | '/radio'
-    | '/side-sheets'
-    | '/split-button'
-    | '/switch'
-    | '/tabs'
     | '/theme'
-    | '/toolbar'
+    | '/components/app-bar'
+    | '/components/badge'
+    | '/components/bottom-sheet'
+    | '/components/button'
+    | '/components/button-group'
+    | '/components/card'
+    | '/components/checkbox'
+    | '/components/chip'
+    | '/components/fab'
+    | '/components/icon-button'
+    | '/components/menu'
+    | '/components/radio'
+    | '/components/side-sheet'
+    | '/components/split-button'
+    | '/components/switch'
+    | '/components/tabs'
+    | '/components/toolbar'
+    | '/components'
   id:
     | '__root__'
     | '/'
-    | '/app-bar'
-    | '/badges'
-    | '/bottom-sheets'
-    | '/button-groups'
-    | '/buttons'
-    | '/cards'
-    | '/checkbox'
-    | '/chips'
-    | '/components'
-    | '/fab'
-    | '/icon-buttons'
-    | '/menus'
-    | '/radio'
-    | '/side-sheets'
-    | '/split-button'
-    | '/switch'
-    | '/tabs'
     | '/theme'
-    | '/toolbar'
+    | '/components/app-bar'
+    | '/components/badge'
+    | '/components/bottom-sheet'
+    | '/components/button'
+    | '/components/button-group'
+    | '/components/card'
+    | '/components/checkbox'
+    | '/components/chip'
+    | '/components/fab'
+    | '/components/icon-button'
+    | '/components/menu'
+    | '/components/radio'
+    | '/components/side-sheet'
+    | '/components/split-button'
+    | '/components/switch'
+    | '/components/tabs'
+    | '/components/toolbar'
+    | '/components/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AppBarRoute: typeof AppBarRoute
-  BadgesRoute: typeof BadgesRoute
-  BottomSheetsRoute: typeof BottomSheetsRoute
-  ButtonGroupsRoute: typeof ButtonGroupsRoute
-  ButtonsRoute: typeof ButtonsRoute
-  CardsRoute: typeof CardsRoute
-  CheckboxRoute: typeof CheckboxRoute
-  ChipsRoute: typeof ChipsRoute
-  ComponentsRoute: typeof ComponentsRoute
-  FabRoute: typeof FabRoute
-  IconButtonsRoute: typeof IconButtonsRoute
-  MenusRoute: typeof MenusRoute
-  RadioRoute: typeof RadioRoute
-  SideSheetsRoute: typeof SideSheetsRoute
-  SplitButtonRoute: typeof SplitButtonRoute
-  SwitchRoute: typeof SwitchRoute
-  TabsRoute: typeof TabsRoute
   ThemeRoute: typeof ThemeRoute
-  ToolbarRoute: typeof ToolbarRoute
+  ComponentsAppBarRoute: typeof ComponentsAppBarRoute
+  ComponentsBadgeRoute: typeof ComponentsBadgeRoute
+  ComponentsBottomSheetRoute: typeof ComponentsBottomSheetRoute
+  ComponentsButtonRoute: typeof ComponentsButtonRoute
+  ComponentsButtonGroupRoute: typeof ComponentsButtonGroupRoute
+  ComponentsCardRoute: typeof ComponentsCardRoute
+  ComponentsCheckboxRoute: typeof ComponentsCheckboxRoute
+  ComponentsChipRoute: typeof ComponentsChipRoute
+  ComponentsFabRoute: typeof ComponentsFabRoute
+  ComponentsIconButtonRoute: typeof ComponentsIconButtonRoute
+  ComponentsMenuRoute: typeof ComponentsMenuRoute
+  ComponentsRadioRoute: typeof ComponentsRadioRoute
+  ComponentsSideSheetRoute: typeof ComponentsSideSheetRoute
+  ComponentsSplitButtonRoute: typeof ComponentsSplitButtonRoute
+  ComponentsSwitchRoute: typeof ComponentsSwitchRoute
+  ComponentsTabsRoute: typeof ComponentsTabsRoute
+  ComponentsToolbarRoute: typeof ComponentsToolbarRoute
+  ComponentsIndexRoute: typeof ComponentsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -299,125 +299,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/app-bar': {
-      id: '/app-bar'
-      path: '/app-bar'
-      fullPath: '/app-bar'
-      preLoaderRoute: typeof AppBarRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/badges': {
-      id: '/badges'
-      path: '/badges'
-      fullPath: '/badges'
-      preLoaderRoute: typeof BadgesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/bottom-sheets': {
-      id: '/bottom-sheets'
-      path: '/bottom-sheets'
-      fullPath: '/bottom-sheets'
-      preLoaderRoute: typeof BottomSheetsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/button-groups': {
-      id: '/button-groups'
-      path: '/button-groups'
-      fullPath: '/button-groups'
-      preLoaderRoute: typeof ButtonGroupsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/buttons': {
-      id: '/buttons'
-      path: '/buttons'
-      fullPath: '/buttons'
-      preLoaderRoute: typeof ButtonsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/cards': {
-      id: '/cards'
-      path: '/cards'
-      fullPath: '/cards'
-      preLoaderRoute: typeof CardsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/checkbox': {
-      id: '/checkbox'
-      path: '/checkbox'
-      fullPath: '/checkbox'
-      preLoaderRoute: typeof CheckboxRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/chips': {
-      id: '/chips'
-      path: '/chips'
-      fullPath: '/chips'
-      preLoaderRoute: typeof ChipsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/components': {
-      id: '/components'
-      path: '/components'
-      fullPath: '/components'
-      preLoaderRoute: typeof ComponentsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/fab': {
-      id: '/fab'
-      path: '/fab'
-      fullPath: '/fab'
-      preLoaderRoute: typeof FabRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/icon-buttons': {
-      id: '/icon-buttons'
-      path: '/icon-buttons'
-      fullPath: '/icon-buttons'
-      preLoaderRoute: typeof IconButtonsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/menus': {
-      id: '/menus'
-      path: '/menus'
-      fullPath: '/menus'
-      preLoaderRoute: typeof MenusRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/radio': {
-      id: '/radio'
-      path: '/radio'
-      fullPath: '/radio'
-      preLoaderRoute: typeof RadioRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/side-sheets': {
-      id: '/side-sheets'
-      path: '/side-sheets'
-      fullPath: '/side-sheets'
-      preLoaderRoute: typeof SideSheetsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/split-button': {
-      id: '/split-button'
-      path: '/split-button'
-      fullPath: '/split-button'
-      preLoaderRoute: typeof SplitButtonRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/switch': {
-      id: '/switch'
-      path: '/switch'
-      fullPath: '/switch'
-      preLoaderRoute: typeof SwitchRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/tabs': {
-      id: '/tabs'
-      path: '/tabs'
-      fullPath: '/tabs'
-      preLoaderRoute: typeof TabsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/theme': {
       id: '/theme'
       path: '/theme'
@@ -425,11 +306,130 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ThemeRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/toolbar': {
-      id: '/toolbar'
-      path: '/toolbar'
-      fullPath: '/toolbar'
-      preLoaderRoute: typeof ToolbarRouteImport
+    '/components/': {
+      id: '/components/'
+      path: '/components'
+      fullPath: '/components/'
+      preLoaderRoute: typeof ComponentsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/app-bar': {
+      id: '/components/app-bar'
+      path: '/components/app-bar'
+      fullPath: '/components/app-bar'
+      preLoaderRoute: typeof ComponentsAppBarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/badge': {
+      id: '/components/badge'
+      path: '/components/badge'
+      fullPath: '/components/badge'
+      preLoaderRoute: typeof ComponentsBadgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/bottom-sheet': {
+      id: '/components/bottom-sheet'
+      path: '/components/bottom-sheet'
+      fullPath: '/components/bottom-sheet'
+      preLoaderRoute: typeof ComponentsBottomSheetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/button': {
+      id: '/components/button'
+      path: '/components/button'
+      fullPath: '/components/button'
+      preLoaderRoute: typeof ComponentsButtonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/button-group': {
+      id: '/components/button-group'
+      path: '/components/button-group'
+      fullPath: '/components/button-group'
+      preLoaderRoute: typeof ComponentsButtonGroupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/card': {
+      id: '/components/card'
+      path: '/components/card'
+      fullPath: '/components/card'
+      preLoaderRoute: typeof ComponentsCardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/checkbox': {
+      id: '/components/checkbox'
+      path: '/components/checkbox'
+      fullPath: '/components/checkbox'
+      preLoaderRoute: typeof ComponentsCheckboxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/chip': {
+      id: '/components/chip'
+      path: '/components/chip'
+      fullPath: '/components/chip'
+      preLoaderRoute: typeof ComponentsChipRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/fab': {
+      id: '/components/fab'
+      path: '/components/fab'
+      fullPath: '/components/fab'
+      preLoaderRoute: typeof ComponentsFabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/icon-button': {
+      id: '/components/icon-button'
+      path: '/components/icon-button'
+      fullPath: '/components/icon-button'
+      preLoaderRoute: typeof ComponentsIconButtonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/menu': {
+      id: '/components/menu'
+      path: '/components/menu'
+      fullPath: '/components/menu'
+      preLoaderRoute: typeof ComponentsMenuRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/radio': {
+      id: '/components/radio'
+      path: '/components/radio'
+      fullPath: '/components/radio'
+      preLoaderRoute: typeof ComponentsRadioRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/side-sheet': {
+      id: '/components/side-sheet'
+      path: '/components/side-sheet'
+      fullPath: '/components/side-sheet'
+      preLoaderRoute: typeof ComponentsSideSheetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/split-button': {
+      id: '/components/split-button'
+      path: '/components/split-button'
+      fullPath: '/components/split-button'
+      preLoaderRoute: typeof ComponentsSplitButtonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/switch': {
+      id: '/components/switch'
+      path: '/components/switch'
+      fullPath: '/components/switch'
+      preLoaderRoute: typeof ComponentsSwitchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/tabs': {
+      id: '/components/tabs'
+      path: '/components/tabs'
+      fullPath: '/components/tabs'
+      preLoaderRoute: typeof ComponentsTabsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/components/toolbar': {
+      id: '/components/toolbar'
+      path: '/components/toolbar'
+      fullPath: '/components/toolbar'
+      preLoaderRoute: typeof ComponentsToolbarRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -437,25 +437,25 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AppBarRoute: AppBarRoute,
-  BadgesRoute: BadgesRoute,
-  BottomSheetsRoute: BottomSheetsRoute,
-  ButtonGroupsRoute: ButtonGroupsRoute,
-  ButtonsRoute: ButtonsRoute,
-  CardsRoute: CardsRoute,
-  CheckboxRoute: CheckboxRoute,
-  ChipsRoute: ChipsRoute,
-  ComponentsRoute: ComponentsRoute,
-  FabRoute: FabRoute,
-  IconButtonsRoute: IconButtonsRoute,
-  MenusRoute: MenusRoute,
-  RadioRoute: RadioRoute,
-  SideSheetsRoute: SideSheetsRoute,
-  SplitButtonRoute: SplitButtonRoute,
-  SwitchRoute: SwitchRoute,
-  TabsRoute: TabsRoute,
   ThemeRoute: ThemeRoute,
-  ToolbarRoute: ToolbarRoute,
+  ComponentsAppBarRoute: ComponentsAppBarRoute,
+  ComponentsBadgeRoute: ComponentsBadgeRoute,
+  ComponentsBottomSheetRoute: ComponentsBottomSheetRoute,
+  ComponentsButtonRoute: ComponentsButtonRoute,
+  ComponentsButtonGroupRoute: ComponentsButtonGroupRoute,
+  ComponentsCardRoute: ComponentsCardRoute,
+  ComponentsCheckboxRoute: ComponentsCheckboxRoute,
+  ComponentsChipRoute: ComponentsChipRoute,
+  ComponentsFabRoute: ComponentsFabRoute,
+  ComponentsIconButtonRoute: ComponentsIconButtonRoute,
+  ComponentsMenuRoute: ComponentsMenuRoute,
+  ComponentsRadioRoute: ComponentsRadioRoute,
+  ComponentsSideSheetRoute: ComponentsSideSheetRoute,
+  ComponentsSplitButtonRoute: ComponentsSplitButtonRoute,
+  ComponentsSwitchRoute: ComponentsSwitchRoute,
+  ComponentsTabsRoute: ComponentsTabsRoute,
+  ComponentsToolbarRoute: ComponentsToolbarRoute,
+  ComponentsIndexRoute: ComponentsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

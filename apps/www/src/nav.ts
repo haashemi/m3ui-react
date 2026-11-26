@@ -21,12 +21,12 @@ export const sectionLinks: NavLink[] = [
 export const componentNav: NavEntry[] = [
   {
     title: 'App bars',
-    to: '/app-bar',
+    to: '/components/app-bar',
     description: 'App bars are placed at the top of the screen to help people navigate',
   },
   {
     title: 'Badges',
-    to: '/badges',
+    to: '/components/badge',
     description: 'Badges show notifications, counts, or status information',
   },
   {
@@ -34,13 +34,17 @@ export const componentNav: NavEntry[] = [
     items: [
       {
         title: 'Button groups',
-        to: '/button-groups',
+        to: '/components/button-group',
         description: 'Button groups organize buttons and add interactions between them',
       },
-      { title: 'Buttons', to: '/buttons', description: 'Buttons prompt most actions in a UI' },
+      {
+        title: 'Buttons',
+        to: '/components/button',
+        description: 'Buttons prompt most actions in a UI',
+      },
       {
         title: 'Extended FABs',
-        to: '/fab',
+        to: '/components/fab',
         hash: 'extended-fab',
         description: 'Extended FABs help people take primary actions',
       },
@@ -50,12 +54,12 @@ export const componentNav: NavEntry[] = [
       },
       {
         title: 'FABs',
-        to: '/fab',
+        to: '/components/fab',
         description: 'Floating action buttons help people take primary actions',
       },
       {
         title: 'Icon buttons',
-        to: '/icon-buttons',
+        to: '/components/icon-button',
         description: 'Icon buttons help people take actions with a single tap',
       },
       {
@@ -64,14 +68,14 @@ export const componentNav: NavEntry[] = [
       },
       {
         title: 'Split button',
-        to: '/split-button',
+        to: '/components/split-button',
         description: 'Split buttons open a menu to give people more options related to an action',
       },
     ],
   },
   {
     title: 'Cards',
-    to: '/cards',
+    to: '/components/card',
     description: 'Cards display content and actions about a single subject',
   },
   {
@@ -80,12 +84,12 @@ export const componentNav: NavEntry[] = [
   },
   {
     title: 'Checkbox',
-    to: '/checkbox',
+    to: '/components/checkbox',
     description: 'Checkboxes let users select one or more items from a list',
   },
   {
     title: 'Chips',
-    to: '/chips',
+    to: '/components/chip',
     description:
       'Chips help people enter information, make selections, filter content, or trigger actions',
   },
@@ -123,7 +127,7 @@ export const componentNav: NavEntry[] = [
   },
   {
     title: 'Menus',
-    to: '/menus',
+    to: '/components/menu',
     description: 'Menus display a list of choices on a temporary surface',
   },
   {
@@ -145,7 +149,7 @@ export const componentNav: NavEntry[] = [
   },
   {
     title: 'Radio button',
-    to: '/radio',
+    to: '/components/radio',
     description: 'Radio buttons let people select one option from a set of options',
   },
   {
@@ -161,12 +165,12 @@ export const componentNav: NavEntry[] = [
     items: [
       {
         title: 'Bottom sheets',
-        to: '/bottom-sheets',
+        to: '/components/bottom-sheet',
         description: 'Bottom sheets show secondary content anchored to the bottom of the screen',
       },
       {
         title: 'Side sheets',
-        to: '/side-sheets',
+        to: '/components/side-sheet',
         description: 'Side sheets show secondary content anchored to the side of the screen',
       },
     ],
@@ -178,18 +182,18 @@ export const componentNav: NavEntry[] = [
   { title: 'Snackbar', description: 'Snackbars show short updates about app processes' },
   {
     title: 'Switch',
-    to: '/switch',
+    to: '/components/switch',
     description: 'Switches toggle the selection of an item on and off',
   },
   {
     title: 'Tabs',
-    to: '/tabs',
+    to: '/components/tabs',
     description: 'Tabs organize content across different screens and views',
   },
   { title: 'Text fields', description: 'Text fields let users enter text into a UI' },
   {
     title: 'Toolbars',
-    to: '/toolbar',
+    to: '/components/toolbar',
     description: 'Toolbars display frequently used actions relevant to the current page',
   },
   { title: 'Tooltips', description: 'Tooltips display brief labels or messages' },
