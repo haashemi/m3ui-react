@@ -1,72 +1,82 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { PageHeader, Preview, Section } from '~/components/docs';
-import { AddIcon, EditIcon } from '~/icons';
-import { Button } from '@/registry/m3ui/ui/button';
-import { ExtendedFab } from '@/registry/m3ui/ui/extended-fab';
-import { Fab } from '@/registry/m3ui/ui/fab';
-
-const variants = [
-  'primary-container',
-  'secondary-container',
-  'tertiary-container',
-  'primary',
-  'secondary',
-  'tertiary',
-] as const;
-const fabSizes = ['default', 'medium', 'large'] as const;
-const extendedSizes = ['small', 'medium', 'large'] as const;
+import { ApiComponent } from '~/components/api-reference';
+import {
+  ComponentPreview,
+  ExamplesSection,
+  RtlSection,
+  UsageSection,
+} from '~/components/component-preview';
+import { Code, DocLink, PageHeader, Prose, Section } from '~/components/docs';
+import { Installation } from '~/components/installation';
 
 export function FabPage(): React.JSX.Element {
-  const [extended, setExtended] = React.useState(true);
   return (
     <>
       <PageHeader
-        title="Floating action buttons"
-        description="FABs hold the most important action on a screen. Three sizes and six color styles, plus extended FABs with a label that collapses into a regular FAB."
-        item="fab"
+        title="FAB"
+        description="Floating action buttons hold the most important action on a screen. Three sizes and six color styles."
+      />
+      <ComponentPreview name="fab/demo" />
+
+      <Section title="Installation">
+        <Installation item="fab" />
+      </Section>
+
+      <UsageSection
+        imports="import { Fab } from '@/components/ui/fab';"
+        code={`<Fab aria-label="Compose">
+  <EditIcon />
+</Fab>`}
       />
 
-      <Section title="Color styles">
-        <Preview
-          code={`<Fab variant="tertiary-container" aria-label="Compose">\n  <EditIcon />\n</Fab>`}
-        >
-          {variants.map((variant) => (
-            <Fab key={variant} variant={variant} aria-label={`Compose, ${variant}`}>
-              <EditIcon />
-            </Fab>
-          ))}
-        </Preview>
+      <Section title="Notes">
+        <Prose>
+          <p>
+            Use one FAB per screen, for its primary action. Give it an <Code>aria-label</Code>{' '}
+            because the icon is its only content.
+          </p>
+          <p>
+            Position it yourself, usually at the bottom end of the screen with{' '}
+            <Code>fixed inset-e-4 inset-be-4</Code>. Logical insets keep it on the correct side in
+            right-to-left layouts.
+          </p>
+          <p>
+            For a FAB with a visible label, use an{' '}
+            <DocLink to="/components/extended-fab">Extended FAB</DocLink>.
+          </p>
+        </Prose>
       </Section>
 
-      <Section title="Sizes" description="FAB (56dp), medium FAB (80dp) and large FAB (96dp).">
-        <Preview code={`<Fab size="large" aria-label="Add">\n  <AddIcon />\n</Fab>`}>
-          {fabSizes.map((size) => (
-            <Fab key={size} size={size} aria-label={`Add, ${size}`}>
-              <AddIcon />
-            </Fab>
-          ))}
-        </Preview>
-      </Section>
+      <ExamplesSection
+        examples={[
+          { title: 'Color styles', name: 'fab/variants' },
+          {
+            title: 'Sizes',
+            name: 'fab/sizes',
+            description: 'FAB (56dp), medium FAB (80dp) and large FAB (96dp).',
+          },
+          { title: 'Placement', name: 'fab/placement' },
+          { title: 'Disabled', name: 'fab/disabled' },
+        ]}
+      />
+      <RtlSection name="fab/rtl" />
 
-      <Section id="extended-fab" title="Extended FAB">
-        <Preview
-          className="flex-col"
-          code={`<ExtendedFab size="medium" icon={<EditIcon />} extended={extended}>
-  Compose
-</ExtendedFab>`}
-        >
-          <Button variant="outlined" size="xs" onClick={() => setExtended((value) => !value)}>
-            {extended ? 'Collapse' : 'Extend'}
-          </Button>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {extendedSizes.map((size) => (
-              <ExtendedFab key={size} size={size} icon={<EditIcon />} extended={extended}>
-                Compose
-              </ExtendedFab>
-            ))}
-          </div>
-        </Preview>
+      <Section title="API Reference">
+        <ApiComponent
+          name="Fab"
+          description="A UI SDK Button styled as an M3 floating action button."
+          inherits={{ label: 'Button', doc: 'button' }}
+          props={[
+            {
+              name: 'variant',
+              type: "'primary-container' | 'secondary-container' | 'tertiary-container' | 'primary' | 'secondary' | 'tertiary'",
+              default: "'primary-container'",
+            },
+            { name: 'size', type: "'default' | 'medium' | 'large'", default: "'default'" },
+            { name: 'aria-label', type: 'string', description: 'Names the action.' },
+          ]}
+        />
       </Section>
     </>
   );
