@@ -49,6 +49,9 @@ Goal: pixel-perfect M3 Expressive components with the motion the guidelines call
 - `apps/www` — Vite+ React docs site; `src/styles/m3ui.css` is generated. Routing is TanStack
   Router file-based: thin route files in `src/routes` (generated `src/routeTree.gen.ts`) render
   page components from `src/pages`.
+- `apps/www/src/examples/<item>/<name>.tsx` — one docs example per file (default export).
+  `<ComponentPreview name="<item>/<name>" />` renders it and shows its source, with registry imports
+  shown as `@/components/ui/*`.
 - `scripts/build-theme.ts` — writes the generated theme files (`vp run theme`). A test fails when
   they are out of date.
 
@@ -76,6 +79,19 @@ Goal: pixel-perfect M3 Expressive components with the motion the guidelines call
 - State layers whose hover and pressed colors differ set `--ripple-hover-color` and
   `--ripple-pressed-color` on the control.
 - Write comments only when they are really necessary.
+
+## Component pages
+
+Each registry item gets its own page at `/components/<item>` (a toggle variant is its own item and
+page), in this order, following shadcn's docs:
+
+1. `PageHeader` (title, description) and `<ComponentPreview name="<item>/demo" />`
+2. Installation (`<Installation item>`: command and manual tabs)
+3. `UsageSection` (import, minimal JSX), then `CompositionSection` for compound components
+4. Notes: what people need to know before using it
+5. `ExamplesSection`, one example file each
+6. `RtlSection` with `<item>/rtl`: Persian, Arabic and Hebrew strings via `useTranslation`
+7. API Reference: one `ApiComponent` per export, with `inherits` for the UI SDK part it wraps
 
 ## Documentation: always use context7
 

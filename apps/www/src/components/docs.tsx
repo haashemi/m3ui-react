@@ -1,7 +1,7 @@
 import { Link, type LinkProps } from '@tanstack/react-router';
 import * as React from 'react';
 
-import { CheckIcon, CodeIcon } from '~/icons';
+import { CheckIcon } from '~/icons';
 import { slugify } from '~/lib/slug';
 import { cn } from '@/lib/utils';
 import { Button } from '@/registry/m3ui/ui/button';
@@ -107,36 +107,19 @@ export function DocLink({
 
 export function Preview({
   children,
-  code,
   className,
 }: {
   children: React.ReactNode;
-  code?: string;
   className?: string;
 }): React.JSX.Element {
-  const [showCode, setShowCode] = React.useState(false);
   return (
-    <div className="overflow-hidden rounded-corner-extra-large bg-surface-container-low">
-      <div
-        className={cn('flex flex-wrap items-center justify-center gap-4 p-8 md:p-10', className)}
-      >
-        {children}
-      </div>
-      {code ? (
-        <>
-          <div className="flex justify-end px-3 pbe-3">
-            <IconButton
-              size="sm"
-              aria-label={showCode ? 'Hide code' : 'Show code'}
-              aria-expanded={showCode}
-              onClick={() => setShowCode((value) => !value)}
-            >
-              <CodeIcon />
-            </IconButton>
-          </div>
-          {showCode ? <CodeBlock code={code} /> : null}
-        </>
-      ) : null}
+    <div
+      className={cn(
+        'flex flex-wrap items-center justify-center gap-4 rounded-corner-extra-large bg-surface-container-low p-8 md:p-10',
+        className,
+      )}
+    >
+      {children}
     </div>
   );
 }
