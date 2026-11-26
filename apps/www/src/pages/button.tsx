@@ -1,134 +1,124 @@
 import type * as React from 'react';
 
-import { PageHeader, Preview, Section } from '~/components/docs';
-import { AddIcon, BookmarkIcon, EditIcon, SendIcon } from '~/icons';
-import { Button } from '@/registry/m3ui/ui/button';
-import { ToggleButton } from '@/registry/m3ui/ui/toggle-button';
+import { ApiComponent } from '~/components/api-reference';
+import { ComponentPreview, RtlSection } from '~/components/component-preview';
+import {
+  Code,
+  CodeBlock,
+  DocLink,
+  PageHeader,
+  Prose,
+  Section,
+  SubSection,
+} from '~/components/docs';
+import { Installation } from '~/components/installation';
 
-const variants = ['elevated', 'filled', 'tonal', 'outlined', 'text'] as const;
-const toggleVariants = ['elevated', 'filled', 'tonal', 'outlined'] as const;
-const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;
-
-export function ButtonsPage(): React.JSX.Element {
+export function ButtonPage(): React.JSX.Element {
   return (
     <>
       <PageHeader
-        title="Buttons"
-        description="Buttons prompt most actions in a UI. Five sizes, five color styles, round or square shapes that morph when pressed, and toggle buttons that change shape when selected."
-        item="button"
+        title="Button"
+        description="Buttons prompt most actions in a UI. Five sizes, five color styles, and round or square shapes whose corners morph when pressed."
       />
+      <ComponentPreview name="button/demo" />
 
-      <Section title="Color styles">
-        <Preview
-          code={`<Button variant="elevated">Elevated</Button>
-<Button variant="filled">Filled</Button>
-<Button variant="tonal">Tonal</Button>
-<Button variant="outlined">Outlined</Button>
-<Button variant="text">Text</Button>`}
-        >
-          {variants.map((variant) => (
-            <Button key={variant} variant={variant}>
-              {variant[0]?.toUpperCase()}
-              {variant.slice(1)}
-            </Button>
-          ))}
-        </Preview>
+      <Section title="Installation">
+        <Installation item="button" />
       </Section>
 
-      <Section title="With an icon">
-        <Preview
-          code={`<Button>
-  <SendIcon />
-  Send
-</Button>`}
-        >
-          {variants.map((variant) => (
-            <Button key={variant} variant={variant}>
-              <SendIcon />
-              Send
-            </Button>
-          ))}
-        </Preview>
+      <Section title="Usage">
+        <CodeBlock code="import { Button } from '@/components/ui/button';" />
+        <CodeBlock code='<Button variant="filled">Button</Button>' />
       </Section>
 
-      <Section
-        title="Sizes"
-        description="Extra small (32dp) to extra large (136dp). Padding, icon size, label type and corner radius follow each size's tokens."
-      >
-        <Preview code='<Button size="xs">Extra small</Button> … <Button size="xl">Extra large</Button>'>
-          {sizes.map((size) => (
-            <Button key={size} size={size}>
-              <EditIcon />
-              {size.toUpperCase()}
-            </Button>
-          ))}
-        </Preview>
+      <Section title="Notes">
+        <Prose>
+          <p>
+            Icons go in as children, before or after the label. They&apos;re sized by the
+            button&apos;s size and filled with <Code>currentColor</Code>.
+          </p>
+          <p>
+            For a button that stays selected, like Save or Follow, use a{' '}
+            <DocLink to="/components/toggle-button">Toggle Button</DocLink>. For an icon on its own,
+            use an <DocLink to="/components/icon-button">Icon Button</DocLink>.
+          </p>
+          <p>
+            Return a Promise from <Code>onClick</Code> and the button stays pending until it
+            settles: it ignores more presses and sets <Code>data-pending</Code> for styling.
+          </p>
+        </Prose>
       </Section>
 
-      <Section
-        title="Shapes"
-        description="Round and square containers. Press and hold to see the corners morph with the fast spatial spring."
-      >
-        <Preview
-          code={`<Button shape="round">Round</Button>\n<Button shape="square">Square</Button>`}
-        >
-          {sizes.map((size) => (
-            <Button key={size} size={size} shape="square" variant="tonal">
-              Square
-            </Button>
-          ))}
-        </Preview>
-      </Section>
-
-      <ToggleAndStateSections />
+      <ButtonExamples />
+      <RtlSection name="button/rtl" />
+      <ButtonApi />
     </>
   );
 }
 
-function ToggleAndStateSections(): React.JSX.Element {
+function ButtonExamples(): React.JSX.Element {
   return (
-    <>
-      <Section
-        title="Toggle buttons"
-        description="Selecting a toggle button swaps its colors and morphs its shape: round turns square, square turns round."
+    <Section title="Examples">
+      <SubSection title="Color styles">
+        <ComponentPreview name="button/variants" />
+      </SubSection>
+      <SubSection
+        title="Sizes"
+        description="Extra small (32dp) to extra large (136dp). Padding, icon size, label type and corner radius follow each size's tokens."
       >
-        <Preview
-          code={`<ToggleButton variant="filled">
-    <BookmarkIcon />
-    Save
-  </ToggleButton>`}
-        >
-          {toggleVariants.map((variant) => (
-            <ToggleButton key={variant} variant={variant} defaultPressed={variant === 'filled'}>
-              <BookmarkIcon />
-              Save
-            </ToggleButton>
-          ))}
-          <ToggleButton shape="square" size="md" defaultPressed>
-            <AddIcon />
-            Square
-          </ToggleButton>
-        </Preview>
-      </Section>
+        <ComponentPreview name="button/sizes" />
+      </SubSection>
+      <SubSection
+        title="Shapes"
+        description="Press and hold to see the corners morph on the fast spatial spring."
+      >
+        <ComponentPreview name="button/shapes" />
+      </SubSection>
+      <SubSection title="With an icon">
+        <ComponentPreview name="button/with-icon" />
+      </SubSection>
+      <SubSection
+        title="Pending"
+        description="The label swaps while the Promise from onClick runs. Press it twice: the second press is ignored."
+      >
+        <ComponentPreview name="button/pending" />
+      </SubSection>
+      <SubSection title="Disabled">
+        <ComponentPreview name="button/disabled" />
+      </SubSection>
+      <SubSection
+        title="As a link"
+        description="Pass an <a> or a router link to render. It keeps its href and link semantics."
+      >
+        <ComponentPreview name="button/link" />
+      </SubSection>
+    </Section>
+  );
+}
 
-      <Section title="Disabled">
-        <Preview code="<Button disabled>Disabled</Button>">
-          {variants.map((variant) => (
-            <Button key={variant} variant={variant} disabled>
-              Disabled
-            </Button>
-          ))}
-        </Preview>
-      </Section>
-
-      <Section title="As a link">
-        <Preview code='<Button render={<a href="https://m3.material.io" />}>Material 3</Button>'>
-          {/* oxlint-disable-next-line jsx-a11y/control-has-associated-label -- the label comes from Button's children */}
-          <Button variant="tonal" render={<a href="https://m3.material.io/components/buttons" />}>
-            M3 button guidelines
-          </Button>
-        </Preview>
-      </Section>
-    </>
+function ButtonApi(): React.JSX.Element {
+  return (
+    <Section title="API Reference">
+      <ApiComponent
+        name="Button"
+        description="A UI SDK Button with M3 styles, a ripple and a focus ring."
+        inherits={{ label: 'Button', doc: 'button' }}
+        props={[
+          {
+            name: 'variant',
+            type: "'elevated' | 'filled' | 'tonal' | 'outlined' | 'text'",
+            default: "'filled'",
+          },
+          { name: 'size', type: "'xs' | 'sm' | 'md' | 'lg' | 'xl'", default: "'sm'" },
+          { name: 'shape', type: "'round' | 'square'", default: "'round'" },
+          {
+            name: 'render',
+            type: 'React.ReactElement | ((props, state) => React.ReactElement)',
+            description: 'Renders another element, like a link, with the button behavior.',
+          },
+          { name: 'disabled', type: 'boolean', default: 'false' },
+        ]}
+      />
+    </Section>
   );
 }
