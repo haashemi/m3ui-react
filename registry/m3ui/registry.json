@@ -54,7 +54,7 @@
       "name": "icon-button",
       "type": "registry:ui",
       "title": "Icon Button",
-      "description": "Icon buttons and toggle icon buttons in five sizes, three widths and four color styles.",
+      "description": "Icon buttons in five sizes, three widths, two shapes and four color styles.",
       "dependencies": [
         "@ui-sdk/react@0.1.0-beta.17",
         "@ui-sdk/core@0.1.0-beta.17",
@@ -64,6 +64,24 @@
       "files": [
         {
           "path": "ui/icon-button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "toggle-icon-button",
+      "type": "registry:ui",
+      "title": "Toggle Icon Button",
+      "description": "Icon buttons that stay selected, swapping colors and morphing their shape on selection.",
+      "dependencies": [
+        "@ui-sdk/react@0.1.0-beta.17",
+        "@ui-sdk/core@0.1.0-beta.17",
+        "class-variance-authority"
+      ],
+      "registryDependencies": ["utils", "@m3ui/theme", "@m3ui/ripple", "@m3ui/icon-button"],
+      "files": [
+        {
+          "path": "ui/toggle-icon-button.tsx",
           "type": "registry:ui"
         }
       ]
@@ -204,6 +222,7 @@
         "@m3ui/ripple",
         "@m3ui/button",
         "@m3ui/icon-button",
+        "@m3ui/toggle-icon-button",
         "@m3ui/fab"
       ],
       "files": [

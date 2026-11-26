@@ -29,6 +29,7 @@ import { Route as ComponentsSplitButtonRouteImport } from './routes/components/s
 import { Route as ComponentsSwitchRouteImport } from './routes/components/switch'
 import { Route as ComponentsTabsRouteImport } from './routes/components/tabs'
 import { Route as ComponentsToggleButtonRouteImport } from './routes/components/toggle-button'
+import { Route as ComponentsToggleIconButtonRouteImport } from './routes/components/toggle-icon-button'
 import { Route as ComponentsToolbarRouteImport } from './routes/components/toolbar'
 
 const IndexRoute = IndexRouteImport.update({
@@ -131,6 +132,12 @@ const ComponentsToggleButtonRoute = ComponentsToggleButtonRouteImport.update({
   path: '/components/toggle-button',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ComponentsToggleIconButtonRoute =
+  ComponentsToggleIconButtonRouteImport.update({
+    id: '/components/toggle-icon-button',
+    path: '/components/toggle-icon-button',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ComponentsToolbarRoute = ComponentsToolbarRouteImport.update({
   id: '/components/toolbar',
   path: '/components/toolbar',
@@ -157,6 +164,7 @@ export interface FileRoutesByFullPath {
   '/components/switch': typeof ComponentsSwitchRoute
   '/components/tabs': typeof ComponentsTabsRoute
   '/components/toggle-button': typeof ComponentsToggleButtonRoute
+  '/components/toggle-icon-button': typeof ComponentsToggleIconButtonRoute
   '/components/toolbar': typeof ComponentsToolbarRoute
   '/components/': typeof ComponentsIndexRoute
 }
@@ -180,6 +188,7 @@ export interface FileRoutesByTo {
   '/components/switch': typeof ComponentsSwitchRoute
   '/components/tabs': typeof ComponentsTabsRoute
   '/components/toggle-button': typeof ComponentsToggleButtonRoute
+  '/components/toggle-icon-button': typeof ComponentsToggleIconButtonRoute
   '/components/toolbar': typeof ComponentsToolbarRoute
   '/components': typeof ComponentsIndexRoute
 }
@@ -204,6 +213,7 @@ export interface FileRoutesById {
   '/components/switch': typeof ComponentsSwitchRoute
   '/components/tabs': typeof ComponentsTabsRoute
   '/components/toggle-button': typeof ComponentsToggleButtonRoute
+  '/components/toggle-icon-button': typeof ComponentsToggleIconButtonRoute
   '/components/toolbar': typeof ComponentsToolbarRoute
   '/components/': typeof ComponentsIndexRoute
 }
@@ -229,6 +239,7 @@ export interface FileRouteTypes {
     | '/components/switch'
     | '/components/tabs'
     | '/components/toggle-button'
+    | '/components/toggle-icon-button'
     | '/components/toolbar'
     | '/components/'
   fileRoutesByTo: FileRoutesByTo
@@ -252,6 +263,7 @@ export interface FileRouteTypes {
     | '/components/switch'
     | '/components/tabs'
     | '/components/toggle-button'
+    | '/components/toggle-icon-button'
     | '/components/toolbar'
     | '/components'
   id:
@@ -275,6 +287,7 @@ export interface FileRouteTypes {
     | '/components/switch'
     | '/components/tabs'
     | '/components/toggle-button'
+    | '/components/toggle-icon-button'
     | '/components/toolbar'
     | '/components/'
   fileRoutesById: FileRoutesById
@@ -299,6 +312,7 @@ export interface RootRouteChildren {
   ComponentsSwitchRoute: typeof ComponentsSwitchRoute
   ComponentsTabsRoute: typeof ComponentsTabsRoute
   ComponentsToggleButtonRoute: typeof ComponentsToggleButtonRoute
+  ComponentsToggleIconButtonRoute: typeof ComponentsToggleIconButtonRoute
   ComponentsToolbarRoute: typeof ComponentsToolbarRoute
   ComponentsIndexRoute: typeof ComponentsIndexRoute
 }
@@ -445,6 +459,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ComponentsToggleButtonRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/components/toggle-icon-button': {
+      id: '/components/toggle-icon-button'
+      path: '/components/toggle-icon-button'
+      fullPath: '/components/toggle-icon-button'
+      preLoaderRoute: typeof ComponentsToggleIconButtonRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/components/toolbar': {
       id: '/components/toolbar'
       path: '/components/toolbar'
@@ -475,6 +496,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComponentsSwitchRoute: ComponentsSwitchRoute,
   ComponentsTabsRoute: ComponentsTabsRoute,
   ComponentsToggleButtonRoute: ComponentsToggleButtonRoute,
+  ComponentsToggleIconButtonRoute: ComponentsToggleIconButtonRoute,
   ComponentsToolbarRoute: ComponentsToolbarRoute,
   ComponentsIndexRoute: ComponentsIndexRoute,
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Code, CodeBlock, Section } from '~/components/docs';
+import { Code, CodeBlock, Section, SubSection } from '~/components/docs';
 import { LanguageSelector } from '~/components/language-selector';
 import { toDisplaySource } from '~/lib/source';
 import { type Language, LanguageContext } from '~/lib/translation';
@@ -101,6 +101,43 @@ export function RtlSection({ name }: { name: string }): React.JSX.Element {
       }
     >
       <ComponentPreview name={name} rtl />
+    </Section>
+  );
+}
+
+export interface ExampleDoc {
+  title: string;
+  name: string;
+  description?: string;
+  className?: string;
+}
+
+export function ExamplesSection({ examples }: { examples: ExampleDoc[] }): React.JSX.Element {
+  return (
+    <Section title="Examples">
+      {examples.map((example) => (
+        <SubSection key={example.name} title={example.title} description={example.description}>
+          <ComponentPreview
+            name={example.name}
+            {...(example.className ? { className: example.className } : {})}
+          />
+        </SubSection>
+      ))}
+    </Section>
+  );
+}
+
+export function UsageSection({
+  imports,
+  code,
+}: {
+  imports: string;
+  code: string;
+}): React.JSX.Element {
+  return (
+    <Section title="Usage">
+      <CodeBlock code={imports} />
+      <CodeBlock code={code} />
     </Section>
   );
 }

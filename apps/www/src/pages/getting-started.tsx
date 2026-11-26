@@ -5,8 +5,8 @@ import { EditIcon, FavoriteFillIcon, FavoriteIcon, SendIcon } from '~/icons';
 import { Link } from '@tanstack/react-router';
 import { Button } from '@/registry/m3ui/ui/button';
 import { ExtendedFab } from '@/registry/m3ui/ui/fab';
-import { ToggleIconButton } from '@/registry/m3ui/ui/icon-button';
 import { ToggleButton } from '@/registry/m3ui/ui/toggle-button';
+import { ToggleIconButton } from '@/registry/m3ui/ui/toggle-icon-button';
 
 export function GettingStartedPage(): React.JSX.Element {
   return (

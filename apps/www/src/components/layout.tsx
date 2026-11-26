@@ -8,7 +8,7 @@ import { cn } from '@/lib/utils';
 import { componentNav, isGroup, type NavGroup, type NavLink, sectionLinks } from '~/nav';
 import { AppBar } from '@/registry/m3ui/ui/app-bar';
 import { Button, buttonVariants } from '@/registry/m3ui/ui/button';
-import { IconButton, ToggleIconButton } from '@/registry/m3ui/ui/icon-button';
+import { IconButton } from '@/registry/m3ui/ui/icon-button';
 import { Ripple } from '@/registry/m3ui/ui/ripple';
 import {
   SideSheet,
@@ -20,6 +20,7 @@ import {
   StandardSideSheet,
 } from '@/registry/m3ui/ui/side-sheet';
 import { toggleButtonVariants } from '@/registry/m3ui/ui/toggle-button';
+import { ToggleIconButton } from '@/registry/m3ui/ui/toggle-icon-button';
 
 function useDarkMode(): [boolean, (dark: boolean) => void] {
   const [dark, setDark] = React.useState(() => document.documentElement.classList.contains('dark'));

@@ -76,6 +76,11 @@ export const componentNav: NavEntry[] = [
         to: '/components/toggle-button',
         description: 'Toggle buttons stay selected after a press and morph their shape',
       },
+      {
+        title: 'Toggle icon buttons',
+        to: '/components/toggle-icon-button',
+        description: 'Toggle icon buttons stay selected after a press and morph their shape',
+      },
     ],
   },
   {

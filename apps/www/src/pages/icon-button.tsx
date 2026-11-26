@@ -2,7 +2,8 @@ import type * as React from 'react';
 
 import { PageHeader, Preview, Section } from '~/components/docs';
 import { FavoriteFillIcon, FavoriteIcon, SettingsIcon } from '~/icons';
-import { IconButton, ToggleIconButton } from '@/registry/m3ui/ui/icon-button';
+import { IconButton } from '@/registry/m3ui/ui/icon-button';
+import { ToggleIconButton } from '@/registry/m3ui/ui/toggle-icon-button';
 
 const variants = ['filled', 'tonal', 'outlined', 'standard'] as const;
 const sizes = ['xs', 'sm', 'md', 'lg', 'xl'] as const;

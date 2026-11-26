@@ -15,8 +15,9 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { buttonVariants } from '@/registry/m3ui/ui/button';
 import { fabVariants } from '@/registry/m3ui/ui/fab';
-import { iconButtonVariants, toggleIconButtonVariants } from '@/registry/m3ui/ui/icon-button';
+import { iconButtonVariants } from '@/registry/m3ui/ui/icon-button';
 import { Ripple } from '@/registry/m3ui/ui/ripple';
+import { toggleIconButtonVariants } from '@/registry/m3ui/ui/toggle-icon-button';
 
 type ToolbarOrientation = 'horizontal' | 'vertical';
 
