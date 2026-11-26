@@ -1,54 +1,76 @@
 import type * as React from 'react';
 
-import { PageHeader, Preview, Section } from '~/components/docs';
-import { Switch } from '@/registry/m3ui/ui/switch';
+import { ApiComponent } from '~/components/api-reference';
+import {
+  ComponentPreview,
+  ExamplesSection,
+  RtlSection,
+  UsageSection,
+} from '~/components/component-preview';
+import { Code, PageHeader, Prose, Section } from '~/components/docs';
+import { Installation } from '~/components/installation';
 
 export function SwitchPage(): React.JSX.Element {
   return (
     <>
       <PageHeader
         title="Switch"
-        description="Switches turn a setting on or off. The handle grows when selected and when pressed, and slides on the fast spatial spring."
-        item="switch"
+        description="Switches turn a setting on or off. The handle grows when selected or pressed, slides on the fast spatial spring and can be dragged."
+      />
+      <ComponentPreview name="switch/demo" />
+
+      <Section title="Installation">
+        <Installation item="switch" />
+      </Section>
+
+      <UsageSection
+        imports="import { Switch } from '@/components/ui/switch';"
+        code={`<label>
+  Wi-Fi
+  <Switch />
+</label>`}
       />
 
-      <Section title="Basic">
-        <Preview
-          code={`<label className="flex items-center gap-4">
-  Wi-Fi
-  <Switch defaultChecked />
-</label>`}
-        >
-          <label className="flex items-center gap-4 type-body-large">
-            Wi-Fi
-            <Switch defaultChecked />
-          </label>
-          <label className="flex items-center gap-4 type-body-large">
-            Bluetooth
-            <Switch />
-          </label>
-        </Preview>
+      <Section title="Notes">
+        <Prose>
+          <p>
+            Use a switch for a setting that applies right away. For a choice that&apos;s confirmed
+            later, like in a form with a submit button, prefer a checkbox.
+          </p>
+          <p>
+            Label it with a wrapping <Code>label</Code> or an <Code>aria-label</Code>. Drag the
+            handle or press the track; the handle follows the reading direction.
+          </p>
+        </Prose>
       </Section>
 
-      <Section
-        title="Icons"
-        description="Show a check on the selected handle, or icons in both states."
-      >
-        <Preview code='<Switch icons="checked" />\n<Switch icons="both" />'>
-          <Switch aria-label="Check icon" icons="checked" defaultChecked />
-          <Switch aria-label="Check icon, off" icons="checked" />
-          <Switch aria-label="Both icons" icons="both" defaultChecked />
-          <Switch aria-label="Both icons, off" icons="both" />
-        </Preview>
-      </Section>
+      <ExamplesSection
+        examples={[
+          {
+            title: 'Icons',
+            name: 'switch/icons',
+            description: 'Show a check on the selected handle, or icons in both states.',
+          },
+          { title: 'Settings list', name: 'switch/settings' },
+          { title: 'Disabled', name: 'switch/disabled' },
+        ]}
+      />
+      <RtlSection name="switch/rtl" />
 
-      <Section title="Disabled">
-        <Preview code="<Switch disabled />">
-          <Switch aria-label="Disabled, on" disabled defaultChecked icons="both" />
-          <Switch aria-label="Disabled, off" disabled icons="both" />
-          <Switch aria-label="Disabled, on, no icon" disabled defaultChecked />
-          <Switch aria-label="Disabled, off, no icon" disabled />
-        </Preview>
+      <Section title="API Reference">
+        <ApiComponent
+          name="Switch"
+          description="A UI SDK Switch with the M3 track, handle and icons."
+          inherits={{ label: 'Switch', doc: 'switch' }}
+          props={[
+            { name: 'icons', type: "'none' | 'checked' | 'both'", default: "'none'" },
+            { name: 'checked', type: 'boolean' },
+            { name: 'defaultChecked', type: 'boolean', default: 'false' },
+            { name: 'onCheckedChange', type: '(checked: boolean, details) => void' },
+            { name: 'disabled', type: 'boolean', default: 'false' },
+            { name: 'name', type: 'string' },
+          ]}
+        />
       </Section>
     </>
   );
