@@ -1,162 +1,153 @@
-import * as React from 'react';
+import type * as React from 'react';
 
-import { PageHeader, Preview, Section } from '~/components/docs';
-import { ArrowBackIcon, CloseIcon, FilterListIcon } from '~/icons';
-import { Button } from '@/registry/m3ui/ui/button';
-import { Checkbox } from '@/registry/m3ui/ui/checkbox';
-import { IconButton } from '@/registry/m3ui/ui/icon-button';
+import { ApiComponent } from '~/components/api-reference';
 import {
+  ComponentPreview,
+  ExamplesSection,
+  RtlSection,
+  UsageSection,
+} from '~/components/component-preview';
+import { Code, CompositionSection, PageHeader, Prose, Section } from '~/components/docs';
+import { Installation } from '~/components/installation';
+
+export function SideSheetPage(): React.JSX.Element {
+  return (
+    <>
+      <PageHeader
+        title="Side Sheet"
+        description="Side sheets show secondary content anchored to the side of the screen. Modal side sheets slide in over a scrim; standard side sheets sit beside the main content."
+      />
+      <ComponentPreview name="side-sheet/demo" />
+
+      <Section title="Installation">
+        <Installation item="side-sheet" />
+      </Section>
+
+      <UsageSection
+        imports={`import {
   SideSheet,
-  SideSheetActions,
   SideSheetBody,
   SideSheetClose,
   SideSheetContent,
   SideSheetHeader,
   SideSheetTitle,
   SideSheetTrigger,
-  StandardSideSheet,
-} from '@/registry/m3ui/ui/side-sheet';
-
-const filters = ['Unread', 'Starred', 'Has attachments', 'From contacts', 'Sent to me'];
-
-function FilterList(): React.JSX.Element {
-  return (
-    <ul className="flex flex-col">
-      {filters.map((filter) => (
-        <li key={filter}>
-          <label className="flex items-center gap-2 py-1 type-body-large">
-            <Checkbox defaultChecked={filter === 'Unread'} />
-            {filter}
-          </label>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function ModalExample({
-  label,
-  detached = false,
-  back = false,
-}: {
-  label: string;
-  detached?: boolean;
-  back?: boolean;
-}): React.JSX.Element {
-  return (
-    <SideSheet>
-      <SideSheetTrigger render={<Button variant="tonal" />}>{label}</SideSheetTrigger>
-      <SideSheetContent detached={detached}>
-        <SideSheetHeader>
-          {back ? (
-            <SideSheetClose aria-label="Back" render={<IconButton width="narrow" />}>
-              <ArrowBackIcon />
-            </SideSheetClose>
-          ) : null}
-          <SideSheetTitle>Filters</SideSheetTitle>
-          <SideSheetClose aria-label="Close">
-            <CloseIcon />
-          </SideSheetClose>
-        </SideSheetHeader>
-        <SideSheetBody>
-          <FilterList />
-        </SideSheetBody>
-        <SideSheetActions>
-          <SideSheetClose render={<Button />}>Save</SideSheetClose>
-          <SideSheetClose render={<Button variant="outlined" />}>Cancel</SideSheetClose>
-        </SideSheetActions>
-      </SideSheetContent>
-    </SideSheet>
-  );
-}
-
-function StandardExample(): React.JSX.Element {
-  const [open, setOpen] = React.useState(true);
-  return (
-    <div className="flex overflow-hidden rounded-corner-large bg-surface block-120 inline-full">
-      <div className="flex flex-1 flex-col items-start gap-4 p-6 min-inline-0">
-        <h3 className="type-title-large">Inbox</h3>
-        <p className="type-body-medium text-on-surface-variant">
-          The standard sheet shares the space with this content and pushes it aside.
-        </p>
-        <Button variant="tonal" aria-expanded={open} onClick={() => setOpen((value) => !value)}>
-          <FilterListIcon />
-          {open ? 'Hide filters' : 'Show filters'}
-        </Button>
-      </div>
-      <StandardSideSheet aria-label="Filters" open={open} onOpenChange={setOpen}>
-        <SideSheetHeader>
-          <SideSheetTitle>Filters</SideSheetTitle>
-          <SideSheetClose aria-label="Close filters">
-            <CloseIcon />
-          </SideSheetClose>
-        </SideSheetHeader>
-        <SideSheetBody>
-          <FilterList />
-        </SideSheetBody>
-      </StandardSideSheet>
-    </div>
-  );
-}
-
-export function SideSheetsPage(): React.JSX.Element {
-  return (
-    <>
-      <PageHeader
-        title="Side sheets"
-        description="Side sheets show secondary content anchored to the side of the screen. Standard side sheets sit beside the main content; modal side sheets slide in over a scrim and block the rest of the page until they close."
-        item="side-sheet"
-      />
-
-      <Section
-        title="Modal"
-        description="Modal side sheets come from the end edge, round their inner corners and close with Escape, a press on the scrim, a swipe toward their edge or any close part. Detached sheets float 16dp from the edges with all corners rounded."
-      >
-        <Preview
-          code={`<SideSheet>
-  <SideSheetTrigger render={<Button variant="tonal" />}>Open</SideSheetTrigger>
+} from '@/components/ui/side-sheet';`}
+        code={`<SideSheet>
+  <SideSheetTrigger render={<Button />}>Open</SideSheetTrigger>
   <SideSheetContent>
     <SideSheetHeader>
       <SideSheetTitle>Filters</SideSheetTitle>
-      <SideSheetClose aria-label="Close"><CloseIcon /></SideSheetClose>
+      <SideSheetClose aria-label="Close">
+        <CloseIcon />
+      </SideSheetClose>
     </SideSheetHeader>
     <SideSheetBody>…</SideSheetBody>
-    <SideSheetActions>
-      <SideSheetClose render={<Button />}>Save</SideSheetClose>
-      <SideSheetClose render={<Button variant="outlined" />}>Cancel</SideSheetClose>
-    </SideSheetActions>
   </SideSheetContent>
-</SideSheet>
+</SideSheet>`}
+      />
 
-<SideSheetContent detached>…</SideSheetContent>`}
-        >
-          <ModalExample label="Modal" />
-          <ModalExample label="Detached" detached />
-          <ModalExample label="With back button" back />
-        </Preview>
+      <CompositionSection
+        tree={`SideSheet
+├── SideSheetTrigger
+└── SideSheetContent
+    ├── SideSheetHeader
+    │   ├── SideSheetClose (back)
+    │   ├── SideSheetTitle
+    │   └── SideSheetClose
+    ├── SideSheetDescription
+    ├── SideSheetBody
+    └── SideSheetActions
+
+StandardSideSheet
+├── SideSheetHeader
+└── SideSheetBody`}
+      />
+
+      <Section title="Notes">
+        <Prose>
+          <p>
+            Modal sheets are UI SDK Drawers. They trap focus and close with Escape, a press on the
+            scrim, a swipe toward their edge or any <Code>SideSheetClose</Code>. Detached sheets
+            float 16dp from the edges with every corner rounded.
+          </p>
+          <p>
+            <Code>StandardSideSheet</Code> is part of the layout. It opens and closes on the spatial
+            spring, pushes the content beside it, and becomes inert while closed.
+          </p>
+          <p>
+            <Code>side</Code> is logical: <Code>end</Code> is the right edge in left-to-right pages
+            and the left edge in right-to-left ones. <Code>SideSheetClose</Code> renders an icon
+            button; pass <Code>render</Code> for a text button.
+          </p>
+        </Prose>
       </Section>
 
-      <Section
-        title="Standard"
-        description="Standard side sheets are part of the layout. They open and close with the spatial spring, take the surface color and a divider on their inner edge, and become inert while closed."
-      >
-        <Preview
-          code={`const [open, setOpen] = React.useState(true);
-
-<div className="flex">
-  <main className="flex-1">…</main>
-  <StandardSideSheet aria-label="Filters" open={open} onOpenChange={setOpen}>
-    <SideSheetHeader>
-      <SideSheetTitle>Filters</SideSheetTitle>
-      <SideSheetClose aria-label="Close filters"><CloseIcon /></SideSheetClose>
-    </SideSheetHeader>
-    <SideSheetBody>…</SideSheetBody>
-  </StandardSideSheet>
-</div>`}
-        >
-          <StandardExample />
-        </Preview>
-      </Section>
+      <ExamplesSection
+        examples={[
+          { title: 'Detached', name: 'side-sheet/detached' },
+          { title: 'Back button', name: 'side-sheet/back' },
+          { title: 'Start side', name: 'side-sheet/start' },
+          { title: 'Standard', name: 'side-sheet/standard' },
+        ]}
+      />
+      <RtlSection name="side-sheet/rtl" />
+      <SideSheetApi />
     </>
+  );
+}
+
+function SideSheetApi(): React.JSX.Element {
+  return (
+    <Section title="API Reference">
+      <ApiComponent
+        name="SideSheet"
+        description="A modal UI SDK Drawer from a side edge."
+        inherits={{ label: 'Drawer', doc: 'drawer' }}
+        props={[
+          { name: 'side', type: "'start' | 'end'", default: "'end'" },
+          { name: 'open', type: 'boolean' },
+          { name: 'defaultOpen', type: 'boolean', default: 'false' },
+          { name: 'onOpenChange', type: '(open: boolean, details) => void' },
+        ]}
+      />
+      <ApiComponent
+        name="SideSheetContent"
+        description="The sheet surface with its scrim."
+        inherits={{ label: 'DrawerContent', doc: 'drawer' }}
+        props={[{ name: 'detached', type: 'boolean', default: 'false' }]}
+      />
+      <ApiComponent
+        name="StandardSideSheet"
+        description={
+          <>
+            An <Code>aside</Code> that sits in the layout. Takes every <Code>aside</Code> prop.
+          </>
+        }
+        props={[
+          { name: 'open', type: 'boolean' },
+          { name: 'defaultOpen', type: 'boolean', default: 'true' },
+          { name: 'onOpenChange', type: '(open: boolean) => void' },
+          { name: 'side', type: "'start' | 'end'", default: "'end'" },
+          { name: 'divider', type: 'boolean', default: 'true' },
+        ]}
+      />
+      <ApiComponent name="SideSheetTrigger" description="Opens the modal sheet." />
+      <ApiComponent
+        name="SideSheetHeader"
+        description="A row for the back button, title and close button."
+      />
+      <ApiComponent name="SideSheetTitle" description="Names the sheet." />
+      <ApiComponent name="SideSheetDescription" description="Supporting text under the title." />
+      <ApiComponent
+        name="SideSheetClose"
+        description="Closes the sheet. Renders an icon button unless you pass render."
+      />
+      <ApiComponent name="SideSheetBody" description="The scrolling content area." />
+      <ApiComponent
+        name="SideSheetActions"
+        description="A row of buttons at the bottom, under a divider."
+      />
+    </Section>
   );
 }
